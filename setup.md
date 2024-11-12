@@ -7,19 +7,16 @@ title: Setup
 
 You will need a terminal, Python 3.8+, and the ability to create Python virtual environments.
 
-::::::::::::::::::::::::::::::::::::::: callout
 
 ### Installing Python
 
-[Python][python] is a popular language for scientific computing, and a frequent choice
+Python is a popular language for scientific computing, and a frequent choice
 for machine learning as well.
 To install Python, follow the [Beginner's Guide](https://wiki.python.org/moin/BeginnersGuide/Download) or head straight to the [download page](https://www.python.org/downloads/).
 
 Please set up your python environment at least a day in advance of the workshop.
 If you encounter problems with the installation procedure, ask your workshop organizers via e-mail for assistance so
 you are ready to go as soon as the workshop begins.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Packages
 
