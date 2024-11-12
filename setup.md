@@ -49,7 +49,16 @@ To activate the environment, run the following OS-specific commands in Terminal 
 * **Mac/Linux**: `source intro_ml/bin/activate`
 
 ### Installing your prerequisites
-Once the virtual environment is activated, install the prerequisites by running the following command:
+Once the virtual environment is activated, install the prerequisites by running the following commands:
+
+First, make sure you have the latest version of pip by running:
+
+~~~
+python.exe -m pip install --upgrade pip
+~~~
+{: .language-bash}
+
+Then, install the required libraries.
 
 ~~~
 pip install numpy pandas matplotlib opencv-python scikit-learn jupyterlab
