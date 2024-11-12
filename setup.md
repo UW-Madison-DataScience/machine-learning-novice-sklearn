@@ -79,11 +79,11 @@ To use this virtual environment in JupyterLab, follow these steps:
 
 2. Add the virtual environment as a Jupyter kernel:
    ~~~
-   python -m ipykernel install --user --name=intro_ml --display-name "Python (intro_ml)"
+   python -m ipykernel install --user --name=intro_ml --display-name "intro_ml"
    ~~~
    {: .language-bash}
 
-3. When you launch JupyterLab, select the `Python (intro_ml)` kernel to ensure your code runs in the correct environment.
+3. When you launch JupyterLab, select the `intro_ml` kernel to ensure your code runs in the correct environment.
 
 ### Deactivating/activating environment
 To deactivate your virtual environment, simply run `deactivate` in your terminal or prompt. If you close the terminal, Git Bash, or Conda Prompt without deactivating, the environment will automatically close as the session ends. Later, you can reactivate the environment using the "Activate environment" instructions above to continue working. If you want to keep coding in the same terminal but no longer need this environment, it’s best to explicitly deactivate it. This ensures that the software installed for this workshop doesn’t interfere with your default Python setup or other projects.
