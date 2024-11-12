@@ -8,8 +8,8 @@ title: Setup
 Create a new directory for the workshop (e.g., Desktop/workshop-ml). We will place our code generated during the workshop in this folder.
 
 ~~~
+cd Desktop
 mkdir workshop-ml
-cd workshop-ml
 ~~~
 {: .language-bash}
 
