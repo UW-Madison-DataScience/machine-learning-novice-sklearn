@@ -7,8 +7,8 @@ questions:
 - "What are some useful machine learning techniques?"
 objectives:
 - "Gain an overview of what machine learning is and the techniques available."
-- "Understand how machine learning and artificial intelligence differ."
-- "Be aware of some caveats when using Machine Learning."
+- "Understand how machine learning, deep learning, and artificial intelligence differ."
+- "Be aware of some caveats when using machine mearning."
 
 keypoints:
 - "Machine learning is a set of tools and techniques that use data to make predictions."
@@ -19,7 +19,9 @@ keypoints:
 
 # What is machine learning?
 
-Machine learning is a set of techniques that enable computers to use data to improve their performance in a given task. This is similar in concept to how humans learn to make predictions based upon previous experience and knowledge. Machine learning encompasses a wide range of activities, but broadly speaking it can be used to: find trends in a dataset, classify data into groups or categories, make predictions based upon data, and even "learn" how to interact with an environment when provided with goals to achieve.
+Machine learning is a set of techniques that enable computers to use data to improve their performance in a given task. This is similar in concept to how humans learn to make predictions based upon previous experience and knowledge. Machine learning is "data-driven", meaning that it uses the underlying statistics of a set of data to achieve a task.
+
+Machine learning encompasses a wide range of tasks and activities, but broadly speaking it can be used to: find trends in a dataset, classify data into groups or categories, make predictions based upon data, and even "learn" how to interact with an environment when provided with goals to achieve.
 
 ### Artificial intelligence vs machine learning
 

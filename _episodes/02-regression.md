@@ -39,369 +39,21 @@ Regression can be as simple as drawing a "line of best fit" through data points,
 
 ![Example of linear and polynomial regressions](../fig/regression_example.png)
 
-### Linear regression using Scikit-Learn
+## Linear regression using Scikit-Learn
 
-We've had a lot of theory so time to start some actual coding! Let's create regression models for a small bundle of datasets known as [Anscombe's Quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet). These datasets are available through the Python plotting library [Seaborn](https://seaborn.pydata.org/). Let's define our bundle of datasets, extract out the first dataset, and inspect it's contents:
+We've had a lot of theory so time to start some actual coding! Let's create a regression model on some penguin data available through the Python plotting library [Seaborn](https://seaborn.pydata.org/). 
+
+Let’s start by loading in and examining the penguin dataset, which containing a few hundred samples and a number of features and labels.
 
 ~~~
 import seaborn as sns
 
-# Anscomes Quartet consists of 4 sets of data
-data = sns.load_dataset("anscombe")
-print(data.head())
-
-# Split out the 1st dataset from the total
-data_1 = data[data["dataset"]=="I"]
-data_1 = data_1.sort_values("x")
-
-# Inspect the data
-print(data_1.head())
-~~~
-{: .language-python}
-
-We see that the dataset bundle has the 3 columns `dataset`, `x`, and `y`. We have already used the `dataset` column to extract out Dataset I ready for our regression task. Let's visually inspect the data:
-
-~~~
-import matplotlib.pyplot as plt
-
-plt.scatter(data_1["x"], data_1["y"])
-plt.xlabel("x")
-plt.ylabel("y")
-plt.show()
-~~~
-{: .language-python}
-
-![Inspection of our dataset](../fig/regression_inspect.png)
-
-
-In this regression example we will create a Linear Regression model that will try to predict `y` values based upon `x` values.
-
-In machine learning terminology: we will use our `x` feature (variable) and `y` labels("answers") to train our Linear Regression model to predict `y` values when provided with `x` values.
-
-The mathematical equation for a linear fit is `y = mx + c` where `y` is our label data, `x` is our input feature(s), `m` represents the gradient of the linear fit, and `c` represents the intercept with the y-axis.
-
-A typical ML workflow is as following:
-* Define the model (also known as an estimator)
-* Tweak your data into the required format for your model
-* Train your model on the input data
-* Predict some values using the trained model
-* Check the accuracy of the prediction, and visualise the result
-
-We'll define functions for each of these steps so that we can quickly perform linear regressions on our data. First we'll define a function to pre-process our data into a format that Scikit-Learn can use.
-~~~
-import numpy as np
-def pre_process_linear(x, y):
-    # sklearn requires a 2D array, so lets reshape our 1D arrays.
-    x_data = np.array(x).reshape(-1, 1)
-    y_data = np.array(y).reshape(-1, 1)
-
-    return x_data, y_data
-~~~
-{: .language-python}
-
-Next we'll define a model, and train it on the pre-processed data. We'll also inspect the trained model parameters `m` and `c`:
-~~~
-from sklearn.linear_model import LinearRegression
-
-def fit_a_linear_model(x_data, y_data):
-    # Define our estimator/model
-    model = LinearRegression(fit_intercept=True)
-
-    # train our estimator/model using our data
-    lin_regress = model.fit(x_data,y_data)
-
-    # inspect the trained estimator/model parameters
-    m = lin_regress.coef_
-    c = lin_regress.intercept_
-    print("linear coefs=",m, c)
-
-    return lin_regress
-~~~
-{: .language-python}
-
-Then we'll define a function to make predictions using our trained model, and calculate the Root Mean Squared Error (RMSE) of our predictions:
-~~~
-import math
-from sklearn.metrics import mean_squared_error
-
-def predict_linear_model(lin_regress, x_data, y_data):
-    # predict some values using our trained estimator/model
-    # (in this case we predict our input data!)
-    linear_data = lin_regress.predict(x_data)
-
-    # calculated a RMS error as a quality of fit metric
-    error = math.sqrt(mean_squared_error(y_data, linear_data))
-    print("linear error=",error)
-
-    # return our trained model so that we can use it later
-    return linear_data
-~~~
-{: .language-python}
-
-Finally, we'll define a function to plot our input data, our linear fit, and our predictions:
-~~~
-def plot_linear_model(x_data, y_data, predicted_data):
-    # visualise!
-    # Don't call .show() here so that we can add extra stuff to the figure later
-    plt.scatter(x_data, y_data, label="input")
-    plt.plot(x_data, predicted_data, "-", label="fit")
-    plt.plot(x_data, predicted_data, "rx", label="predictions")
-    plt.xlabel("x")
-    plt.ylabel("y")
-    plt.legend()
-~~~
-{: .language-python}
-
-We will be training a few Linear Regression models in this episode, so let's define a handy function to combine input data processing, model creation, training our model, inspecting the trained model parameters `m` and `c`, make some predictions, and finally visualise our data.
-~~~
-def fit_predict_plot_linear(x, y):
-    x_data, y_data = pre_process_linear(x, y)
-    lin_regress = fit_a_linear_model(x_data, y_data)
-    linear_data = predict_linear_model(lin_regress, x_data, y_data)
-    plot_linear_model(x_data, y_data, linear_data)
-
-    return lin_regress
-~~~
-{: .language-python}
-
-Now we have defined our generic function to fit a linear regression we can call the function to train it on some data, and show the plot that was generated:
-~~~
-# just call the function here rather than assign.
-# We don't need to reuse the trained model yet
-fit_predict_plot_linear(data_1["x"], data_1["y"])
-
-plt.show()
-~~~
-{: .language-python}
-
-
-![Linear regression of dataset I](../fig/regress_linear.png)
-
-This looks like a reasonable linear fit to our first dataset. Thanks to our function we can quickly perform more linear regressions on other datasets.
-
-Let's quickly perform a new linear fit on the 2nd Anscombe dataset:
-
-~~~
-data_2 = data[data["dataset"]=="II"]
-fit_predict_plot_linear(data_2["x"],data_2["y"])
-
-plt.show()
-~~~
-{: .language-python}
-
-![Linear regression of dataset II](../fig/regress_linear_2nd.png)
-
-It looks like our linear fit on Dataset II produces a nearly identical fit to the linear fit on Dataset I. Although our errors look to be almost identical our visual inspection tells us that Dataset II is probably not a linear correllation and we should try to make a different model.
-
-> ## Exercise: Repeat the linear regression excercise for Datasets III and IV.
-> Adjust your code to repeat the linear regression for the other datasets. What can you say about the similarities and/or differences between the linear regressions on the 4 datasets?
-> > ## Solution
-> > ~~~
-> > # Repeat the following and adjust for dataset IV
-> > data_3 = data[data["dataset"]=="III"]
-> >
-> > fit_predict_plot_linear(data_3["x"],data_3["y"])
-> >
-> > plt.show()
-> > ~~~
-> > {: .language-python}
-> >
-> > ![Linear regression of dataset III](../fig/regress_linear_3rd.png)
-> > ![Linear regression of dataset IV](../fig/regress_linear_4th.png)
-> > The 4 datasets all produce very similar linear regression fit parameters (`m` and `c`) and RMSEs despite visual differences in the 4 datasets.
-> >
-> > This is intentional as the Anscombe Quartet is designed to produce near identical basic statistical values such as means and standard deviations.
-> >
-> > While the trained model parameters and errors are near identical, our visual inspection tells us that a linear fit might not be the best way of modelling all of these datasets.
-> {: .solution}
-{: .challenge}
-
-
-## Polynomial regression using Scikit-Learn
-
-Now that we have learnt how to do a linear regression it's time look into polynomial regressions. Polynomial functions are non-linear functions that are commonly-used to model data. Mathematically they have `N` degrees of freedom and they take the following form `y = a + bx + cx^2 + dx^3 ... + mx^N`
-
-If we have a polynomial of degree N=1 we once again return to a linear equation `y = a + bx` or as it is more commonly written `y = mx + c`. Let's create a polynomial regression using N=2.
-
-In Scikit-Learn this is done in two steps. First we pre-process our input data `x_data` into a polynomial representation using the `PolynomialFeatures` function. Then we can create our polynomial regressions using the `LinearRegression().fit()` function, but this time using the polynomial representation of our `x_data`.
-
-~~~
-from sklearn.preprocessing import PolynomialFeatures
-
-def pre_process_poly(x, y):
-    # sklearn requires a 2D array, so lets reshape our 1D arrays.
-    x_data = np.array(x).reshape(-1, 1)
-    y_data = np.array(y).reshape(-1, 1)
-
-    # create a polynomial representation of our data
-    poly_features = PolynomialFeatures(degree=2)
-    x_poly = poly_features.fit_transform(x_data)
-
-    return x_poly, x_data, y_data
-
-
-def fit_poly_model(x_poly, y_data):
-    # Define our estimator/model(s)
-    poly_regress = LinearRegression()
-
-    # define and train our model
-    poly_regress.fit(x_poly,y_data)
-
-    # inspect trained model parameters
-    poly_m = poly_regress.coef_
-    poly_c = poly_regress.intercept_
-    print("poly_coefs",poly_m, poly_c)
-
-    return poly_regress
-
-
-def predict_poly_model(poly_regress, x_poly, y_data):
-    # predict some values using our trained estimator/model
-    # (in this case - our input data)
-    poly_data = poly_regress.predict(x_poly)
-
-    poly_error = math.sqrt(mean_squared_error(y_data, poly_data))
-    print("poly error=", poly_error)
-
-    return poly_data
-
-
-def plot_poly_model(x_data, poly_data):
-    # visualise!
-    plt.plot(x_data, poly_data, label="poly fit")
-    plt.legend()
-
-
-def fit_predict_plot_poly(x, y):
-    # Combine all of the steps
-    x_poly, x_data, y_data = pre_process_poly(x, y)
-    poly_regress = fit_poly_model(x_poly, y_data)
-    poly_data = predict_poly_model(poly_regress, x_poly, y_data)
-    plot_poly_model(x_data, poly_data)
-
-    return poly_regress
-~~~
-{: .language-python}
-
-Lets plot our input dataset II, linear model, and polynomial model together, as well as compare the errors of the linear and polynomial fits.
-
-~~~
-# Sort our data in order of our x (feature) values
-data_2 = data[data["dataset"]=="II"]
-data_2 = data_2.sort_values("x")
-
-fit_predict_plot_linear(data_2["x"],data_2["y"])
-fit_predict_plot_poly(data_2["x"],data_2["y"])
-
-plt.show()
-~~~
-{: .language-python}
-
-![Comparison of the regressions of our dataset](../fig/regress_both.png)
-
-Comparing the plots and errors it seems like a polynomial regression of N=2 is a far superior fit to Dataset II than a linear fit. In fact, it looks like our polynomial fit almost perfectly fits Dataset II... which is because Dataset II is created from a N=2 polynomial equation!
-
-> ## Exercise: Perform and compare linear and polynomial fits for Datasets I, II, III, and IV.
-> Which performs better for each dataset? Modify your polynomial regression function to take `N` as an input parameter to your regression model. How does changing the degree of polynomial fit affect each dataset?
-> > ## Solution
-> > ~~~
-> > for ds in ["I","II","III","IV"]:
-> >     # Sort our data in order of our x (feature) values
-> >     data_ds = data[data["dataset"]==ds]
-> >     data_ds = data_ds.sort_values("x")
-> >     fit_predict_plot_linear(data_ds["x"],data_ds["y"])
-> >     fit_predict_plot_poly(data_ds["x"],data_ds["y"])
-> >
-> >     plt.show()
-> > ~~~
-> > {: .language-python}
-> >
-> > ![Polynomial regression of dataset I](../fig/regress_polynomial_1st.png)
-> > ![Polynomial regression of dataset II](../fig/regress_polynomial_2nd.png)
-> > ![Polynomial regression of dataset III](../fig/regress_polynomial_3rd.png)
-> > ![Polynomial regression of dataset IV](../fig/regress_polynomial_4th.png)
-> > 
-> > The `N=2` polynomial fit is far better for Dataset II. According to the RMSE the polynomial is a slightly better fit for Datasets I and III, however it could be argued that a linear fit is good enough.
-> > Dataset III looks like a linear relation that has a single outlier, rather than a truly non-linear relation. The polynomial and linear fits perform just as well (or poorly) on Dataset IV.
-> > For Dataset IV it looks like `y` may be a better estimator of `x`, than `x` is at estimating `y`.
-> > ~~~
-> > def pre_process_poly(x, y, N):
-> >     # sklearn requires a 2D array, so lets reshape our 1D arrays.
-> >     x_data = np.array(x).reshape(-1, 1)
-> >     y_data = np.array(y).reshape(-1, 1)
-> >
-> >     # create a polynomial representation of our data
-> >     poly_features = PolynomialFeatures(degree=N)
-> >     x_poly = poly_features.fit_transform(x_data)
-> >
-> >     return x_poly, x_data, y_data
-> >
-> > def plot_poly_model(x_data, poly_data, N):
-> >     # visualise!
-> >     plt.plot(x_data, poly_data, label="poly fit N=" + str(N))
-> >     plt.legend()
-> >
-> > def fit_predict_plot_poly(x, y, N):
-> >     # Combine all of the steps
-> >     x_poly, x_data, y_data = pre_process_poly(x, y, N)
-> >     poly_regress = fit_poly_model(x_poly, y_data)
-> >     poly_data = predict_poly_model(poly_regress, x_poly, y_data)
-> >     plot_poly_model(x_data, poly_data, N)
-> >
-> >     return poly_regress
-> >
-> > for ds in ["I","II","III","IV"]:
-> >     # Sort our data in order of our x (feature) values
-> >     data_ds = data[data["dataset"]==ds]
-> >     data_ds = data_ds.sort_values("x")
-> >     fit_predict_plot_linear(data_ds["x"],data_ds["y"])
-> >     for N in range(2,11):
-> >         print("Polynomial degree =",N)
-> >         fit_predict_plot_poly(data_ds["x"],data_ds["y"],N)
-> >     plt.show()
-> > ~~~
-> > {: .language-python}
-> >
-> > and
-> > ~~~
-> > for ds in ["I","II","III","IV"]:
-> >     # Sort our data in order of our x (feature) values
-> >     data_ds = data[data["dataset"]==ds]
-> >     data_ds = data_ds.sort_values("x")
-> >     fit_predict_plot_linear(data_ds["x"],data_ds["y"])
-> >     for N in range(2,11):
-> >         print("Polynomial degree =",N)
-> >         fit_predict_plot_poly(data_ds["x"],data_ds["y"],N)
-> >     plt.show()
-> > ~~~
-> > {: .language-python}
-> >
-> > With a large enough polynomial you can fit through every point with a unique `x` value.
-> > Datasets II and IV remain unchanged beyond `N=2` as the polynomial has converged (dataset II) or cannot model the data (Dataset IV).
-> > Datasets I and III slowly decrease their RMSE and N is increased, but it is likely that these more complex models are overfitting the data. Overfitting is discussed later in the lesson.
-> >
-> > ![Polynomial regression of dataset I with N between 1 and 10](../fig/regress_polynomial_n_1st.png)
-> > ![Polynomial regression of dataset II with N between 1 and 10](../fig/regress_polynomial_n_2nd.png)
-> > ![Polynomial regression of dataset III with N between 1 and 10](../fig/regress_polynomial_n_3rd.png)
-> > ![Polynomial regression of dataset IV with N between 1 and 10](../fig/regress_polynomial_n_4th.png)
-> >
-> {: .solution}
-{: .challenge}
-
-
-## Let's explore a more realistic scenario
-
-Now that we have some convenient Python functions to perform quick regressions on data it's time to explore a more realistic regression modelling scenario.
-
-Let's start by loading in and examining a new dataset from Seaborn: a penguin dataset containing a few hundred samples and a number of features and labels.
-
-~~~
 dataset = sns.load_dataset("penguins")
 dataset.head()
 ~~~
 {: .language-python}
 
-We can see that we have seven columns in total: 4 continuous (numerical) columns named `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, and `body_mass_g`; and 3 discrete (categorical) columns named `species`, `island`, and `sex`. We can also see from a quick inspection of the first 5 samples that we have some missing data in the form of `NaN` values. Let's go ahead and remove any rows that contain `NaN` values:
+We can see that we have seven columns in total: 4 continuous (numerical) columns named `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, and `body_mass_g`; and 3 discrete (categorical) columns named `species`, `island`, and `sex`. We can also see from a quick inspection of the first 5 samples that we have some missing data in the form of `NaN` values. Missing data is a fairly common occurrence in real-life data, so let's go ahead and remove any rows that contain `NaN` values:
 
 ~~~
 dataset.dropna(inplace=True)
@@ -409,38 +61,134 @@ dataset.head()
 ~~~
 {: .language-python}
 
-Now that we have cleaned our data we can try and predict a penguins bill depth using their body mass. In this scenario we will train a linear regression model using `body_mass_g` as our feature data and `bill_depth_mm` as our label data. We will train our model on a subset of the data by slicing the first 146 samples of our cleaned data. We will then use our regression function to train and plot our model.
+
+In this scenario we will train a linear regression model using `body_mass_g` as our feature data and `bill_depth_mm` as our label data. We will train our model on a subset of the data by slicing the first 146 samples of our cleaned data. 
+
+In machine learning we often train our models on a subset of data, for reasons we will explain later in this lesson, so let us extract a subset of data to work on by slicing the first 146 samples of our cleaned data and extracting our feature and label data:
+
 
 ~~~
+import matplotlib.pyplot as plt
+
 dataset_1 = dataset[:146]
 
 x_data = dataset_1["body_mass_g"]
 y_data = dataset_1["bill_depth_mm"]
 
-trained_model = fit_predict_plot_linear(x_data, y_data)
-
+plt.scatter(x_data, y_data)
 plt.xlabel("mass g")
 plt.ylabel("depth mm")
 plt.show()
 ~~~
 {: .language-python}
 
-![Comparison of the regressions of our dataset](../fig/regress_penguin_lin.png)
+![Comparison of the regressions of our dataset](../fig/penguin_regression.png)
 
-Congratulations! We've taken our linear regression function and quickly created and trained a new linear regression model on a brand new dataset. Note that this time we have returned our model from the regression function and assigned it to the variable `trained_model`. We can now use this model to predict `bill_depth_mm` values for any given `body_mass_g` values that we pass it.
+In this regression example we will create a Linear Regression model that will try to predict `y` values based upon `x` values.
 
-Let's provide the model with all of the penguin samples and visually inspect how the linear regression model performs.
+In machine learning terminology: we will use our `x` feature (variable) and `y` labels(“answers”) to train our Linear Regression model to predict `y` values when provided with `x` values.
+
+The mathematical equation for a linear fit is `y = mx + c` where `y` is our label data, `x` is our input feature(s), `m` represents the gradient of the linear fit, and `c` represents the intercept with the y-axis.
+
+A typical ML workflow is as following:
+
+* Decide on a model to use model (also known as an estimator)
+* Tweak your data into the required format for your model
+* Define and train your model on the input data
+* Predict some values using the trained model
+* Check the accuracy of the prediction, and visualise the result
+
+We have already decided to use a linear regression model, so we’ll now pre-process our data into a format that Scikit-Learn can use.
 
 ~~~
-x_data_all, y_data_all = pre_process_linear(dataset["body_mass_g"], dataset["bill_depth_mm"])
+import numpy as np
 
-y_predictions = predict_linear_model(trained_model, x_data_all, y_data_all)
+# sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).
+x_data = np.array(x_data).reshape(-1, 1)
+y_data = np.array(y_data).reshape(-1, 1)
+~~~
+{: .language-python}
 
+Next we’ll define a model, and train it on the pre-processed data. We’ll also inspect the trained model parameters m and c:
+
+~~~
+from sklearn.linear_model import LinearRegression
+
+# Define our estimator/model
+model = LinearRegression(fit_intercept=True)
+
+# train our estimator/model using our data
+lin_regress = model.fit(x_data,y_data)
+
+# inspect the trained estimator/model parameters
+m = lin_regress.coef_
+c = lin_regress.intercept_
+print("linear coefs=",m, c)
+~~~
+{: .language-python}
+
+Now we can make predictions using our trained model, and calculate the Root Mean Squared Error (RMSE) of our predictions:
+
+~~~
+import math
+from sklearn.metrics import mean_squared_error
+
+# Predict some values using our trained estimator/model.
+# In this case we predict our input data to evaluate accuracy!
+linear_data = lin_regress.predict(x_data)
+
+# calculated a RMS error as a quality of fit metric
+error = math.sqrt(mean_squared_error(y_data, linear_data))
+print("linear error=",error)
+~~~
+{: .language-python}
+
+Finally, we’ll plot our input data, our linear fit, and our predictions:
+
+~~~
+plt.scatter(x_data, y_data, label="input")
+plt.plot(x_data, linear_data, "-", label="fit")
+plt.plot(x_data, linear_data, "rx", label="predictions")
+plt.xlabel("body_mass_g")
+plt.ylabel("bill_depth_mm")
+plt.legend()
+plt.show()
+~~~
+{: .language-python}
+
+![Comparison of the regressions of our dataset](../fig/regress_penguin_lin.png)
+
+
+
+Congratulations! We've now created our first machine-learning model of the lesson and we can now make predictions of `bill_depth_mm` for any `body_mass_g` values that we pass into our model.
+
+Let's provide the model with all of the penguin samples and see how our model performs on the full dataset:
+
+~~~
+# Extract the relevant features and labels from our complete dataset
+x_data_all = dataset["body_mass_g"]
+y_data_all = dataset["bill_depth_mm"]
+
+# sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).
+x_data_all = np.array(x_data_all).reshape(-1, 1)
+y_data_all = np.array(y_data_all).reshape(-1, 1)
+
+# Predict values using our trained estimator/model from earlier
+linear_data_all = lin_regress.predict(x_data_all)
+
+# calculated a RMS error for all data
+error_all = math.sqrt(mean_squared_error(y_data_all, linear_data_all))
+print("linear error=",error_all)
+~~~
+{: .language-python}
+
+Our RMSE for predictions on all penguin samples is far larger than before, so let's visually inspect the situation:
+
+~~~
 plt.scatter(x_data_all, y_data_all, label="all data")
 plt.scatter(x_data, y_data, label="training data")
 
-plt.plot(x_data_all, y_predictions, label="fit")
-plt.plot(x_data_all, y_predictions, "rx", label="predictions")
+plt.plot(x_data_all, linear_data_all, label="fit")
 
 plt.xlabel("mass g")
 plt.ylabel("depth mm")
@@ -449,15 +197,118 @@ plt.show()
 ~~~
 {: .language-python}
 
-![Comparison of the regressions of our dataset](../fig/regress_penguin_lin_tot.png)
+![Comparison of the regressions of our dataset](../fig/penguin_regression_all.png)
 
-Oh dear. It looks like our linear regression fits okay for our subset of the penguin data, and a few additional samples, but there appears to be a cluster of points that are poorly predicted by our model.
+Oh dear. It looks like our linear regression fits okay for our subset of the penguin data, and a few additional samples, but there appears to be a cluster of points that are poorly predicted by our model. Even if we re-trained our model using all samples it looks unlikely that our model would perform much better due to the two-cluster nature of our dataset.
 
 > ## This is a classic Machine Learning scenario known as over-fitting
 > We have trained our model on a specific set of data, and our model has learnt to reproduce those specific answers at the expense of creating a more generally-applicable model.
 > Over fitting is the ML equivalent of learning an exam papers mark scheme off by heart, rather than understanding and answering the questions.
 {: .callout}
 
-Perhaps our model is too simple? Perhaps our data is more complex than we thought? Perhaps our question/goal needs adjusting? Let's explore the penguin dataset in more depth in the next section!
+In this episode we chose to create a regression model for `bill_depth_mm` versus `body_mass_g` predictions without understanding our penguin dataset. While we proved we *can* make a model by doing this we also saw that the model is flawed due to complexity in the data that we did not account for. 
+
+With enough data and by using more complex regression models we *may* be able to create a generalisable `bill_depth_mm` versus `body_mass_g` model for penguins, but it's important to be aware that some problems simply might not be solvable with the data quantity or features that you have. 
+
+In the next episode we will take a deeper dive into the penguin dataset as we attempt to create classification models for penguin species. 
+
+## Repeating the regression with different estimators
+
+The goal of this lesson isn't to build a generalisable `bill_depth_mm` versus `body_mass_g` model for the penguin dataset - the goal is to give you some hands-on experience building machine learning models with scikit-learn. So let's repeat the above but this time using a polynomial function. 
+
+Polynomial functions are non-linear functions that are commonly-used to model data. Mathematically they have `N` degrees of freedom and they take the following form `y = a + bx + cx^2 + dx^3 ... + mx^N`. If we have a polynomial of degree `N=1` we once again return to a linear equation `y = a + bx` or as it is more commonly written `y = mx + c`.
+
+We'll follow the same workflow from before:
+* Decide on a model to use model (also known as an estimator)
+* Tweak your data into the required format for your model
+* Define and train your model on the input data
+* Predict some values using the trained model
+* Check the accuracy of the prediction, and visualise the result
+
+We've decided to use a Polynomial estimator, so now let's tweak our dataset into the required format. For polynomial estimators in Scikit-Learn this is done in two steps. First we pre-process our input data `x_data` into a polynomial representation using the `PolynomialFeatures` function. Then we can create our polynomial regressions using the `LinearRegression().fit()` function as before, but this time using the polynomial representation of our `x_data`.
+
+~~~
+from sklearn.preprocessing import PolynomialFeatures
+
+# Requires sorted data for ordered polynomial lines 
+dataset = dataset.sort_values("body_mass_g")
+x_data = dataset["body_mass_g"]
+y_data = dataset["bill_depth_mm"]
+x_data = np.array(x_data).reshape(-1, 1)
+y_data = np.array(y_data).reshape(-1, 1)
+
+# create our training subset from every 10th sample
+x_data_subset = x_data[::10]
+y_data_subset = y_data[::10]
+
+# create a polynomial representation of our training data
+poly_features = PolynomialFeatures(degree=3)
+x_poly = poly_features.fit_transform(x_data_subset)
+~~~
+{: .language-python}
+
+> ## We convert a non-linear problem into a linear one
+> By converting our input feature data into a polynomial representation we can now solve our non-linear problem using linear techniques. This is a common occurence in machine learning as linear problems are far easier computationally to solve. We can treat this as just another pre-processing step to manipulate our features into a ML-ready format.
+{: .callout}
+
+We are now ready to create and train our model using our polynomial feature data. 
+
+~~~
+# Define our estimator/model(s) and train our model
+poly_regress = LinearRegression()
+poly_regress.fit(x_poly,y_data_subset)
+~~~
+{: .language-python}
+
+We can now make predictions using our full dataset. As we did for our training data, we need to quickly transform our full dataset into a polynomial expression. Then we can evaluate the RMSE of our predictions.
+
+~~~
+# make predictions using all data, pre-process data too
+x_poly_all = poly_features.fit_transform(x_data)
+poly_data = poly_regress.predict(x_poly_all)
+
+poly_error = math.sqrt(mean_squared_error(y_data, poly_data))
+print("poly error=", poly_error)
+~~~
+{: .language-python}
+
+Finally, let's visualise our model fit on our training data and full dataset.
+
+~~~
+plt.scatter(x_data, y_data, label="all data")
+plt.scatter(x_data_subset, y_data_subset, label="subset data")
+
+plt.plot(x_data, poly_data, "r-", label="poly fit")
+plt.xlabel("mass g")
+plt.ylabel("depth mm")
+plt.legend()
+plt.show()
+~~~
+{: .language-python}
+
+
+![Comparison of the regressions of our dataset](../fig/penguin_regression_poly.png)
+
+> ## Exercise: Vary your polynomial degree to try and improve fitting
+> Adjust the `degree=2` input variable for the `PolynomialFeatures` function to change the degree of polynomial fit. Can you improve the RMSE of your model?
+> > ## Solution
+> > MAYBE A FIGURE OR TWO. POTENTIALLY SOME CODE TO LOOP OVER POLYNOMIALS.
+> {: .solution}
+{: .challenge}
+
+> ## Exercise: Now try using the SplineTransformer to create a spline model
+> The SplineTransformer is another pre-processing function that behaves in a similar way to the PolynomialFeatures function. Adjust your
+> previous code to use the SplineTransformer. Can you improve the RMSE of your model by varying the `knots` and `degree` functions? Is the spline model better than the polynomial model?
+> > ## Solution
+> > ~~~
+> > spline_features =  SplineTransformer(n_knots=3, degree=2)
+> > ~~~
+> > {: .language-python}
+> >
+> > The above line replaces the `PolynomialFeatures` function. It takes in an additional argument `knots` compared to `PolynomialFeatures`.
+> > ADD LINES OR FIGURES TO EXPLORE THIS.
+> > SOME COMMENT ON FITS AND MODEL COMPARISON.
+> {: .solution}
+{: .challenge}
 
 {% include links.md %}
