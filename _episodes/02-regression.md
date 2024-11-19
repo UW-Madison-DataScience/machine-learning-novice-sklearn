@@ -71,12 +71,12 @@ In machine learning we often train our models on a subset of data, for reasons w
 ~~~
 import matplotlib.pyplot as plt
 
-dataset_1 = dataset[:146]
+train_data = dataset[:146] # first 146 rows
 
-x_data = dataset_1["body_mass_g"]
-y_data = dataset_1["bill_depth_mm"]
+x_train = train_data["body_mass_g"]
+y_train = train_data["bill_depth_mm"]
 
-plt.scatter(x_data, y_data)
+plt.scatter(x_train, y_train)
 plt.xlabel("mass g")
 plt.ylabel("depth mm")
 plt.show()
@@ -105,8 +105,8 @@ We have already decided to use a linear regression model, so we’ll now pre-pro
 import numpy as np
 
 # sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).
-x_data = np.array(x_data).reshape(-1, 1)
-y_data = np.array(y_data).reshape(-1, 1)
+x_train = np.array(x_train).reshape(-1, 1)
+y_train = np.array(y_train).reshape(-1, 1)
 ~~~
 {: .language-python}
 
@@ -119,7 +119,7 @@ from sklearn.linear_model import LinearRegression
 model = LinearRegression(fit_intercept=True)
 
 # train our estimator/model using our data
-lin_regress = model.fit(x_data,y_data)
+lin_regress = model.fit(x_train,y_train)
 
 # inspect the trained estimator/model parameters
 m = lin_regress.coef_
@@ -136,10 +136,10 @@ from sklearn.metrics import mean_squared_error
 
 # Predict some values using our trained estimator/model.
 # In this case we predict our input data to evaluate accuracy!
-linear_data = lin_regress.predict(x_data)
+linear_data = lin_regress.predict(x_train)
 
 # calculated a RMS error as a quality of fit metric
-error = math.sqrt(mean_squared_error(y_data, linear_data))
+error = math.sqrt(mean_squared_error(y_train, linear_data))
 print("linear error=",error)
 ~~~
 {: .language-python}
@@ -147,9 +147,9 @@ print("linear error=",error)
 Finally, we’ll plot our input data, our linear fit, and our predictions:
 
 ~~~
-plt.scatter(x_data, y_data, label="input")
-plt.plot(x_data, linear_data, "-", label="fit")
-plt.plot(x_data, linear_data, "rx", label="predictions")
+plt.scatter(x_train, y_train, label="input")
+plt.plot(x_train, linear_data, "-", label="fit")
+plt.plot(x_train, linear_data, "rx", label="predictions")
 plt.xlabel("body_mass_g")
 plt.ylabel("bill_depth_mm")
 plt.legend()
@@ -167,18 +167,18 @@ Let's provide the model with all of the penguin samples and see how our model pe
 
 ~~~
 # Extract the relevant features and labels from our complete dataset
-x_data_all = dataset["body_mass_g"]
-y_data_all = dataset["bill_depth_mm"]
+x_train_all = dataset["body_mass_g"]
+y_train_all = dataset["bill_depth_mm"]
 
 # sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).
-x_data_all = np.array(x_data_all).reshape(-1, 1)
-y_data_all = np.array(y_data_all).reshape(-1, 1)
+x_train_all = np.array(x_train_all).reshape(-1, 1)
+y_train_all = np.array(y_train_all).reshape(-1, 1)
 
 # Predict values using our trained estimator/model from earlier
-linear_data_all = lin_regress.predict(x_data_all)
+linear_data_all = lin_regress.predict(x_train_all)
 
 # calculated a RMS error for all data
-error_all = math.sqrt(mean_squared_error(y_data_all, linear_data_all))
+error_all = math.sqrt(mean_squared_error(y_train_all, linear_data_all))
 print("linear error=",error_all)
 ~~~
 {: .language-python}
@@ -186,10 +186,10 @@ print("linear error=",error_all)
 Our RMSE for predictions on all penguin samples is far larger than before, so let's visually inspect the situation:
 
 ~~~
-plt.scatter(x_data_all, y_data_all, label="all data")
-plt.scatter(x_data, y_data, label="training data")
+plt.scatter(x_train_all, y_train_all, label="all data")
+plt.scatter(x_train, y_train, label="training data")
 
-plt.plot(x_data_all, linear_data_all, label="fit")
+plt.plot(x_train_all, linear_data_all, label="fit")
 
 plt.xlabel("mass g")
 plt.ylabel("depth mm")
@@ -226,25 +226,25 @@ We'll follow the same workflow from before:
 * Predict some values using the trained model
 * Check the accuracy of the prediction, and visualise the result
 
-We've decided to use a Polynomial estimator, so now let's tweak our dataset into the required format. For polynomial estimators in Scikit-Learn this is done in two steps. First we pre-process our input data `x_data` into a polynomial representation using the `PolynomialFeatures` function. Then we can create our polynomial regressions using the `LinearRegression().fit()` function as before, but this time using the polynomial representation of our `x_data`.
+We've decided to use a Polynomial estimator, so now let's tweak our dataset into the required format. For polynomial estimators in Scikit-Learn this is done in two steps. First we pre-process our input data `x_train` into a polynomial representation using the `PolynomialFeatures` function. Then we can create our polynomial regressions using the `LinearRegression().fit()` function as before, but this time using the polynomial representation of our `x_train`.
 
 ~~~
 from sklearn.preprocessing import PolynomialFeatures
 
 # Requires sorted data for ordered polynomial lines 
 dataset = dataset.sort_values("body_mass_g")
-x_data = dataset["body_mass_g"]
-y_data = dataset["bill_depth_mm"]
-x_data = np.array(x_data).reshape(-1, 1)
-y_data = np.array(y_data).reshape(-1, 1)
+x_train = dataset["body_mass_g"]
+y_train = dataset["bill_depth_mm"]
+x_train = np.array(x_train).reshape(-1, 1)
+y_train = np.array(y_train).reshape(-1, 1)
 
 # create our training subset from every 10th sample
-x_data_subset = x_data[::10]
-y_data_subset = y_data[::10]
+x_train_subset = x_train[::10]
+y_train_subset = y_train[::10]
 
 # create a polynomial representation of our training data
 poly_features = PolynomialFeatures(degree=3)
-x_poly = poly_features.fit_transform(x_data_subset)
+x_poly = poly_features.fit_transform(x_train_subset)
 ~~~
 {: .language-python}
 
@@ -257,7 +257,7 @@ We are now ready to create and train our model using our polynomial feature data
 ~~~
 # Define our estimator/model(s) and train our model
 poly_regress = LinearRegression()
-poly_regress.fit(x_poly,y_data_subset)
+poly_regress.fit(x_poly,y_train_subset)
 ~~~
 {: .language-python}
 
@@ -265,10 +265,10 @@ We can now make predictions using our full dataset. As we did for our training d
 
 ~~~
 # make predictions using all data, pre-process data too
-x_poly_all = poly_features.fit_transform(x_data)
-poly_data = poly_regress.predict(x_poly_all)
+x_poly_all = poly_features.fit_transform(x_train)
+poly_train = poly_regress.predict(x_poly_all)
 
-poly_error = math.sqrt(mean_squared_error(y_data, poly_data))
+poly_error = math.sqrt(mean_squared_error(y_train, poly_train))
 print("poly error=", poly_error)
 ~~~
 {: .language-python}
@@ -276,10 +276,10 @@ print("poly error=", poly_error)
 Finally, let's visualise our model fit on our training data and full dataset.
 
 ~~~
-plt.scatter(x_data, y_data, label="all data")
-plt.scatter(x_data_subset, y_data_subset, label="subset data")
+plt.scatter(x_train, y_train, label="all data")
+plt.scatter(x_train_subset, y_train_subset, label="subset data")
 
-plt.plot(x_data, poly_data, "r-", label="poly fit")
+plt.plot(x_train, poly_train, "r-", label="poly fit")
 plt.xlabel("mass g")
 plt.ylabel("depth mm")
 plt.legend()
