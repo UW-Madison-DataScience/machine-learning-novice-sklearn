@@ -101,6 +101,15 @@ A typical ML workflow is as following:
 
 We have already decided to use a linear regression model, so we’ll now pre-process our data into a format that Scikit-Learn can use.
 
+Let's check our current x/y types and shapes.
+~~~
+print(type(x_train))
+print(type(y_train))
+print(x_train.shape)
+print(y_train.shape)
+~~~
+{: .language-python}
+
 ~~~
 import numpy as np
 
