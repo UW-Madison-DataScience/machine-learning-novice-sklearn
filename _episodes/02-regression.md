@@ -116,6 +116,8 @@ import numpy as np
 # sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).
 x_train = np.array(x_train).reshape(-1, 1)
 y_train = np.array(y_train).reshape(-1, 1)
+print(x_train.shape)
+print(y_train.shape)
 ~~~
 {: .language-python}
 
@@ -145,11 +147,11 @@ from sklearn.metrics import mean_squared_error
 
 # Predict some values using our trained estimator/model.
 # In this case we predict our input data to evaluate accuracy!
-linear_data = lin_regress.predict(x_train)
+y_train_pred = lin_regress.predict(x_train)
 
 # calculated a RMS error as a quality of fit metric
-error = math.sqrt(mean_squared_error(y_train, linear_data))
-print("linear error =", error)
+error = math.sqrt(mean_squared_error(y_train, y_train_pred))
+print("train RMSE =", error)
 ~~~
 {: .language-python}
 
@@ -157,8 +159,8 @@ Finally, we’ll plot our input data, our linear fit, and our predictions:
 
 ~~~
 plt.scatter(x_train, y_train, label="input")
-plt.plot(x_train, linear_data, "-", label="fit")
-plt.plot(x_train, linear_data, "rx", label="predictions")
+plt.plot(x_train, y_train_pred, "-", label="fit")
+plt.plot(x_train, y_train_pred, "rx", label="predictions")
 plt.xlabel("body_mass_g")
 plt.ylabel("bill_depth_mm")
 plt.legend()
@@ -175,33 +177,34 @@ Congratulations! We've now created our first machine-learning model of the lesso
 Let's provide the model with all of the penguin samples and see how our model performs on the full dataset:
 
 ~~~
-# Extract the relevant features and labels from our complete dataset
-x_train_all = dataset["body_mass_g"]
-y_train_all = dataset["bill_depth_mm"]
+# Extract remaining observations for testing
+
+test_data = dataset[146:] # row 147 -> end 
+x_test = test_data["body_mass_g"] # lowercase x since there is only one predictor
+y_test = test_data["bill_depth_mm"] # lowercase y since there is only one target variable
 
 # sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).
-x_train_all = np.array(x_train_all).reshape(-1, 1)
-y_train_all = np.array(y_train_all).reshape(-1, 1)
+x_test = np.array(x_test).reshape(-1, 1)
+y_test = np.array(y_test).reshape(-1, 1)
 
 # Predict values using our trained estimator/model from earlier
-linear_data_all = lin_regress.predict(x_train_all)
+y_test_pred = lin_regress.predict(x_test)
 
-# calculated a RMS error for all data
-error_all = math.sqrt(mean_squared_error(y_train_all, linear_data_all))
-print("linear error =", error_all)
+# calculated a RMSE error for all data
+error_all = math.sqrt(mean_squared_error(y_test, y_test_pred))
+print("test RMSE =", error)
 ~~~
 {: .language-python}
 
 Our RMSE for predictions on all penguin samples is far larger than before, so let's visually inspect the situation:
 
 ~~~
-plt.scatter(x_train_all, y_train_all, label="all data")
-plt.scatter(x_train, y_train, label="training data")
-
-plt.plot(x_train_all, linear_data_all, label="fit")
-
-plt.xlabel("mass g")
-plt.ylabel("depth mm")
+plt.scatter(x_train, y_train, label="train")
+plt.scatter(x_test, y_test, label="test")
+plt.plot(x_train, y_train_pred, "-", label="fit")
+# plt.plot(x_train, y_train_pred, "rx", label="predictions")
+plt.xlabel("body_mass_g")
+plt.ylabel("bill_depth_mm")
 plt.legend()
 plt.show()
 ~~~
