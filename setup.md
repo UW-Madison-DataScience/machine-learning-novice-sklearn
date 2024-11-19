@@ -61,7 +61,7 @@ python.exe -m pip install --upgrade pip
 Then, install the required libraries.
 
 ~~~
-pip install numpy pandas matplotlib opencv-python scikit-learn jupyterlab
+pip install numpy pandas matplotlib opencv-python scikit-learn jupyterlab seaborn
 ~~~
 {: .language-bash}
 
