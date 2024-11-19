@@ -10,6 +10,7 @@ Create a new directory for the workshop (e.g., Desktop/workshop-ml). We will pla
 ~~~
 cd Desktop
 mkdir workshop-ml
+cd workshop-ml
 ~~~
 {: .language-bash}
 
@@ -30,7 +31,9 @@ you are ready to go as soon as the workshop begins.
 ### Creating a new virtual environment
 We'll install the prerequisite libraries in a virtual environment, to prevent them from cluttering up your Python environment and causing conflicts.
 
-To create a new virtual environment ("venv") called "intro_ml" for the project, open the terminal (Mac/Linux), Git Bash (Windows), or Anaconda Prompt (Windows), and type one of the below OS-specific options:
+To create a new virtual environment ("venv") called "intro_ml" for the project, open the terminal (Mac/Linux), Git Bash (Windows), or Anaconda Prompt (Windows), and type one of the below OS-specific options below. 
+
+Make sure you are already CD'd into your workshop folder, `Desktop/workshop-ml`. The code below will create a new virtual environment in a folder named intro_ml in the current working directory. The folder intro_ml will contain all the necessary files and directories for the virtual environment.
 
 ~~~
 python3 -m venv intro_ml # mac/linux
