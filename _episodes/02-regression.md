@@ -49,6 +49,7 @@ Let’s start by loading in and examining the penguin dataset, which containing 
 import seaborn as sns
 
 dataset = sns.load_dataset("penguins")
+print(dataset.shape)
 dataset.head()
 ~~~
 {: .language-python}
