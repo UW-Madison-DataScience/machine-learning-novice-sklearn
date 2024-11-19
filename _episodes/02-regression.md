@@ -133,7 +133,7 @@ lin_regress = model.fit(x_train,y_train)
 # inspect the trained estimator/model parameters
 m = lin_regress.coef_
 c = lin_regress.intercept_
-print("linear coefs=",m, c)
+print("linear coefs=", m, c)
 ~~~
 {: .language-python}
 
@@ -149,7 +149,7 @@ linear_data = lin_regress.predict(x_train)
 
 # calculated a RMS error as a quality of fit metric
 error = math.sqrt(mean_squared_error(y_train, linear_data))
-print("linear error=",error)
+print("linear error =", error)
 ~~~
 {: .language-python}
 
@@ -188,7 +188,7 @@ linear_data_all = lin_regress.predict(x_train_all)
 
 # calculated a RMS error for all data
 error_all = math.sqrt(mean_squared_error(y_train_all, linear_data_all))
-print("linear error=",error_all)
+print("linear error =", error_all)
 ~~~
 {: .language-python}
 
