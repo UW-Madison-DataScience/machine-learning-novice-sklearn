@@ -45,7 +45,7 @@ python -m venv intro_ml # windows
 To activate the environment, run the following OS-specific commands in Terminal (Mac/Linux), Git Bash (Windows), or Anaconda Prompt (Windows):
 
 * **Windows + Git Bash**: `source intro_ml/Scripts/activate`
-* **Windows + Anaconda Prompt**: `intro_ml/Scripts/activate`
+* **Windows + Anaconda Prompt**: `intro_ml\Scripts\activate`
 * **Mac/Linux**: `source intro_ml/bin/activate`
 
 ### Installing your prerequisites
