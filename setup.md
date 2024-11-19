@@ -65,8 +65,6 @@ pip install numpy pandas matplotlib opencv-python scikit-learn jupyterlab
 ~~~
 {: .language-bash}
 
-> Including `jupyterlab` ensures that all participants use the same environment for running and interacting with notebooks during the workshop.
-{: .tip}
 
 ### Adding your virtual environment to JupyterLab
 To use this virtual environment in JupyterLab, follow these steps:
