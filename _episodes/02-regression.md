@@ -215,16 +215,90 @@ plt.show()
 
 Oh dear. It looks like our linear regression fits okay for our subset of the penguin data, and a few additional samples, but there appears to be a cluster of points that are poorly predicted by our model. Even if we re-trained our model using all samples it looks unlikely that our model would perform much better due to the two-cluster nature of our dataset.
 
-> ## This is a classic Machine Learning scenario known as over-fitting
+> ## This is a classic machine learning scenario known as overffitting
 > We have trained our model on a specific set of data, and our model has learnt to reproduce those specific answers at the expense of creating a more generally-applicable model.
-> Over fitting is the ML equivalent of learning an exam papers mark scheme off by heart, rather than understanding and answering the questions.
+> Overfitting is the ML equivalent of learning an exam papers mark scheme off by heart, rather than understanding and answering the questions.
+> Overfitting is especially prevalent when you have (A) limited data, and/or (B) complicated/large models with lots of trainable parameters (e..g, neural nets).
 {: .callout}
 
 In this episode we chose to create a regression model for `bill_depth_mm` versus `body_mass_g` predictions without understanding our penguin dataset. While we proved we *can* make a model by doing this we also saw that the model is flawed due to complexity in the data that we did not account for. 
 
-With enough data and by using more complex regression models we *may* be able to create a generalisable `bill_depth_mm` versus `body_mass_g` model for penguins, but it's important to be aware that some problems simply might not be solvable with the data quantity or features that you have. 
+At least two interpretrations of these results:
 
-In the next episode we will take a deeper dive into the penguin dataset as we attempt to create classification models for penguin species. 
+- Bill depth really does simply decrease with increasing body mass, and we just missed the larger story by zooming in on a subset of the data
+- Bill depth generally increases with body mass, but with another covariate producing somewhat unique distributions/clusters across this axis.
+
+Let's assume for a moment that we only have access to the two variables, body mass and bill depth. In this scenario, we may want a model that captures the global trend of bill depth decreasing with body mass. For this, we need to revisit how we split our data into train/test sets. Sklearn provides a tool to make it easy to split into these subsets using random shuffling of observations.
+
+~~~
+from sklearn.model_selection import train_test_split
+x = dataset['body_mass_g']
+y = dataset['bill_depth_mm']
+
+# # sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).
+x = np.array(x).reshape(-1, 1)
+y = np.array(y).reshape(-1, 1)
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+~~~
+{: .language-python}
+
+### Exercise: Try to re-implement our univariate regression model using these new train/test sets.
+Follow these steps:
+
+1. Define your estimator model
+2. Train the model using .fit()
+3. Get predictions from the model using .predict
+4. Calculate RMSE for train/test
+5. Plot scatter plot of train/test data, with line of best fit
+
+~~~
+from sklearn.linear_model import LinearRegression
+
+# Define our estimator/model
+model = LinearRegression(fit_intercept=True)
+
+# train our estimator/model using our data
+lin_regress = model.fit(x_train, y_train)
+
+# get preds and calculated a RMS error for train data
+y_train_pred = lin_regress.predict(x_train)
+train_error = math.sqrt(mean_squared_error(y_train, y_train_pred))
+print("train RMSE =", train_error)
+
+# get preds and calculated a RMS error for test data
+y_test_pred = lin_regress.predict(x_test)
+test_error = math.sqrt(mean_squared_error(y_test, y_test_pred))
+print("test RMSE =", test_error)
+
+# scatter plot
+plt.scatter(x_train, y_train, label="train")
+plt.scatter(x_test, y_test, label="test")
+plt.plot(x_train, y_train_pred, "-", label="fit")
+# plt.plot(x_train, y_train_pred, "rx", label="predictions")
+plt.xlabel("body_mass_g")
+plt.ylabel("bill_depth_mm")
+plt.legend()
+plt.show()
+~~~
+{: .language-python}
+
+## Zooming back out: the importance of EDA
+This looks to be a more appropriate model for measuring the relationship between body mass and bill depth. However, what if there is another variable that is causing the second cluster to appear (i.e., there really are two clusters rather than one)? When we measure additional features from our data, we are able to see the larger picture that describes how input variables relate to whatever target variable we are interested in. 
+
+When you are doing any kind of modeling work, it is critical to spend your first few hours/days/weeks simply exploring the data. This means:
+- Investigate pairwise relationships between "predictors" (X)
+- Investigate correlation between predictors
+- Plot distributions of each variable
+- Check for outliers
+- Check for NaNs
+  
+~~~
+# Create the pairs plot
+sns.pairplot(dataset, vars=["body_mass_g", "bill_depth_mm"], hue="species", diag_kind="kde", markers=["o", "s", "D"])
+plt.show()
+~~~
+{: .language-python}
 
 ## Repeating the regression with different estimators
 
@@ -244,20 +318,10 @@ We've decided to use a Polynomial estimator, so now let's tweak our dataset into
 ~~~
 from sklearn.preprocessing import PolynomialFeatures
 
-# Requires sorted data for ordered polynomial lines 
-dataset = dataset.sort_values("body_mass_g")
-x_train = dataset["body_mass_g"]
-y_train = dataset["bill_depth_mm"]
-x_train = np.array(x_train).reshape(-1, 1)
-y_train = np.array(y_train).reshape(-1, 1)
-
-# create our training subset from every 10th sample
-x_train_subset = x_train[::10]
-y_train_subset = y_train[::10]
-
 # create a polynomial representation of our training data
 poly_features = PolynomialFeatures(degree=3)
-x_poly = poly_features.fit_transform(x_train_subset)
+x_train_poly = poly_features.fit_transform(x_train)
+x_test_poly = poly_features.transform(x_test)
 ~~~
 {: .language-python}
 
@@ -270,33 +334,42 @@ We are now ready to create and train our model using our polynomial feature data
 ~~~
 # Define our estimator/model(s) and train our model
 poly_regress = LinearRegression()
-poly_regress.fit(x_poly,y_train_subset)
+poly_regress.fit(x_train_poly, y_train)
 ~~~
 {: .language-python}
 
-We can now make predictions using our full dataset. As we did for our training data, we need to quickly transform our full dataset into a polynomial expression. Then we can evaluate the RMSE of our predictions.
+We can now make predictions on train/test sets, and calculate RMSE
 
 ~~~
-# make predictions using all data, pre-process data too
-x_poly_all = poly_features.fit_transform(x_train)
-poly_train = poly_regress.predict(x_poly_all)
+# Predictions
+y_train_pred = poly_regress.predict(x_train_poly)
+y_test_pred = poly_regress.predict(x_test_poly)
 
-poly_error = math.sqrt(mean_squared_error(y_train, poly_train))
-print("poly error=", poly_error)
+poly_train_error = math.sqrt(mean_squared_error(y_train_pred, y_train))
+print("poly train error =", poly_train_error)
+
+poly_test_error = math.sqrt(mean_squared_error(y_test_pred, y_test))
+print("poly train error =", poly_test_error)
 ~~~
 {: .language-python}
 
 Finally, let's visualise our model fit on our training data and full dataset.
-
 ~~~
-plt.scatter(x_train, y_train, label="all data")
-plt.scatter(x_train_subset, y_train_subset, label="subset data")
+# Scatter plots for train and test data
+plt.scatter(x_train, y_train, label='Train', color='blue', alpha=0.6)
+plt.scatter(x_test, y_test, label='Test', color='red', alpha=0.6)
 
-plt.plot(x_train, poly_train, "r-", label="poly fit")
+# Plot the model fit
+x_range = np.linspace(min(x), max(x), 500).reshape(-1, 1)
+y_range_pred = poly_regress.predict(poly_features.transform(x_range))
+plt.plot(x_range, y_range_pred, label='Polynomial Model Fit', color='green', linewidth=2)
+
+# Labels and legend
 plt.xlabel("mass g")
 plt.ylabel("depth mm")
+plt.title('Polynomial Regression with Training and Testing Data')
 plt.legend()
-plt.show()
+
 ~~~
 {: .language-python}
 
