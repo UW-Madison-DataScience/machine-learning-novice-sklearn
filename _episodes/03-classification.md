@@ -261,6 +261,17 @@ This is a classic case of over-fitting - our model has produced extremely specif
 
 ## Classification using support vector machines
 Next, we'll look at another commonly used classification algorithm, and see how it compares. Support Vector Machines (SVM) work in a way that is conceptually similar to your own intuition when first looking at the data. They devise a set of hyperplanes that delineate the parameter space, such that each region contains ideally only observations from one class, and the boundaries fall between classes.
+ 
+### When to Choose SVM Over Decision Tree
+
+1. **High-Dimensional Data**:
+   - **Why SVM**: SVMs excel in high-dimensional spaces because the kernel trick allows them to separate classes even in complex feature spaces without explicitly mapping the data.
+   - **Why Not Decision Tree**: Decision trees struggle with high-dimensional data as the number of potential splits grows exponentially, leading to overfitting or underperformance.
+
+2. **Accuracy over Interpretbaility**:
+   - **Why SVM**: SVMs are often considered black-box models, focusing on accuracy rather than interpretability.
+   - **Why Not Decision Tree**: Decision trees are typically interpretable, making them better if you need to explain your model.
+
 
 ### Standardizing data
 Unlike decision trees, SVMs require an additional pre-processing step for our data. We need to standardize or "z-score" it. Our raw data has parameters with different magnitudes such as bill length measured in 10's of mm's, whereas body mass is measured in 1000's of grams. If we trained an SVM directly on this data, it would only consider the parameter with the greatest variance (body mass). 
