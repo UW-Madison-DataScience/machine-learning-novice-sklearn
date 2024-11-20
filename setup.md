@@ -36,6 +36,7 @@ To create a new virtual environment ("venv") called "intro_ml" for the project, 
 Make sure you are already CD'd into your workshop folder, `Desktop/workshop-ml`. The code below will create a new virtual environment in a folder named intro_ml in the current working directory. The folder intro_ml will contain all the necessary files and directories for the virtual environment.
 
 ~~~
+cd workshop-ml # if you're not already in this folder, CD to it (adjust path, if necesssary)
 python3 -m venv intro_ml # mac/linux
 python -m venv intro_ml # windows
 ~~~
