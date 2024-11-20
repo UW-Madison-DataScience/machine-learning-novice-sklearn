@@ -72,7 +72,7 @@ pip install numpy pandas matplotlib opencv-python scikit-learn jupyterlab seabor
 ### Adding your virtual environment to JupyterLab
 To use this virtual environment in JupyterLab, follow these steps:
 
-1. Install the `ipykernel` package (if not already included):
+1. Install the `ipykernel` package:
    ~~~
    pip install ipykernel
    ~~~
