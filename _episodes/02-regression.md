@@ -46,6 +46,7 @@ We've had a lot of theory so time to start some actual coding! Let's create a re
 Let’s start by loading in and examining the penguin dataset, which containing a few hundred samples and a number of features and labels.
 
 ~~~
+# !pip install seaborn if import fails, run this first
 import seaborn as sns
 
 dataset = sns.load_dataset("penguins")
