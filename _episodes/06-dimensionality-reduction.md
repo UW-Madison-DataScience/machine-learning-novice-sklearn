@@ -121,6 +121,8 @@ def plot_clusters_labels(data, labels):
 
 Next lets load in the digits dataset,
 ~~~
+from sklearn import manifold, decomposition, datasets
+
 # load in dataset as a Pandas Dataframe, return X and Y
 features, labels = datasets.load_digits(return_X_y=True, as_frame=True)
 
