@@ -68,9 +68,9 @@ Machine learning jargon can often be hard to remember, so here is a quick summar
 * Bagging - different subsets, same models, trained in parallel
 * Boosting - subsets of bad estimates, same models, trained in series
 
-### Which Ensemble Method Is Best?
+### Which ensemble method is best?
 
-| **Ensemble Method** | **What It Does**                                                                                      | **Best For**                                                                                 | **Avoid If**                                                                                       |
+| **Ensemble method** | **What it does**                                                                                      | **Best for**                                                                                 | **Avoid if**                                                                                       |
 |----------------------|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | **Stacking**         | Combines predictions from different models trained on the same dataset using a meta-model.            | Leveraging diverse models to improve overall performance.                                    | You need simple and fast models or lack diverse base learners.                                    |
 | **Bagging**          | Trains the same model on different subsets of the data (via bootstrapping) and averages their results. | Reducing variance (e.g., overfitting) and stabilizing predictions in noisy/small datasets.  | The problem requires reducing bias or the base model is already stable (e.g., linear regression). |
