@@ -130,6 +130,17 @@ features.head()
 ~~~
 {: .language-python}
 
+## Preview data
+Each image is 8x8 pixels. We can revert the current "flattened" (aka vectorized) form by using reshape. The -1 tells NumPy to infer the appropriate number of rows automatically. NumPy does this by dividing the total number of elements in the original 1D array (image_1D.size) by 8 (the specified number of columns).
+~~~
+print(features.iloc[0])
+image_1D = features.iloc[0]
+image_2D = np.array(image_1D).reshape(-1,8)
+
+plt.imshow(image_2D,cmap="gray_r")
+~~~
+{: .language-python}
+
 ## Our goal: using dimensionality-reduction to help with machine learning
 
 As humans we are pretty good at object and pattern recognition. We can look at the images above, inspect the intensity and position pixels relative to other pixels, and pretty quickly make an accurate guess at what the image shows. As humans we spends much of our younger lives learning these spatial relations, and so it stands to reason that computers can also extract these relations. Let's see if it is possible to use unsupervised clustering techniques to pull out relations in our MNIST dataset of number images.
