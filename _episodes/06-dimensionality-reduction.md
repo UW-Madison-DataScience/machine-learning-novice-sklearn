@@ -32,8 +32,6 @@ To make this episode a bit less computationally intensive, the Scikit-Learn exam
 # Let's define these here to avoid repetitive code
 import numpy as np
 import matplotlib.pyplot as plt
-import sklearn.cluster as skl_cluster
-from sklearn import manifold, decomposition, datasets
 
 def plots_labels(data, labels):
     """
@@ -121,7 +119,7 @@ def plot_clusters_labels(data, labels):
 
 Next lets load in the digits dataset,
 ~~~
-from sklearn import manifold, decomposition, datasets
+from sklearn import datasets
 
 # load in dataset as a Pandas Dataframe, return X and Y
 features, labels = datasets.load_digits(return_X_y=True, as_frame=True)
@@ -220,6 +218,7 @@ plots_labels(x_pca, None)
 We now have a 2D representation of our 64D dataset that we can work with instead. Let's try some quick K-means clustering on our 2D representation of the data. Because we already have some knowledge about our data we can set `k=10` for the 10 digits present in the dataset.
 
 ~~~
+import sklearn.cluster as skl_cluster
 Kmean = skl_cluster.KMeans(n_clusters=10)
 Kmean.fit(x_pca)
 clusters = Kmean.predict(x_pca)
@@ -256,6 +255,8 @@ Scikit-Learn allows us to apply t-SNE in a relatively simple way. Lets code and 
 
 ~~~
 # t-SNE embedding
+from sklearn import manifold
+
 # initialising with "pca" explicitly preserves global structure
 tsne = manifold.TSNE(n_components=2, init='pca', random_state = 0)
 x_tsne = tsne.fit_transform(features)
