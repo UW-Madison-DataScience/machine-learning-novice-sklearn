@@ -197,6 +197,7 @@ Let's apply PCA to the MNIST dataset and retain the two most-major components:
 
 ~~~
 # PCA with 2 components
+from sklearn import decomposition
 pca = decomposition.PCA(n_components=2)
 x_pca = pca.fit_transform(features)
 
