@@ -134,7 +134,8 @@ def plot_clusters(data, clusters, Kmean):
 Lets create the clusters.
 
 ~~~
-data, cluster_id = skl_datasets.make_blobs(n_samples=400, cluster_std=0.75, centers=4, random_state=1)
+N_true_clusters = 4
+data, cluster_id = skl_datasets.make_blobs(n_samples=400, cluster_std=0.75, centers=N_true_clusters, random_state=1)
 plots_labels(data, cluster_id)
 ~~~
 {: .language-python}
@@ -144,7 +145,8 @@ plots_labels(data, cluster_id)
 Now that we have some data we can try to identify the clusters using k-means. First, we need to initialise the KMeans module and tell it how many clusters to look for. Next, we supply it with some data via the `fit` function, in much the same way we did with the regression functions earlier on. Finally, we run the predict function to find the clusters.
 
 ~~~
-Kmean = skl_cluster.KMeans(n_clusters=4)
+N_pred_clusters = 4
+Kmean = skl_cluster.KMeans(n_clusters=N_pred_clusters)
 Kmean.fit(data)
 clusters = Kmean.predict(data)
 ~~~
@@ -175,6 +177,43 @@ clusters = Kmean.predict(data)
 plot_clusters(data, clusters, Kmean)
 ~~~
 {: .language-python}
+
+### Assessing cluster quality with the silhoutte score
+~~~
+from sklearn.metrics import silhouette_score, silhouette_samples
+
+# Calculate the overall silhouette score
+overall_silhouette = silhouette_score(data, clusters)
+print(f"Overall Silhouette Score: {overall_silhouette:.2f}")
+
+# Calculate silhouette scores for individual samples
+sample_silhouettes = silhouette_samples(data, clusters)
+
+# Example: Visualize the silhouette values for each cluster
+import matplotlib.pyplot as plt
+import numpy as np
+
+y_lower = 10
+for i in range(4):  # Number of clusters
+    cluster_silhouettes = sample_silhouettes[clusters == i]
+    cluster_silhouettes.sort()
+    cluster_size = len(cluster_silhouettes)
+    y_upper = y_lower + cluster_size
+    plt.fill_betweenx(
+        np.arange(y_lower, y_upper),
+        0,
+        cluster_silhouettes,
+        alpha=0.7
+    )
+    plt.text(-0.05, y_lower + 0.5 * cluster_size, str(i))
+    y_lower = y_upper + 10
+
+plt.xlabel("Silhouette Coefficient")
+plt.ylabel("Cluster")
+plt.show()
+~~~
+{: .language-python}
+
 
 > ## Working in multiple dimensions
 > Although this example shows two dimensions, the kmeans algorithm can work in more than two. It becomes very difficult to show this visually
