@@ -75,22 +75,58 @@ Now lets create some random blobs using the `make_blobs` function. The `n_sample
 ~~~
 import matplotlib.pyplot as plt
 
-#Lets define some functions here to avoid repetitive code
 def plots_labels(data, labels):
+    """
+    Visualizes data points with associated labels in a 2D scatter plot.
+
+    Parameters:
+    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
+    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.
+
+    Returns:
+    None: Displays the scatter plot with labels as colors.
+    """
+    # Extract the x and y coordinates from the data
     tx = data[:, 0]
     ty = data[:, 1]
-
+    
+    # Create a figure with a specified size
     fig = plt.figure(1, figsize=(4, 4))
+    
+    # Scatter plot the data points, coloring them by their labels
     plt.scatter(tx, ty, edgecolor='k', c=labels)
+    
+    # Display the plot
     plt.show()
 
 def plot_clusters(data, clusters, Kmean):
+    """
+    Visualizes clustered data points with centroids marked.
+
+    Parameters:
+    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
+    clusters (ndarray or list): A 1D array or list of cluster assignments for each data point.
+    Kmean (KMeans object): The fitted KMeans object containing cluster centers.
+
+    Returns:
+    None: Displays the scatter plot with clusters as colors and centroids marked with red crosses.
+    """
+    # Extract the x and y coordinates from the data
     tx = data[:, 0]
     ty = data[:, 1]
+    
+    # Create a figure with a specified size
     fig = plt.figure(1, figsize=(4, 4))
-    plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)
+    
+    # Scatter plot the data points, coloring them by their cluster assignment
+    # plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)
+    plt.scatter(tx, ty, c=clusters, cmap="nipy_spectral", edgecolor='k')
+    
+    # Loop through cluster centers and mark them with a red 'x'
     for cluster_x, cluster_y in Kmean.cluster_centers_:
         plt.scatter(cluster_x, cluster_y, s=100, c='r', marker='x')
+    
+    # Display the plot
     plt.show()
 ~~~
 {: .language-python}
