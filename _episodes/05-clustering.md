@@ -178,7 +178,7 @@ plot_clusters(data, clusters, Kmean)
 ~~~
 {: .language-python}
 
-### Assessing cluster quality with the silhoutte score
+### Assessing cluster quality with the silhouette score
 ~~~
 from sklearn.metrics import silhouette_score, silhouette_samples
 
@@ -194,7 +194,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 y_lower = 10
-for i in range(4):  # Number of clusters
+for i in range(N_pred_clusters):  # Number of clusters
     cluster_silhouettes = sample_silhouettes[clusters == i]
     cluster_silhouettes.sort()
     cluster_size = len(cluster_silhouettes)
