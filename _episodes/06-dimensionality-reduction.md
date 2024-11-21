@@ -77,8 +77,9 @@ def plot_clusters(data, clusters, Kmean):
     fig = plt.figure(1, figsize=(4, 4))
     
     # Scatter plot the data points, coloring them by their cluster assignment
-    plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)
-    
+    # plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)
+    plt.scatter(tx, ty, c=clusters, cmap="nipy_spectral", edgecolor='k')
+
     # Loop through cluster centers and mark them with a red 'x'
     for cluster_x, cluster_y in Kmean.cluster_centers_:
         plt.scatter(cluster_x, cluster_y, s=100, c='r', marker='x')
