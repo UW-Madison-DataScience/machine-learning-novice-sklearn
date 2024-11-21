@@ -101,7 +101,7 @@ X = penguins[feature_names]
 y = penguins.species
 
 # Split data in training and test set
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5, stratify=y)
 
 print("train size:", X_train.shape)
 print("test size", X_test.shape)
@@ -125,7 +125,7 @@ from sklearn.tree import plot_tree
 # Define our model
 # extra parameter called n_estimators which is number of trees in the forest
 # a leaf is a class label at the end of the decision tree
-forest = RandomForestClassifier(n_estimators=100, max_depth=7, min_samples_leaf=1) 
+forest = RandomForestClassifier(n_estimators=100, max_depth=5, min_samples_leaf=1, random_state=0) 
 
 # train our model
 forest.fit(X_train, y_train)
@@ -169,7 +169,7 @@ f1 = feature_names[0]
 f2 = feature_names[3]
 
 # plot classification space for body mass and bill length with random forest
-forest_2d = RandomForestClassifier(n_estimators=100, max_depth=7, min_samples_leaf=1, random_state=5)
+forest_2d = RandomForestClassifier(n_estimators=100, max_depth=5, min_samples_leaf=1, random_state=0)
 forest_2d.fit(X_train[[f1, f2]], y_train)
 
 # Lets plot the decision boundaries made by the model for the two trained features
