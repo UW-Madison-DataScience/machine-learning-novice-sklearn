@@ -28,39 +28,94 @@ The MNIST dataset contains 70,000 images of handwritten numbers, and are labelle
 To make this episode a bit less computationally intensive, the Scikit-Learn example that we will work with is a smaller sample of 1797 images. Each image is 8x8 in size for a total of 64 pixels per image, resulting in 64 features for us to work with. The pixels can take a value between 0-15 (4bits). Let's retrieve and inspect the Scikit-Learn dataset with the following code:
 
 ~~~
+
+# Let's define these here to avoid repetitive code
 import numpy as np
 import matplotlib.pyplot as plt
 import sklearn.cluster as skl_cluster
 from sklearn import manifold, decomposition, datasets
 
-# Let's define these here to avoid repetitive code
 def plots_labels(data, labels):
+    """
+    Visualizes data points with associated labels in a 2D scatter plot.
+
+    Parameters:
+    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
+    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.
+
+    Returns:
+    None: Displays the scatter plot with labels as colors.
+    """
+    # Extract the x and y coordinates from the data
     tx = data[:, 0]
     ty = data[:, 1]
     
+    # Create a figure with a specified size
     fig = plt.figure(1, figsize=(4, 4))
+    
+    # Scatter plot the data points, coloring them by their labels
     plt.scatter(tx, ty, edgecolor='k', c=labels)
+    
+    # Display the plot
     plt.show()
 
 def plot_clusters(data, clusters, Kmean):
+    """
+    Visualizes clustered data points with centroids marked.
+
+    Parameters:
+    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
+    clusters (ndarray or list): A 1D array or list of cluster assignments for each data point.
+    Kmean (KMeans object): The fitted KMeans object containing cluster centers.
+
+    Returns:
+    None: Displays the scatter plot with clusters as colors and centroids marked with red crosses.
+    """
+    # Extract the x and y coordinates from the data
     tx = data[:, 0]
     ty = data[:, 1]
+    
+    # Create a figure with a specified size
     fig = plt.figure(1, figsize=(4, 4))
+    
+    # Scatter plot the data points, coloring them by their cluster assignment
     plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)
+    
+    # Loop through cluster centers and mark them with a red 'x'
     for cluster_x, cluster_y in Kmean.cluster_centers_:
         plt.scatter(cluster_x, cluster_y, s=100, c='r', marker='x')
+    
+    # Display the plot
     plt.show()
 
 def plot_clusters_labels(data, labels):
+    """
+    Visualizes data points with associated labels using a color map and displays a legend.
+
+    Parameters:
+    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
+    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.
+
+    Returns:
+    None: Displays the scatter plot with labels as colors and a color bar for the label legend.
+    """
+    # Extract the x and y coordinates from the data
     tx = data[:, 0]
     ty = data[:, 1]
 
-    # with labels
+    # Create a figure with a specified size
     fig = plt.figure(1, figsize=(5, 4))
+    
+    # Scatter plot the data points, coloring them by their labels and using a colormap
     plt.scatter(tx, ty, c=labels, cmap="nipy_spectral", 
-            edgecolor='k', label=labels)
-    plt.colorbar(boundaries=np.arange(11)-0.5).set_ticks(np.arange(10))
+                edgecolor='k', label=labels)
+    
+    # Add a color bar to show the label legend
+    plt.colorbar(boundaries=np.arange(11) - 0.5).set_ticks(np.arange(10))
+    
+    # Display the plot
     plt.show()
+
 ~~~
 {: .language-python}
 
