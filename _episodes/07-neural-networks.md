@@ -222,13 +222,19 @@ This tells us we have 70,000 rows in the dataset.
 ~~~
 {: .output}
 
-Let us take 90% of the data for training and 10% for testing, so we will use the first 63,000 samples in the dataset as the training data and the last 7,000 as the test data. We can split these using a slice operator.
+Let us take 90% of the data for training and 10% for testing, so we will use the first 63,000 samples in the dataset as the training data and the last 7,000 as the test data. 
 
 ~~~
-data_train = data[0:63000].values
-labels_train = labels[0:63000].values
-data_test = data[63001:].values
-labels_test = labels[63001:].values
+from sklearn.model_selection import train_test_split
+
+# Assuming `data` is your feature matrix and `labels` is your target vector
+X_train, X_test, y_train, y_test = train_test_split(
+    data.values,        # Features
+    labels.values,      # Labels
+    test_size=0.1,      # Reserve 10% of data for testing
+    random_state=42     # For reproducibility
+)
+X_train.shape
 ~~~
 {: .language-python}
 
@@ -236,44 +242,17 @@ Now lets train the network. This line will take about one minute to run. We do t
 
 
 ~~~
-mlp.fit(data_train,labels_train)
+mlp.fit(X_train, y_train)
 ~~~
 {: .language-python}
 
 Finally, we will score the accuracy of our network against both the original training data and the test data. If the training had converged to the point where each iteration of training was not improving the accuracy, then the accuracy of the training data should be 1.0 (100%).
 
 ~~~
-print("Training set score", mlp.score(data_train, labels_train))
-print("Testing set score", mlp.score(data_test, labels_test))
+print("Training set score", mlp.score(X_train, y_train))
+print("Testing set score", mlp.score(X_test, y_test))
 ~~~
 {: .language-python}
-
-Here is the complete program:
-
-
-~~~
-import matplotlib.pyplot as plt
-import sklearn.datasets as skl_data
-import sklearn.neural_network as skl_nn
-
-data, labels = skl_data.fetch_openml('mnist_784', version=1, return_X_y=True)
-data = data / 255.0
-
-
-mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, verbose=1, random_state=1)
-
-data_train = data[0:63000].values
-labels_train = labels[0:63000].values
-
-data_test = data[63001:].values
-labels_test = labels[63001:].values
-
-mlp.fit(data_train, labels_train)
-print("Training set score", mlp.score(data_train, labels_train))
-print("Testing set score", mlp.score(data_test, labels_test))
-~~~
-{: .language-python}
-
 
 ### Prediction using a multi-layer perceptron
 
@@ -282,7 +261,7 @@ Now that we have trained a multi-layer perceptron, we can give it some input dat
 Before we can pass it to the predictor, we need to extract one of the digits from the test set. We can use `iloc` on the dataframe to get hold of the first element in the test set. In order to present it to the predictor, we have to turn it into a numpy array which has the dimensions of 1x784 instead of 28x28. We can then call the `predict` function with this array as our parameter. This will return an array of predictions (as it could have been given multiple inputs), the first element of this will be the predicted digit. You may get a warning stating "X does not have valid feature names", this is because we didn't encode feature names into our X (digit images) data.
 
 ~~~
-test_digit = data_test[0].reshape(1,784)
+test_digit = X_test[0].reshape(1,784) # current shape is (784,)
 test_digit_prediction = mlp.predict(test_digit)[0]
 print("Predicted value",test_digit_prediction)
 ~~~
@@ -292,7 +271,7 @@ print("Predicted value",test_digit_prediction)
 We can now verify if the prediction is correct by looking at the corresponding item in the `labels_test` array.
 
 ~~~
-print("Actual value",labels_test[0])
+print("Actual value",y_test[0])
 ~~~
 {: .language-python}
 
@@ -333,57 +312,24 @@ This should be the same value which is being predicted.
 > {: .language-python}
 {: .challenge}
 
-## Measuring neural network performance
-
-We have now trained a neural network and tested prediction on a few images. This might have given us a feel for how well our network is performing, but it would be much more useful to have a more objective measure. Since recognising digits is a classification problem, we can measure how many predictions were correct in a set of test data. As we already have a test set of data with 7,000 images we can use that and see how many predictions the neural network has gotten right. We will loop through every image in the test set, run it through our predictor and compare the result with the label for that image. We will also keep a tally of how many images we got right and see what percentage were correct.
-
-~~~
-correct=0
-
-for idx, row in enumerate(data_test):
-    # image contains a tuple of the row number and image data
-    image = row.reshape(1,784)
-
-    prediction = mlp.predict(image)[0]
-    actual = labels_test[idx]
-
-    if prediction == actual:
-        correct = correct + 1
-
-print((correct/len(data_test))*100)
-~~~
-{: .language-python}
-
 ### Confusion matrix
 
 We now know what percentage of images were correctly classified, but we don't know anything about the distribution of correct predictions across our different classes (the digits 0 to 9 in this case). A more powerful technique is known as a confusion matrix. Here we draw a grid with each class along both the x and y axis. The x axis is the actual number of items in each class and the y axis is the predicted number. In a perfect classifier, there will be a diagonal line of values across the grid moving from the top left to bottom right corresponding to the number in each class, and all other cells will be zero. If any cell outside of the diagonal is non-zero then it indicates a miss-classification. Scikit-Learn has a function called `confusion_matrix` in the `sklearn.metrics` class which can display a confusion matrix for us. It will need two inputs: arrays showing how many items were in each class for both the real data and the classifications. We already have the real data in the labels_test array, but we need to build it for the classifications by classifying each image (in the same order as the real data) and storing the result in another array.
 
 ~~~
-from sklearn.metrics import confusion_matrix
-predictions = []
-
-for image in data_test:
-    # image contains a tuple of the row number and image data
-    image = image.reshape(1,784)
-    predictions.append(mlp.predict(image))
-
-confusion_matrix(labels_test,predictions)
+# extract all test set predictions
+y_test_pred = mlp.predict(X_test)
+y_test_pred
 ~~~
 {: .language-python}
 
-> ## A better way to plot a confusion matrix
-> The `ConfusionMatrixDisplay` class in the `sklearn.metrics` package can create a graphical representation of a confusion matrix with colour coding to highlight how many items are in each cell. This colour coding can be useful when working with very large numbers of classes.
-> Try to use the `from_predictions()` method in the `ConfusionMatrixDisplay` class to display a graphical confusion matrix.
->
-> > ## Solution
-> > ~~~
-> > from sklearn.metrics import ConfusionMatrixDisplay
-> > ConfusionMatrixDisplay.from_predictions(labels_test,np.array(predictions))
-> > ~~~
-> > {: .language-python}
-> {: .solution}
-{: .challenge}
-
+The `ConfusionMatrixDisplay` class in the `sklearn.metrics` package can create a graphical representation of a confusion matrix with colour coding to highlight how many items are in each cell. This colour coding can be useful when working with very large numbers of classes.
+~~~
+import numpy as np
+from sklearn.metrics import ConfusionMatrixDisplay
+ConfusionMatrixDisplay.from_predictions(y_test,y_test_pred)
+~~~
+{: .language-python}
 
 ## Cross-validation
 
