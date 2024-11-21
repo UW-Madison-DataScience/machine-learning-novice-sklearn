@@ -422,6 +422,9 @@ plt.show()
 **SVM parameters**: 
 
 - **`kernel`**: Specifies how the SVM transforms the data to find patterns; start with `'rbf'` for most cases, `'linear'` for high-dimensional data, or `'poly'` for polynomial relationships.
+  - Linear Kernel: Directly computes the dot product between input vectors; best for linearly separable data and high-dimensional spaces, offering simplicity and efficiency.
+  - Poly Kernel: Computes polynomial relationships of features, allowing for flexible decision boundaries; ideal for data with polynomial patterns.
+  - RBF (Radial Basis Function) Kernel: Uses a Gaussian function to create highly flexible decision boundaries; effective for non-linear, complex data. 
 - **`degree`**: Sets the complexity of the polynomial kernel; use `degree=3` for cubic relationships, and avoid going higher unless you have lots of data.
 - **`C`**: Balances smoothness of the decision boundary and misclassifications; start with `C=1`, increase for tighter boundaries, decrease to prevent overfitting.
 
