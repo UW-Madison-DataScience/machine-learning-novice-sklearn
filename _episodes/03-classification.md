@@ -258,6 +258,71 @@ Earlier we saw that the `max_depth=2` model split the data into 3 simple boundin
 
 This is a classic case of over-fitting - our model has produced extremely specific parameters that work for the training data but are not representitive of our test data. Sometimes simplicity is better!
 
+> ## Exercise: Adding noise to the training data
+> We observed that this data doesn't seem prone to overfitting effects. Why might this be? There are at least two factors contributing to these results:
+>
+> 1. We only have 4 predictors. With so few predictors, there are only so many unique tree structures that can be tested/formed. This makes overfitting less likely.
+> 2. Our data is sourced from a python library, and has been cleaned/vetted. Real-world data typically has more noise. Let's try adding a small amount of noise to the data using the below code. How does this impact the ideal setting for depth level?
+>    
+> ~~~
+> # 1) LOAD DATA (if not loaded already)
+> import seaborn as sns
+> dataset = sns.load_dataset('penguins')
+> dataset.head()
+> 
+> # 2) Extract the data we need and drop NaNs (if not done already)
+> feature_names = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
+> dataset.dropna(subset=feature_names, inplace=True)
+> class_names = dataset['species'].unique()
+> X = dataset[feature_names]
+> y = dataset['species']
+> 
+> # 3) ADD RANDOM NOISE TO X
+> import numpy as np
+> stds = X.std(axis=0).to_numpy()
+> 
+> # Generate noise and scale it
+> # Set seed for reproducibility
+> np.random.seed(42)
+> noise = np.random.normal(0, 1, X.shape) # sample numbers from normal distribution
+> scaled_noise = noise * stds  # up to 1
+> X_noisy = X + scaled_noise
+> 
+> 
+> import matplotlib.pyplot as plt
+> fig01 = sns.scatterplot(X, x=feature_names[0], y=feature_names[1], hue=dataset['species'])
+> plt.show()
+> fig02 = sns.scatterplot(X_noisy, x=feature_names[0], y=feature_names[1], hue=dataset['species'])
+> plt.show()
+> 
+> # 4) TRAIN/TEST SPLIT
+> from sklearn.model_selection import train_test_split
+> # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0, stratify=y)
+> X_train, X_test, y_train, y_test = train_test_split(X_noisy, y, test_size=0.2, random_state=0, stratify=y)
+> 
+> # 5) HYPERPARAM TUNING
+> from sklearn.tree import DecisionTreeClassifier
+> import pandas as pd
+> import matplotlib.pyplot as plt
+> 
+> max_depths = list(range(1,200)) 
+> accuracy = []
+> for d in max_depths:
+>     clf = DecisionTreeClassifier(max_depth=d)
+>     clf.fit(X_train, y_train)
+>     acc = clf.score(X_test, y_test)
+> 
+>     accuracy.append((d, acc))
+> 
+> acc_df = pd.DataFrame(accuracy, columns=['depth', 'accuracy'])
+> 
+> sns.lineplot(acc_df, x='depth', y='accuracy')
+> plt.xlabel('Tree depth')
+> plt.ylabel('Accuracy')
+> plt.show()
+> ~~~
+> {: .language-python}
+> 
 
 ## Classification using support vector machines
 Next, we'll look at another commonly used classification algorithm, and see how it compares. Support Vector Machines (SVM) work in a way that is conceptually similar to your own intuition when first looking at the data. They devise a set of hyperplanes that delineate the parameter space, such that each region contains ideally only observations from one class, and the boundaries fall between classes. One of the core strengths of Support Vector Machines (SVMs) is their ability to handle non-linear relationships between features by transforming the data into a higher-dimensional space. This transformation allows SVMs to find a linear boundary/hyperplane in this new space, which corresponds to a non-linear boundary in the original space.
