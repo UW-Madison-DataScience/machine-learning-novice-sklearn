@@ -260,7 +260,7 @@ This is a classic case of over-fitting - our model has produced extremely specif
 
 
 ## Classification using support vector machines
-Next, we'll look at another commonly used classification algorithm, and see how it compares. Support Vector Machines (SVM) work in a way that is conceptually similar to your own intuition when first looking at the data. They devise a set of hyperplanes that delineate the parameter space, such that each region contains ideally only observations from one class, and the boundaries fall between classes.
+Next, we'll look at another commonly used classification algorithm, and see how it compares. Support Vector Machines (SVM) work in a way that is conceptually similar to your own intuition when first looking at the data. They devise a set of hyperplanes that delineate the parameter space, such that each region contains ideally only observations from one class, and the boundaries fall between classes. One of the core strengths of Support Vector Machines (SVMs) is their ability to handle non-linear relationships between features by transforming the data into a higher-dimensional space. This transformation allows SVMs to find a linear boundary/hyperplane in this new space, which corresponds to a non-linear boundary in the original space.
  
 ### When to Choose SVM Over Decision Tree
 
@@ -278,11 +278,11 @@ Unlike decision trees, SVMs require an additional pre-processing step for our da
 
 Standarizing maps each parameter to a new range so that it has a mean of 0 and a standard deviation of 1. This places all features on the same playing field, and allows SVM to reveal the most accurate decision boundaries.
 
-### When to Standardize Your Data: An Introduction
+#### When to Standardize Your Data: A Broader Overview
 
 Standardization is an essential preprocessing step for many machine learning models, particularly those that rely on **distance-based calculations** to make predictions or extract features. These models are sensitive to the scale of the input features because their mathematical foundations involve distances, magnitudes, or directions in the feature space. Without standardization, features with larger ranges can dominate the calculations, leading to suboptimal results. However, not all models require standardization; some, like decision trees, operate on thresholds and are unaffected by feature scaling. Here's a breakdown of when to standardize, explicitly explaining the role of distance-based calculations in each case.
 
-#### When to Standardize: Models That Use Distance-Based Calculations
+##### When to Standardize: Models That Use Distance-Based Calculations
 
 1. **Support Vector Machines (SVMs)**: SVMs calculate the distance of data points to a hyperplane and aim to maximize the margin (the distance between the hyperplane and the nearest points, called support vectors).
 
@@ -296,16 +296,13 @@ Standardization is an essential preprocessing step for many machine learning mod
 
 6. **Linear Regression (for Interpreting Many Coefficients)**: While linear regression itself doesn’t rely on distance-based calculations, standardization is crucial when interpreting coefficients because it ensures that all features are on the same scale, making their relative importance directly comparable. Without standardization, coefficients in linear regression reflect the relationship between the dependent variable and a feature in the units of that feature, making it difficult to compare features with different scales (e.g., height in centimeters vs. weight in kilograms).
 
-#### When to Skip Standardization: Models That Don’t Use Distance-Based Calculations
+##### When to Skip Standardization: Models That Don’t Use Distance-Based Calculations
 
-1. **Decision Trees**:
-   - Decision trees split data based on thresholds, independent of feature scales, without relying on any distance-based calculations.
+1. **Decision Trees**: Decision trees split data based on thresholds, independent of feature scales, without relying on any distance-based calculations.
 
-2. **Random Forests**:
-   - Random forests aggregate decisions from multiple trees, which also use thresholds rather than distance-based metrics.
+2. **Random Forests**: Random forests aggregate decisions from multiple trees, which also use thresholds rather than distance-based metrics.
 
-3. **Gradient Boosted Trees**:
-   - Gradient boosting optimizes decision trees sequentially, focusing on residuals and splits rather than distance measures.
+3. **Gradient Boosted Trees**: Gradient boosting optimizes decision trees sequentially, focusing on residuals and splits rather than distance measures.
 
 By understanding whether a model relies on distance-based calculations (or benefits from standardized features for interpretability), you can decide whether standardization is necessary, ensuring that your preprocessing pipeline is well-suited to the algorithm you’re using.
 
