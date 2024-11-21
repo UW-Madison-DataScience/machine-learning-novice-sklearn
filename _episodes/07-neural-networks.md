@@ -193,10 +193,10 @@ mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, verbose=1, ran
 
 We now have a neural network but we have not trained it yet. Before training, we will split our dataset into two parts: a training set which we will use to train the classifier and a test set which we will use to see how well the training is working. By using different data for the two, we can avoid 'over-fitting', which is the creation of models which do not "generalise" or work with data other than their training data.
 
-Typically, 10 to 20% of the data will be used as training data. Let us see how big our dataset is to decide how many samples we want to train with. The `describe` attribute in Pandas will tell us how many rows our data has:
+Typically, the majority of the data will be used as training data (70-90%), to help avoid overfitting. Let us see how big our dataset is to decide how many samples we want to train with. 
 
 ~~~
-print(data.describe)
+data.shape
 ~~~
 {: .language-python}
 
