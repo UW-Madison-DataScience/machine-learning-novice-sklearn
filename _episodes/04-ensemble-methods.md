@@ -42,6 +42,8 @@ If we trained the same model multiple times on the same data we would expect ver
 
 This is where we use the same model/estimator and fit it on different subsets of the training data. We can then average the results from each model to produce a final prediction. The subsets are random and may even repeat themselves. 
 
+**How to remember**: The name comes from combining two ideas, bootstrap (random sampling with replacement) and aggregating (combining predictions). Imagine putting your data into a "bag," pulling out random samples (with replacement), training models on those samples, and combining their outputs.
+
 The most common example is known as the Random Forest algorithm, which we'll take a look at later on. Random Forests are typically used as a faster, computationally cheaper alternative to Neural Networks, which is ideal for real-time applications like camera face detection prompts.
 
 ![Stacking](../fig/bagging.jpeg)
