@@ -276,9 +276,9 @@ sample_silhouettes
 >     plot_silhouette(data, clusters)
 > ~~~
 > {: .language-python}
-
+>
 > > ## Solution
-> >
+> > The silouette score, unfortunately, incorrectly identifies N=2 as the most approprirate clustering configuration in this case (silhouette = 0.73). However, the silhouette score for N=4 (true cluster number) is very close (silhouette = 0.72). The silhouette can act as a useful guide in selecting cluster number, but it doesn't always produce perfect results. Clustering with different feature sets or exploring different clustering algorithms may yield better results.
 > > 
 > {: .solution}
 {: .challenge}
