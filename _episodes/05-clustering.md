@@ -178,6 +178,12 @@ plot_clusters(data, clusters, Kmean)
 ~~~
 {: .language-python}
 
+> ## Working in multiple dimensions
+> Although this example shows two dimensions, the kmeans algorithm can work in more than two. It becomes very difficult to show this visually
+> once we get beyond 3 dimensions. Its very common in machine learning to be working with multiple variables and so our classifiers are working in
+> multi-dimensional spaces.
+{: .callout}
+
 ### Assessing cluster quality with the silhouette score
 Evaluating the quality of clusters is a crucial step in clustering analysis, as it helps determine how well the data points fit into their assigned clusters. A widely used metric for this purpose is the **silhouette score**, which measures how similar a data point is to its own cluster compared to other clusters. The silhouette score is defined for each data point and ranges from -1 to 1, where:
 
@@ -276,12 +282,6 @@ sample_silhouettes
 > > 
 > {: .solution}
 {: .challenge}
-
-> ## Working in multiple dimensions
-> Although this example shows two dimensions, the kmeans algorithm can work in more than two. It becomes very difficult to show this visually
-> once we get beyond 3 dimensions. Its very common in machine learning to be working with multiple variables and so our classifiers are working in
-> multi-dimensional spaces.
-{: .callout}
 
 ### Limitations of k-means
 
