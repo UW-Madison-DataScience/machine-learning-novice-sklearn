@@ -164,8 +164,8 @@ y_train_pred[0:10]
 
 ```python
 # calculated a RMS error as a quality of fit metric
-error = math.sqrt(mean_squared_error(y_train, y_train_pred))
-print("train RMSE =", error)
+train_error = math.sqrt(mean_squared_error(y_train, y_train_pred))
+print("train RMSE =", train_error)
 ```
 
 Finally, we’ll plot our input data, our linear fit, and our predictions:
@@ -203,8 +203,8 @@ y_test = np.array(y_test).reshape(-1, 1)
 y_test_pred = lin_regress.predict(x_test)
 
 # calculated a RMSE error for all data
-error_all = math.sqrt(mean_squared_error(y_test, y_test_pred))
-print("test RMSE =", error)
+test_error = math.sqrt(mean_squared_error(y_test, y_test_pred))
+print("test RMSE =", test_error)
 ```
 
 Our RMSE for predictions on all penguin samples is far larger than before, so let's visually inspect the situation:
