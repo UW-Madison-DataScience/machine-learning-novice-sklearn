@@ -34,13 +34,12 @@ The physical attributes measured are flipper length, beak length, beak width, bo
 
 In other words, the dataset contains 344 rows with 7 features i.e. 5 physical attributes, species and the island where the observations were made.
 
-~~~
+```python
 import seaborn as sns
 
 dataset = sns.load_dataset('penguins')
 dataset.head()
-~~~
-{: .language-python}
+```
 
 Our aim is to develop a classification model that will predict the species of a penguin based upon measurements of those variables.
 
@@ -54,7 +53,7 @@ The above table contains multiple categorical objects such as species. If we att
 
 Lets do some pre-processing on our dataset and specify our `X` features and `y` labels:
 
-~~~
+```python
 # Extract the data we need
 feature_names = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
 dataset.dropna(subset=feature_names, inplace=True)
@@ -63,8 +62,7 @@ class_names = dataset['species'].unique()
 
 X = dataset[feature_names]
 y = dataset['species']
-~~~
-{: .language-python}
+```
 
 Having extracted our features `X` and labels `y`, we can now split the data using the `train_test_split` function.
 
@@ -99,35 +97,32 @@ Sometimes your data is dependant on it's ordering, such as time-series data wher
 
  We specify the fraction of data to use as test data, and the function randomly shuffles our data prior to splitting:
 
-~~~
+```python
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
-~~~
-{: .language-python}
+```
 
 We'll use `X_train` and `y_train` to develop our model, and only look at `X_test` and `y_test` when it's time to evaluate its performance.
 
 ### Visualising the data
 In order to better understand how a model might classify this data, we can first take a look at the data visually, to see what patterns we might identify.
 
-~~~
+```python
 import matplotlib.pyplot as plt
 
 fig01 = sns.scatterplot(X_train, x=feature_names[0], y=feature_names[1], hue=dataset['species'])
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Visualising the penguins dataset](fig/e3_penguins_vis.png)
 
 As there are four measurements for each penguin, we need quite a few plots to visualise all four dimensions against each other. Here is a handy Seaborn function to do so:
 
-~~~
+```python
 sns.pairplot(dataset, hue="species")
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Visualising the penguins dataset](fig/pairplot.png)
 
@@ -141,15 +136,14 @@ We'll first apply a decision tree classifier to the data. Decisions trees are co
 
 
 Training and using a decision tree in Scikit-Learn is straightforward:
-~~~
+```python
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 clf = DecisionTreeClassifier(max_depth=2)
 clf.fit(X_train, y_train)
 
 clf.predict(X_test)
-~~~
-{: .language-python}
+```
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -161,20 +155,18 @@ clf.predict(X_test)
 
 We can conveniently check how our model did with the .score() function, which will make predictions and report what proportion of them were accurate:
 
-~~~
+```python
 clf_score = clf.score(X_test, y_test)
 print(clf_score)
-~~~
-{: .language-python}
+```
 
 Our model reports an accuracy of ~98% on the test data! We can also look at the decision tree that was generated:
 
-~~~
+```python
 fig = plt.figure(figsize=(12, 10))
 plot_tree(clf, class_names=class_names, feature_names=feature_names, filled=True, ax=fig.gca())
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Decision tree for classifying penguins](fig/e3_dt_2.png)
 
@@ -191,7 +183,7 @@ We can see that rather than clean lines between species, the decision tree produ
 ### Visualising the classification space
 We can visualise the classification space (decision tree boundaries) to get a more intuitive feel for what it is doing.Note that our 2D plot can only show two parameters at a time, so we will quickly visualise by training a new model on only 2 features:
 
-~~~
+```python
 from sklearn.inspection import DecisionBoundaryDisplay
 
 f1 = feature_names[0]
@@ -204,8 +196,7 @@ d = DecisionBoundaryDisplay.from_estimator(clf, X_train[[f1, f2]])
 
 sns.scatterplot(X_train, x=f1, y=f2, hue=y_train, palette="husl")
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Classification space for our decision tree](fig/e3_dt_space_2.png)
 
@@ -215,7 +206,7 @@ Our decision tree using a `max_depth=2` is fairly simple and there are still som
 
 <!-- We can reduce the over-fitting of our decision tree model by limiting its depth, forcing it to use less decisions to produce a classification, and resulting in a simpler decision space. -->
 
-~~~
+```python
 import pandas as pd
 
 max_depths = [1, 2, 3, 4, 5]
@@ -234,8 +225,7 @@ sns.lineplot(acc_df, x='depth', y='accuracy')
 plt.xlabel('Tree depth')
 plt.ylabel('Accuracy')
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Performance of decision trees of various depths](fig/e3_dt_overfit.png)
 
@@ -243,20 +233,19 @@ Here we can see that a `max_depth=2` performs slightly better on the test data t
 
 Let's reuse our fitting and plotting codes from above to inspect a decision tree that has `max_depth=5`:
 
-~~~
+```python
 clf = DecisionTreeClassifier(max_depth=5)
 clf.fit(X_train, y_train)
 
 fig = plt.figure(figsize=(12, 10))
 plot_tree(clf, class_names=class_names, feature_names=feature_names, filled=True, ax=fig.gca())
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Simplified decision tree](fig/e3_dt_6.png)
 
 It looks like our decision tree has split up the training data into the correct penguin categories and more accurately than the `max_depth=2` model did, however it used some very specific questions to split up the penguins into the correct categories. Let's try visualising the classification space for a more intuitive understanding:
-~~~
+```python
 f1 = feature_names[0]
 f2 = feature_names[3]
 
@@ -267,8 +256,7 @@ d = DecisionBoundaryDisplay.from_estimator(clf, X_train[[f1, f2]])
 
 sns.scatterplot(X_train, x=f1, y=f2, hue=y_train, palette='husl')
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Classification space of the simplified decision tree](fig/e3_dt_space_6.png)
 
@@ -282,7 +270,7 @@ This is a classic case of over-fitting - our model has produced extremely specif
 > 1. We only have 4 predictors. With so few predictors, there are only so many unique tree structures that can be tested/formed. This makes overfitting less likely.
 > 2. Our data is sourced from a python library, and has been cleaned/vetted. Real-world data typically has more noise. Let's try adding a small amount of noise to the data using the below code. How does this impact the ideal setting for depth level?
 >    
-> ~~~
+> ```python
 > # 1) LOAD DATA (if not loaded already)
 > import seaborn as sns
 > dataset = sns.load_dataset('penguins')
@@ -338,7 +326,7 @@ This is a classic case of over-fitting - our model has produced extremely specif
 > plt.xlabel('Tree depth')
 > plt.ylabel('Accuracy')
 > plt.show()
-> ~~~
+> ```python
 > {: .language-python}
 > 
 
@@ -396,7 +384,7 @@ Standardization is an essential preprocessing step for many machine learning mod
 By understanding whether a model relies on distance-based calculations (or benefits from standardized features for interpretability), you can decide whether standardization is necessary, ensuring that your preprocessing pipeline is well-suited to the algorithm you’re using.
 
 
-~~~
+```python
 from sklearn import preprocessing
 import pandas as pd
 
@@ -404,14 +392,13 @@ scalar = preprocessing.StandardScaler()
 scalar.fit(X_train)
 X_train_scaled = pd.DataFrame(scalar.transform(X_train), columns=X_train.columns, index=X_train.index)
 X_test_scaled = pd.DataFrame(scalar.transform(X_test), columns=X_test.columns, index=X_test.index)
-~~~
-{: .language-python}
+```
 
 Note that we fit the scalar to our training data - we then use this same pre-trained scalar to transform our testing data.
 
 With this scaled data, training the models works exactly the same as before.
 
-~~~
+```python
 from sklearn import svm
 
 SVM = svm.SVC(kernel='poly', degree=3, C=1.5)
@@ -420,12 +407,11 @@ SVM.fit(X_train_scaled, y_train)
 svm_score = SVM.score(X_test_scaled, y_test)
 print("Decision tree score is ", clf_score)
 print("SVM score is ", svm_score)
-~~~
-{: .language-python}
+```
 
 We can again visualise the decision space produced, also using only two parameters:
 
-~~~
+```python
 x2 = X_train_scaled[[feature_names[0], feature_names[1]]]
 
 SVM = svm.SVC(kernel='poly', degree=3, C=1.5)
@@ -434,8 +420,7 @@ SVM.fit(x2, y_train)
 DecisionBoundaryDisplay.from_estimator(SVM, x2) #, ax=ax
 sns.scatterplot(x2, x=feature_names[0], y=feature_names[1], hue=dataset['species'])
 plt.show()
-~~~
-{: .language-python}
+```
 
 **SVM parameters**: 
 
