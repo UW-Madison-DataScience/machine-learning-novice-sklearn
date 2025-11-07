@@ -535,47 +535,58 @@ We’ll also inspect the trained model parameters m and c:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># Define our estimator/model</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># train our estimator/model using our data</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>lin_regress <span class="op">=</span> model.fit(x_train,y_train)</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co"># inspect the trained estimator/model parameters</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>m <span class="op">=</span> lin_regress.coef_</span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>c <span class="op">=</span> lin_regress.intercept_</span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"linear coefs="</span>, m, c)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># load the LinearRegression class from sklearn.linear_model</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="bu">help</span>(LinearRegression)</span></code></pre>
 </div>
-<p>Now we can make predictions using our trained model, and calculate
-the Root Mean Squared Error (RMSE) of our predictions:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Predict some values using our trained estimator/model.</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co"># In this case we predict our input data to evaluate accuracy!</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>y_train_pred <span class="op">=</span> lin_regress.predict(x_train)</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co"># calculated a RMS error as a quality of fit metric</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>error <span class="op">=</span> math.sqrt(mean_squared_error(y_train, y_train_pred))</span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"train RMSE ="</span>, error)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Define our estimator/model</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
-<p>Finally, we’ll plot our input data, our linear fit, and our
-predictions:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>plt.scatter(x_train, y_train, label<span class="op">=</span><span class="st">"input"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>plt.plot(x_train, y_train_pred, <span class="st">"-"</span>, label<span class="op">=</span><span class="st">"fit"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>plt.plot(x_train, y_train_pred, <span class="st">"rx"</span>, label<span class="op">=</span><span class="st">"predictions"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>plt.xlabel(<span class="st">"body_mass_g"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>plt.ylabel(<span class="st">"bill_depth_mm"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>plt.legend()</span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>plt.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># train our estimator/model using our data</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>lin_regress <span class="op">=</span> model.fit(x_train,y_train)</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># inspect the trained estimator/model parameters</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>m <span class="op">=</span> lin_regress.coef_</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>c <span class="op">=</span> lin_regress.intercept_</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"linear coefs="</span>, m, c)</span></code></pre>
+</div>
+<p>Now we can make predictions using our trained model, and calculate
+the Root Mean Squared Error (RMSE) of our predictions:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># Predict some values using our trained estimator/model.</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co"># In this case we predict our input data to evaluate accuracy!</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>y_train_pred <span class="op">=</span> lin_regress.predict(x_train)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co"># calculated a RMS error as a quality of fit metric</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>error <span class="op">=</span> math.sqrt(mean_squared_error(y_train, y_train_pred))</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"train RMSE ="</span>, error)</span></code></pre>
+</div>
+<p>Finally, we’ll plot our input data, our linear fit, and our
+predictions:</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>plt.scatter(x_train, y_train, label<span class="op">=</span><span class="st">"input"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>plt.plot(x_train, y_train_pred, <span class="st">"-"</span>, label<span class="op">=</span><span class="st">"fit"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>plt.plot(x_train, y_train_pred, <span class="st">"rx"</span>, label<span class="op">=</span><span class="st">"predictions"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>plt.xlabel(<span class="st">"body_mass_g"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>plt.ylabel(<span class="st">"bill_depth_mm"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>plt.legend()</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <figure><img src="../fig/results/regress_penguin_lin.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
 dataset</div>
@@ -585,39 +596,39 @@ of the lesson and we can now make predictions of
 we pass into our model.</p>
 <p>Let’s provide the model with all of the penguin samples and see how
 our model performs on the full dataset:</p>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Extract remaining observations for testing</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>test_data <span class="op">=</span> dataset[<span class="dv">146</span>:] <span class="co"># row 147 -&gt; end </span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>x_test <span class="op">=</span> test_data[<span class="st">"body_mass_g"</span>] <span class="co"># lowercase x since there is only one predictor</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>y_test <span class="op">=</span> test_data[<span class="st">"bill_depth_mm"</span>] <span class="co"># lowercase y since there is only one target variable</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>x_test <span class="op">=</span> np.array(x_test).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>y_test <span class="op">=</span> np.array(y_test).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co"># Predict values using our trained estimator/model from earlier</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>y_test_pred <span class="op">=</span> lin_regress.predict(x_test)</span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co"># calculated a RMSE error for all data</span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>error_all <span class="op">=</span> math.sqrt(mean_squared_error(y_test, y_test_pred))</span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"test RMSE ="</span>, error)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># Extract remaining observations for testing</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>test_data <span class="op">=</span> dataset[<span class="dv">146</span>:] <span class="co"># row 147 -&gt; end </span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>x_test <span class="op">=</span> test_data[<span class="st">"body_mass_g"</span>] <span class="co"># lowercase x since there is only one predictor</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>y_test <span class="op">=</span> test_data[<span class="st">"bill_depth_mm"</span>] <span class="co"># lowercase y since there is only one target variable</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co"># sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>x_test <span class="op">=</span> np.array(x_test).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>y_test <span class="op">=</span> np.array(y_test).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co"># Predict values using our trained estimator/model from earlier</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>y_test_pred <span class="op">=</span> lin_regress.predict(x_test)</span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co"># calculated a RMSE error for all data</span></span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>error_all <span class="op">=</span> math.sqrt(mean_squared_error(y_test, y_test_pred))</span>
+<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"test RMSE ="</span>, error)</span></code></pre>
 </div>
 <p>Our RMSE for predictions on all penguin samples is far larger than
 before, so let’s visually inspect the situation:</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>plt.scatter(x_train, y_train, label<span class="op">=</span><span class="st">"train"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>plt.scatter(x_test, y_test, label<span class="op">=</span><span class="st">"test"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>plt.plot(x_train, y_train_pred, <span class="st">"-"</span>, label<span class="op">=</span><span class="st">"fit"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># plt.plot(x_train, y_train_pred, "rx", label="predictions")</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>plt.xlabel(<span class="st">"body_mass_g"</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>plt.ylabel(<span class="st">"bill_depth_mm"</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>plt.legend()</span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>plt.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>plt.scatter(x_train, y_train, label<span class="op">=</span><span class="st">"train"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>plt.scatter(x_test, y_test, label<span class="op">=</span><span class="st">"test"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>plt.plot(x_train, y_train_pred, <span class="st">"-"</span>, label<span class="op">=</span><span class="st">"fit"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co"># plt.plot(x_train, y_train_pred, "rx", label="predictions")</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>plt.xlabel(<span class="st">"body_mass_g"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>plt.ylabel(<span class="st">"bill_depth_mm"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>plt.legend()</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <figure><img src="../fig/results/penguin_regression_all.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
 dataset</div>
@@ -665,18 +676,18 @@ model that captures the global trend of bill depth decreasing with body
 mass. For this, we need to revisit how we split our data into train/test
 sets. Sklearn provides a tool to make it easy to split into these
 subsets using random shuffling of observations.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>x <span class="op">=</span> dataset[<span class="st">'body_mass_g'</span>]</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>y <span class="op">=</span> dataset[<span class="st">'bill_depth_mm'</span>]</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co"># # sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>x <span class="op">=</span> np.array(x).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>y <span class="op">=</span> np.array(y).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>x_train, x_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>x <span class="op">=</span> dataset[<span class="st">'body_mass_g'</span>]</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>y <span class="op">=</span> dataset[<span class="st">'bill_depth_mm'</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co"># # sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>x <span class="op">=</span> np.array(x).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>y <span class="op">=</span> np.array(y).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>x_train, x_test, y_train, y_test <span class="op">=</span> train_test_split(x, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="exercise-try-to-re-implement-our-univariate-regression-model-using-these-new-traintest-sets-">Exercise: Try to re-implement our univariate regression model using
@@ -687,36 +698,36 @@ these new train/test sets.<a class="anchor" aria-label="anchor" href="#exercise-
 <li>Get predictions from the model using .predict</li>
 <li>Calculate RMSE for train/test</li>
 <li>Plot scatter plot of train/test data, with line of best fit</li>
-</ol><div class="codewrapper sourceCode" id="cb12">
+</ol><div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co"># Define our estimator/model</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co"># train our estimator/model using our data</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>lin_regress <span class="op">=</span> model.fit(x_train, y_train)</span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co"># get preds and calculated a RMS error for train data</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>y_train_pred <span class="op">=</span> lin_regress.predict(x_train)</span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>train_error <span class="op">=</span> math.sqrt(mean_squared_error(y_train, y_train_pred))</span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"train RMSE ="</span>, train_error)</span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co"># get preds and calculated a RMS error for test data</span></span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a>y_test_pred <span class="op">=</span> lin_regress.predict(x_test)</span>
-<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a>test_error <span class="op">=</span> math.sqrt(mean_squared_error(y_test, y_test_pred))</span>
-<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"test RMSE ="</span>, test_error)</span>
-<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co"># scatter plot</span></span>
-<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a>plt.scatter(x_train, y_train, label<span class="op">=</span><span class="st">"train"</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a>plt.scatter(x_test, y_test, label<span class="op">=</span><span class="st">"test"</span>)</span>
-<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a>plt.plot(x_train, y_train_pred, <span class="st">"-"</span>, label<span class="op">=</span><span class="st">"fit"</span>)</span>
-<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="co"># plt.plot(x_train, y_train_pred, "rx", label="predictions")</span></span>
-<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a>plt.xlabel(<span class="st">"body_mass_g"</span>)</span>
-<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a>plt.ylabel(<span class="st">"bill_depth_mm"</span>)</span>
-<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a>plt.legend()</span>
-<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a>plt.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co"># Define our estimator/model</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>model <span class="op">=</span> LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co"># train our estimator/model using our data</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>lin_regress <span class="op">=</span> model.fit(x_train, y_train)</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co"># get preds and calculated a RMS error for train data</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>y_train_pred <span class="op">=</span> lin_regress.predict(x_train)</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>train_error <span class="op">=</span> math.sqrt(mean_squared_error(y_train, y_train_pred))</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"train RMSE ="</span>, train_error)</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="co"># get preds and calculated a RMS error for test data</span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>y_test_pred <span class="op">=</span> lin_regress.predict(x_test)</span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>test_error <span class="op">=</span> math.sqrt(mean_squared_error(y_test, y_test_pred))</span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"test RMSE ="</span>, test_error)</span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a>plt.scatter(x_train, y_train, label<span class="op">=</span><span class="st">"train"</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a>plt.scatter(x_test, y_test, label<span class="op">=</span><span class="st">"test"</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" tabindex="-1"></a>plt.plot(x_train, y_train_pred, <span class="st">"-"</span>, label<span class="op">=</span><span class="st">"fit"</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" tabindex="-1"></a><span class="co"># plt.plot(x_train, y_train_pred, "rx", label="predictions")</span></span>
+<span id="cb15-24"><a href="#cb15-24" tabindex="-1"></a>plt.xlabel(<span class="st">"body_mass_g"</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" tabindex="-1"></a>plt.ylabel(<span class="st">"bill_depth_mm"</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" tabindex="-1"></a>plt.legend()</span>
+<span id="cb15-27"><a href="#cb15-27" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <p><strong>Quick follow-up</strong>: Interpret the results of your
 model. Is it accurate? What does it say about the relationship between
@@ -750,15 +761,15 @@ data <code>x_train</code> into a polynomial representation using the
 polynomial regressions using the <code>LinearRegression().fit()</code>
 function as before, but this time using the polynomial representation of
 our <code>x_train</code>.</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="co"># create a polynomial representation of our training data</span></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>poly_features <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>x_train_poly <span class="op">=</span> poly_features.fit_transform(x_train)</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>x_test_poly <span class="op">=</span> poly_features.transform(x_test)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="co"># create a polynomial representation of our training data</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>poly_features <span class="op">=</span> PolynomialFeatures(degree<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>x_train_poly <span class="op">=</span> poly_features.fit_transform(x_train)</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>x_test_poly <span class="op">=</span> poly_features.transform(x_test)</span></code></pre>
 </div>
 <div id="we-convert-a-non-linear-problem-into-a-linear-one" class="callout">
 <div class="callout-square">
@@ -780,47 +791,47 @@ format.</p>
 </div>
 <p>We are now ready to create and train our model using our polynomial
 feature data.</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Define our estimator/model(s) and train our model</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>poly_regress <span class="op">=</span> LinearRegression()</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>poly_regress.fit(x_train_poly, y_train)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Define our estimator/model(s) and train our model</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>poly_regress <span class="op">=</span> LinearRegression()</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>poly_regress.fit(x_train_poly, y_train)</span></code></pre>
 </div>
 <p>We can now make predictions on train/test sets, and calculate
 RMSE</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Predictions</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>y_train_pred <span class="op">=</span> poly_regress.predict(x_train_poly)</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>y_test_pred <span class="op">=</span> poly_regress.predict(x_test_poly)</span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>poly_train_error <span class="op">=</span> math.sqrt(mean_squared_error(y_train_pred, y_train))</span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"poly train error ="</span>, poly_train_error)</span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>poly_test_error <span class="op">=</span> math.sqrt(mean_squared_error(y_test_pred, y_test))</span>
-<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"poly train error ="</span>, poly_test_error)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Predictions</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>y_train_pred <span class="op">=</span> poly_regress.predict(x_train_poly)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>y_test_pred <span class="op">=</span> poly_regress.predict(x_test_poly)</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>poly_train_error <span class="op">=</span> math.sqrt(mean_squared_error(y_train_pred, y_train))</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"poly train error ="</span>, poly_train_error)</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>poly_test_error <span class="op">=</span> math.sqrt(mean_squared_error(y_test_pred, y_test))</span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"poly train error ="</span>, poly_test_error)</span></code></pre>
 </div>
 <p>Finally, let’s visualise our model fit on our training data and full
 dataset.</p>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># Scatter plots for train and test data</span></span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>plt.scatter(x_train, y_train, label<span class="op">=</span><span class="st">'Train'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>plt.scatter(x_test, y_test, label<span class="op">=</span><span class="st">'Test'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="co"># Plot the model fit</span></span>
-<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>x_range <span class="op">=</span> np.linspace(<span class="bu">min</span>(x), <span class="bu">max</span>(x), <span class="dv">500</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>y_range_pred <span class="op">=</span> poly_regress.predict(poly_features.transform(x_range))</span>
-<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>plt.plot(x_range, y_range_pred, label<span class="op">=</span><span class="st">'Polynomial Model Fit'</span>, color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co"># Labels and legend</span></span>
-<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>plt.xlabel(<span class="st">"mass g"</span>)</span>
-<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>plt.ylabel(<span class="st">"depth mm"</span>)</span>
-<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>plt.title(<span class="st">'Polynomial Regression with Training and Testing Data'</span>)</span>
-<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>plt.legend()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Scatter plots for train and test data</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>plt.scatter(x_train, y_train, label<span class="op">=</span><span class="st">'Train'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>plt.scatter(x_test, y_test, label<span class="op">=</span><span class="st">'Test'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="co"># Plot the model fit</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>x_range <span class="op">=</span> np.linspace(<span class="bu">min</span>(x), <span class="bu">max</span>(x), <span class="dv">500</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>y_range_pred <span class="op">=</span> poly_regress.predict(poly_features.transform(x_range))</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>plt.plot(x_range, y_range_pred, label<span class="op">=</span><span class="st">'Polynomial Model Fit'</span>, color<span class="op">=</span><span class="st">'green'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="co"># Labels and legend</span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>plt.xlabel(<span class="st">"mass g"</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>plt.ylabel(<span class="st">"depth mm"</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>plt.title(<span class="st">'Polynomial Regression with Training and Testing Data'</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>plt.legend()</span></code></pre>
 </div>
 <figure><img src="../fig/results/penguin_regression_poly.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
 dataset</div>
@@ -855,34 +866,34 @@ your first few hours/days/weeks simply exploring the data. This means: -
 Investigate pairwise relationships between “predictors” (X) -
 Investigate correlation between predictors - Plot distributions of each
 variable - Check for outliers - Check for NaNs</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Create the pairs plot</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>sns.pairplot(dataset, <span class="bu">vars</span><span class="op">=</span>[<span class="st">"body_mass_g"</span>, <span class="st">"bill_depth_mm"</span>], hue<span class="op">=</span><span class="st">"species"</span>, diag_kind<span class="op">=</span><span class="st">"kde"</span>, markers<span class="op">=</span>[<span class="st">"o"</span>, <span class="st">"s"</span>, <span class="st">"D"</span>])</span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>plt.show()</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># Create the pairs plot</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>sns.pairplot(dataset, <span class="bu">vars</span><span class="op">=</span>[<span class="st">"body_mass_g"</span>, <span class="st">"bill_depth_mm"</span>], hue<span class="op">=</span><span class="st">"species"</span>, diag_kind<span class="op">=</span><span class="st">"kde"</span>, markers<span class="op">=</span>[<span class="st">"o"</span>, <span class="st">"s"</span>, <span class="st">"D"</span>])</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
 <p>Let’s try a model that includes penguin species as a predictor.</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
-<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="co"># Load the penguins dataset</span></span>
-<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="co"># (replace this with your own dataset import if needed)</span></span>
-<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="im">from</span> seaborn <span class="im">import</span> load_dataset</span>
-<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>dataset <span class="op">=</span> load_dataset(<span class="st">'penguins'</span>)</span>
-<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a><span class="co"># Drop rows with missing values in relevant columns</span></span>
-<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a>dataset <span class="op">=</span> dataset.dropna(subset<span class="op">=</span>[<span class="st">'body_mass_g'</span>, <span class="st">'bill_depth_mm'</span>, <span class="st">'species'</span>])</span>
-<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a></span>
-<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a><span class="co"># Define predictors and target</span></span>
-<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a>X <span class="op">=</span> dataset[[<span class="st">'body_mass_g'</span>, <span class="st">'species'</span>]]</span>
-<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a>y <span class="op">=</span> dataset[<span class="st">'bill_depth_mm'</span>]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a><span class="co"># Load the penguins dataset</span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a><span class="co"># (replace this with your own dataset import if needed)</span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a><span class="im">from</span> seaborn <span class="im">import</span> load_dataset</span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>dataset <span class="op">=</span> load_dataset(<span class="st">'penguins'</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a><span class="co"># Drop rows with missing values in relevant columns</span></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>dataset <span class="op">=</span> dataset.dropna(subset<span class="op">=</span>[<span class="st">'body_mass_g'</span>, <span class="st">'bill_depth_mm'</span>, <span class="st">'species'</span>])</span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a><span class="co"># Define predictors and target</span></span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a>X <span class="op">=</span> dataset[[<span class="st">'body_mass_g'</span>, <span class="st">'species'</span>]]</span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a>y <span class="op">=</span> dataset[<span class="st">'bill_depth_mm'</span>]</span></code></pre>
 </div>
 <p>Since the species column is coded as a string, we need to convert it
 into a numerical format before we can use it in a machine learning
@@ -893,32 +904,32 @@ the column that matches its species and 0 in the others.</p>
 <p>By default, we drop the first category to avoid
 multicollinearity—this means the omitted category serves as the
 reference group when interpreting model coefficients.</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># One-hot encode species (drop_first avoids multicollinearity)</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(X, columns<span class="op">=</span>[<span class="st">'species'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># One-hot encode species (drop_first avoids multicollinearity)</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(X, columns<span class="op">=</span>[<span class="st">'species'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span></code></pre>
 </div>
 <p>We can than train/fit and evaluate our model as usual.</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># Train/test split</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>x_train, x_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co"># Fit a linear regression model</span></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>model.fit(x_train, y_train)</span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="co"># Predict and evaluate</span></span>
-<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(x_test)</span>
-<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a>rmse <span class="op">=</span> mean_squared_error(y_test, y_pred)</span>
-<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE with species as a predictor: </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="co"># Optional: view learned coefficients</span></span>
-<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a>coefficients <span class="op">=</span> pd.Series(model.coef_, index<span class="op">=</span>X.columns)</span>
-<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Model coefficients:"</span>)</span>
-<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a><span class="bu">print</span>(coefficients)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># Train/test split</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>x_train, x_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a><span class="co"># Fit a linear regression model</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>model.fit(x_train, y_train)</span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a><span class="co"># Predict and evaluate</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(x_test)</span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>rmse <span class="op">=</span> mean_squared_error(y_test, y_pred)</span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE with species as a predictor: </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="co"># Optional: view learned coefficients</span></span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a>coefficients <span class="op">=</span> pd.Series(model.coef_, index<span class="op">=</span>X.columns)</span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Model coefficients:"</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="bu">print</span>(coefficients)</span></code></pre>
 </div>
 <p>{% include links.md %}</p>
 <div id="keypoints1" class="callout keypoints">
