@@ -194,7 +194,7 @@ forest_2d = RandomForestClassifier(n_estimators=100, max_depth=5, min_samples_le
 forest_2d.fit(X_train[[f1, f2]], y_train)
 
 # Lets plot the decision boundaries made by the model for the two trained features
-d = DecisionBoundaryDisplay.from_estimator(forest_2d, X_train[[f1, f2]])
+d = DecisionBoundaryDisplay.from_estimator(forest_2d, X_train[[f1, f2]], grid_resolution=500))
 
 sns.scatterplot(X_train, x=f1, y=f2, hue=y_train, palette="husl")
 plt.show()
