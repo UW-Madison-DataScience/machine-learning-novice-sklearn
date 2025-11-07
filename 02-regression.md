@@ -96,7 +96,7 @@ The mathematical equation for a linear fit is `y = mx + c` where `y` is our labe
 
 A typical ML workflow is as following:
 
-* Decide on a model to use model (also known as an estimator)
+* Decide on a model to use (also known as an estimator)
 * Tweak your data into the required format for your model
 * Define and train your model on the input data
 * Predict some values using the trained model
