@@ -66,7 +66,7 @@ contact: 'endemann@wisc.edu' # FIXME
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.md
+- 01-introduction.md
 - 02-regression.md
 - 03-classification.md
 - 04-ensemble-methods.md
