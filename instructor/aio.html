@@ -2062,7 +2062,21 @@ that is appropriate for your problem and data trends!</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>Classification requires labelled data (is supervised)</li>
+<li>Classification is a supervised learning task where the goal is to
+predict discrete class labels from labeled examples.</li>
+<li>Train/test splits let us estimate how well a classifier will
+generalize to unseen data; for classification, stratifying by class is
+often important.</li>
+<li>Decision trees are easy to train and interpret, but can overfit when
+depth and other hyperparameters are not controlled.</li>
+<li>Hyperparameters (such as <code>max_depth</code>) control model
+complexity and behavior but are not learned directly from the data.</li>
+<li>Models that rely on distances or geometric margins in feature space
+(such as SVMs) usually require standardized inputs; tree-based models
+typically do not.</li>
+<li>Comparing different classifiers (for example, decision trees vs
+SVMs) on the same train/test split helps reveal tradeoffs between
+accuracy, robustness, and interpretability.</li>
 </ul>
 </div>
 </div>
