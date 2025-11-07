@@ -896,7 +896,7 @@ variable - Check for outliers - Check for NaNs</p>
 <span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a>dataset <span class="op">=</span> dataset.dropna(subset<span class="op">=</span>[<span class="st">'body_mass_g'</span>, <span class="st">'bill_depth_mm'</span>, <span class="st">'species'</span>])</span>
 <span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a></span>
 <span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a><span class="co"># Define predictors and target</span></span>
-<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a>X <span class="op">=</span> dataset[[<span class="st">'body_mass_g'</span>, <span class="st">'species'</span>]]</span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a>X <span class="op">=</span> dataset[[<span class="st">'body_mass_g'</span>, <span class="st">'species'</span>]] <span class="co"># conventionally, we use capital X when there are multiple predictors</span></span>
 <span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a>y <span class="op">=</span> dataset[<span class="st">'bill_depth_mm'</span>]</span></code></pre>
 </div>
 <p>Since the species column is coded as a string, we need to convert it
@@ -912,21 +912,22 @@ reference group when interpreting model coefficients.</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="co"># One-hot encode species (drop_first avoids multicollinearity)</span></span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(X, columns<span class="op">=</span>[<span class="st">'species'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>X_dummies <span class="op">=</span> pd.get_dummies(X, columns<span class="op">=</span>[<span class="st">'species'</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>X_dummies</span></code></pre>
 </div>
 <p>We can than train/fit and evaluate our model as usual.</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="co"># Train/test split</span></span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>x_train, x_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_dummies, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a></span>
 <span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a><span class="co"># Fit a linear regression model</span></span>
 <span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>model <span class="op">=</span> LinearRegression()</span>
-<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>model.fit(x_train, y_train)</span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>model.fit(X_train, y_train)</span>
 <span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a></span>
 <span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="co"># Predict and evaluate</span></span>
-<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(x_test)</span>
+<span id="cb24-9"><a href="#cb24-9" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
 <span id="cb24-10"><a href="#cb24-10" tabindex="-1"></a>rmse <span class="op">=</span> mean_squared_error(y_test, y_pred)</span>
 <span id="cb24-11"><a href="#cb24-11" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RMSE with species as a predictor: </span><span class="sc">{</span>rmse<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
 <span id="cb24-12"><a href="#cb24-12" tabindex="-1"></a></span>
