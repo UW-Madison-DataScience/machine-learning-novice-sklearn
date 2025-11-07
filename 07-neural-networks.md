@@ -40,7 +40,7 @@ First we multiply each input by the corresponding weight. To do this quickly and
 
 We then take the sum of all the inputs multiplied by their weights. Finally, if this value is less than the activation threshold, we output zero, otherwise we output a one.
 
-~~~
+```python
 import numpy as np
 def perceptron(inputs, weights, threshold):
 
@@ -57,8 +57,7 @@ def perceptron(inputs, weights, threshold):
         return 0
     else:
         return 1
-~~~
-{: .language-python}
+```
 
 
 ### Computing with a perceptron
@@ -95,34 +94,31 @@ NOT
 We can get a single perceptron to compute each of these functions
 
 OR:
-~~~
+```python
 inputs = [[0.0,0.0],[1.0,0.0],[0.0,1.0],[1.0,1.0]]
 for input in inputs:
     print(input,perceptron(input, [0.5,0.5], 0.5))
-~~~
-{: .language-python}
+```
 
 
 
 AND:
-~~~
+```python
 inputs = [[0.0,0.0],[1.0,0.0],[0.0,1.0],[1.0,1.0]]
 for input in inputs:
     print(input,perceptron(input, [0.5,0.5], 1.0))
-~~~
-{: .language-python}
+```
 
 
 
 NOT:
 
 The NOT function only has a single input. To make it work in the perceptron we need to introduce a bias term which is always the same value. In this example it is the second input. It has a weight of 1.0 while the weight on the real input is -1.0.
-~~~
+```python
 inputs = [[0.0,1.0],[1.0,1.0]]
 for input in inputs:
     print(input,perceptron(input, [-1.0,1.0], 1.0))
-~~~
-{: .language-python}
+```
 
 A perceptron can be trained to compute any function which has linear separability. A simple training algorithm called the perceptron learning algorithm can be used to do this and Scikit-Learn has its own implementation of it. We are going to skip over the perceptron learning algorithm and move straight onto more powerful techniques. If you want to learn more about it see [this page](https://computing.dcu.ie/~humphrys/Notes/Neural/single.neural.html) from Dublin City University.
 
@@ -160,20 +156,18 @@ We are going to build a multi-layer perceptron for recognising handwriting from 
 
 We can import this dataset from `sklearn.datasets` then load it into memory by calling the `fetch_openml` function.
 
-~~~
+```python
 import sklearn.datasets as skl_data
 data, labels = skl_data.fetch_openml('mnist_784', version=1, return_X_y=True)
-~~~
-{: .language-python}
+```
 
 This creates two arrays of data, one called `data` which contains the image data and the other `labels` that contains the labels for those images which will tell us which digit is in the image. A common convention is to call the data `X` and the labels `y`.
 
 As neural networks typically want to work with data that ranges between 0 and 1.0 we need to normalise our data to this range. Python has a shortcut which lets us divide the entire data array by 255 and store the result, we can simply do:
 
-~~~
+```python
 data = data / 255.0
-~~~
-{: .language-python}
+```
 
 This is instead of writing a loop ourselves to divide every pixel by 255. Although the final result is the same and will take about the same amount of computation (possibly a little less, it might do some clever optimisations).
 
@@ -183,24 +177,22 @@ In scikit-learn's `MLPClassifier`, the `hidden_layer_sizes` parameter specifies 
 
 The max_iter parameter in MLPClassifier specifies the maximum number of iterations, not epochs. Since MLPClassifier uses stochastic gradient descent (or its variants), each iteration processes a small random subset of the data (a batch), and the full dataset may not be seen in a single iteration.
 
-~~~
+```python
 import sklearn.neural_network as skl_nn
 mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, verbose=1, random_state=1)
-~~~
-{: .language-python}
+```
 
 We now have a neural network but we have not trained it yet. Before training, we will split our dataset into two parts: a training set which we will use to train the classifier and a test set which we will use to see how well the training is working. By using different data for the two, we can avoid 'over-fitting', which is the creation of models which do not "generalise" or work with data other than their training data.
 
 Typically, the majority of the data will be used as training data (70-90%), to help avoid overfitting. Let us see how big our dataset is to decide how many samples we want to train with. 
 
-~~~
+```python
 data.shape
-~~~
-{: .language-python}
+```
 
 This tells us we have 70,000 rows in the dataset.
 
-~~~
+```python
 <bound method NDFrame.describe of        pixel1  pixel2  pixel3  pixel4  pixel5  pixel6  pixel7  pixel8  pixel9  pixel10  ...  pixel775  pixel776  pixel777  pixel778  pixel779  pixel780  pixel781  pixel782  pixel783  pixel784
 0         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
 1         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
@@ -215,12 +207,12 @@ This tells us we have 70,000 rows in the dataset.
 69999     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
 
 [70000 rows x 784 columns]>
-~~~
+```python
 {: .output}
 
 Let us take 90% of the data for training and 10% for testing, so we will use the first 63,000 samples in the dataset as the training data and the last 7,000 as the test data. 
 
-~~~
+```python
 from sklearn.model_selection import train_test_split
 
 # Assuming `data` is your feature matrix and `labels` is your target vector
@@ -231,24 +223,21 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42     # For reproducibility
 )
 X_train.shape
-~~~
-{: .language-python}
+```
 
 Now lets train the network. This line will take about one minute to run. We do this by calling the `fit` function inside the `mlp` class instance. This needs two arguments: the data itself, and the labels showing what class each item should be classified to.
 
 
-~~~
+```python
 mlp.fit(X_train, y_train)
-~~~
-{: .language-python}
+```
 
 Finally, we will score the accuracy of our network against both the original training data and the test data. If the training had converged to the point where each iteration of training was not improving the accuracy, then the accuracy of the training data should be 1.0 (100%).
 
-~~~
+```python
 print("Training set score", mlp.score(X_train, y_train))
 print("Testing set score", mlp.score(X_test, y_test))
-~~~
-{: .language-python}
+```
 
 ### Prediction using a multi-layer perceptron
 
@@ -256,20 +245,18 @@ Now that we have trained a multi-layer perceptron, we can give it some input dat
 
 Before we can pass it to the predictor, we need to extract one of the digits from the test set. We can use `iloc` on the dataframe to get hold of the first element in the test set. In order to present it to the predictor, we have to turn it into a numpy array which has the dimensions of 1x784 instead of 28x28. We can then call the `predict` function with this array as our parameter. This will return an array of predictions (as it could have been given multiple inputs), the first element of this will be the predicted digit. You may get a warning stating "X does not have valid feature names", this is because we didn't encode feature names into our X (digit images) data.
 
-~~~
+```python
 test_digit = X_test[0].reshape(1,784) # current shape is (784,)
 test_digit_prediction = mlp.predict(test_digit)[0]
 print("Predicted value",test_digit_prediction)
-~~~
-{: .language-python}
+```
 
 
 We can now verify if the prediction is correct by looking at the corresponding item in the `labels_test` array.
 
-~~~
+```python
 print("Actual value",y_test[0])
-~~~
-{: .language-python}
+```
 
 This should be the same value which is being predicted.
 
@@ -303,7 +290,7 @@ To check what digit it is, we can pass it into `mlp.predict`, but we have to con
 
 Did it correctly classify your hand(mouse) writing? Try a few images.
 If you have time try drawing images on a touch screen or taking a photo of something you have really written by hand. Remember that you will have to resize it to be 28x28 pixels.
-~~~
+```python
 import cv2
 import matplotlib.pyplot as plt
 digit = cv2.imread("digit.png")
@@ -311,8 +298,7 @@ digit_gray = cv2.cvtColor(digit, cv2.COLOR_BGR2GRAY)
 digit_norm = digit_gray/255.0
 cv2.imshow("Normalised Digit",digit_norm)
 print("Your digit is",mlp.predict(digit_norm.reshape(1,784)))
-~~~
-{: .language-python}
+```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -320,20 +306,18 @@ print("Your digit is",mlp.predict(digit_norm.reshape(1,784)))
 
 We now know what percentage of images were correctly classified, but we don't know anything about the distribution of correct predictions across our different classes (the digits 0 to 9 in this case). A more powerful technique is known as a confusion matrix. Here we draw a grid with each class along both the x and y axis. The x axis is the actual number of items in each class and the y axis is the predicted number. In a perfect classifier, there will be a diagonal line of values across the grid moving from the top left to bottom right corresponding to the number in each class, and all other cells will be zero. If any cell outside of the diagonal is non-zero then it indicates a miss-classification. Scikit-Learn has a function called `confusion_matrix` in the `sklearn.metrics` class which can display a confusion matrix for us. It will need two inputs: arrays showing how many items were in each class for both the real data and the classifications. We already have the real data in the labels_test array, but we need to build it for the classifications by classifying each image (in the same order as the real data) and storing the result in another array.
 
-~~~
+```python
 # extract all test set predictions
 y_test_pred = mlp.predict(X_test)
 y_test_pred
-~~~
-{: .language-python}
+```
 
 The `ConfusionMatrixDisplay` class in the `sklearn.metrics` package can create a graphical representation of a confusion matrix with colour coding to highlight how many items are in each cell. This colour coding can be useful when working with very large numbers of classes.
-~~~
+```python
 import numpy as np
 from sklearn.metrics import ConfusionMatrixDisplay
 ConfusionMatrixDisplay.from_predictions(y_test,y_test_pred)
-~~~
-{: .language-python}
+```
 
 ## Cross-validation
 
@@ -365,52 +349,47 @@ The `sklearn.model_selection` module provides support for doing k-fold cross val
 
 Import this and call it `skl_msel`
 
-~~~
+```python
 import sklearn.model_selection as skl_msel
-~~~
-{: .language-python}
+```
 
 Now we can choose how many ways we would like to split our data (three or four are common choices).
 
-~~~
+```python
 kfold = skl_msel.KFold(4)
-~~~
-{: .language-python}
+```
 
 
 Now we can loop through our data and test on each combination. The `kfold.split` function returns two variables and we will have our for loop work through both of them. The train variable will contain a list of which items (by index number) we are currently using to train and the test one will contain the list of which items we are going to test on.
 
-~~~
+```python
 for (train, test) in kfold.split(data):
-~~~
-{: .language-python}
+```
 
 Now inside the loop, we can select the data with `data_train = data.iloc[train]` and `labels_train = labels.iloc[train]`. In some versions of Python/Pandas/Scikit-Learn, you might be able to use `data_train = data[train]` and `labels_train = labels[train]`. This is a useful Python shorthand which will use the list of indices from `train` to select which items from `data` and `labels` we use. We can repeat this process with the test set.
 
-~~~
+```python
     data_train = data.iloc[train]
     labels_train = labels.iloc[train]
 
     data_test = data.iloc[test]
     labels_test = labels.iloc[test]
-~~~
-{: .language-python}
+```
 
 
 Finally, we need to train the classifier with the selected training data and then score it against the test data. The scores for each set of test data should be similar.
 
-~~~
+```python
     mlp.fit(data_train,labels_train)
     print("Testing set score", mlp.score(data_test, labels_test))
-~~~
-{: .language-python}
+```
 
 
 Once we have established that the cross validation was ok, we can go ahead and train using the entire dataset by doing `mlp.fit(data,labels)`.
 
 Here is the entire example program:
 
-~~~
+```python
 import matplotlib.pyplot as plt
 import sklearn.datasets as skl_data
 import sklearn.neural_network as skl_nn
@@ -433,8 +412,7 @@ for (train, test) in kfold.split(data):
     print("Training set score", mlp.score(data_train, labels_train))
     print("Testing set score", mlp.score(data_test, labels_test))
 mlp.fit(data,labels)
-~~~
-{: .language-python}
+```
 
 ## Deep learning
 

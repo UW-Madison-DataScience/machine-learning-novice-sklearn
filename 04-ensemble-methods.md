@@ -87,7 +87,7 @@ Machine learning jargon can often be hard to remember, so here is a quick summar
 
 In this session we'll take another look at the penguins data and applying one of the most common bagging approaches, random forests, to try and solve our species classification problem. First we'll load in the dataset and define a train and test split. 
 
-~~~
+```python
 # import libraries
 import numpy as np
 import pandas as pd
@@ -111,8 +111,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print("train size:", X_train.shape)
 print("test size", X_test.shape)
-~~~
-{: .language-python}
+```
 
 We'll now take a look how we can use ensemble methods to perform a classification task such as identifying penguin species! We're going to use a Random forest classifier available in scikit-learn which is a widely used example of a bagging approach.
 
@@ -124,7 +123,7 @@ Random forests are built on decision trees and can provide another way to addres
 
 We can now define a random forest estimator and train it using the penguin training data. We have a similar set of attritbutes to the DecisionTreeClassifier but with an extra parameter called n_estimators which is the number of trees in the forest.
 
-~~~
+```python
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import plot_tree
 
@@ -138,12 +137,11 @@ forest.fit(X_train, y_train)
 
 # Score our model
 print(forest.score(X_test, y_test))
-~~~
-{: .language-python}
+```
 
 You might notice that we have a different value (hopefully increased) compared with the decision tree classifier used above on the same training data. Lets plot the first 5 trees in the forest to get an idea of how this model differs from a single decision tree. 
 
-~~~
+```python
 import matplotlib.pyplot as plt
 
 fig, axes = plt.subplots(nrows=1, ncols=5 ,figsize=(12,6))
@@ -159,16 +157,15 @@ for index in range(0, 5):
     axes[index].set_title(f'Tree: {index}')
     
 plt.show()
-~~~
-{: .language-python}
+```
 
-![random forest trees](fig/rf_5_trees.png)
+![random forest trees](fig/results/rf_5_trees.png)
 
 We can see the first 5 (of 100) trees that were fitted as part of the forest. 
 
 If we train the random forest estimator using the same two parameters used to plot the classification space for the decision tree classifier what do we think the plot will look like?
 
-~~~
+```python
 # lets train a random forest for only two features (body mass and bill length)
 from sklearn.inspection import DecisionBoundaryDisplay
 f1 = feature_names[0]
@@ -183,10 +180,9 @@ d = DecisionBoundaryDisplay.from_estimator(forest_2d, X_train[[f1, f2]])
 
 sns.scatterplot(X_train, x=f1, y=f2, hue=y_train, palette="husl")
 plt.show()
-~~~
-{: .language-python}
+```
 
-![random forest clf space](fig/EM_rf_clf_space.png)
+![random forest clf space](fig/results/EM_rf_clf_space.png)
 
 There is still some overfitting indicated by the regions that contain only single points but using the same hyper-parameter settings used to fit the decision tree classifier, we can see that overfitting is reduced.
 
@@ -197,7 +193,7 @@ We've had a look at a bagging approach, but we'll now take a look at a stacking 
 ### California house price prediction
 The California housing dataset for regression problems contains 8 training features such as, Median Income, House Age, Average Rooms, Average Bedrooms etc. for 20,640 properties. The target variable is the median house value for those 20,640 properties, note that all prices are in units of $100,000. This toy dataset is available as part of the [scikit learn library](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html). We'll start by loading the dataset to very briefly inspect the attributes by printing them out.
 
-~~~
+```python
 import sklearn
 from sklearn.datasets import fetch_california_housing
 
@@ -213,8 +209,7 @@ print("Housing price as the target: ")
 ## Target is in units of $100,000
 print(y.head())
 print(y.shape)
-~~~
-{: .language-python}
+```
 
 For the the purposes of learning how to create and use ensemble methods and since it is a toy dataset, we will blindly use this dataset without inspecting it, cleaning or pre-processing it further. 
 
@@ -228,7 +223,7 @@ For this episode we simply want to learn how to build and use an Ensemble rather
 
 Lets start by splitting the dataset into training and testing subsets:
 
-~~~
+```python
 # split into train and test sets, We are selecting an 80%-20% train-test split.
 from sklearn.model_selection import train_test_split
 
@@ -236,8 +231,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print(f'train size: {X_train.shape}')
 print(f'test size: {X_test.shape}')
-~~~
-{: .language-python}
+```
 
 Lets stack a series of regression models. In the same way the RandomForest classifier derives a results from a series of trees, we will combine the results from a series of different models in our stack. This is done using what's called an ensemble meta-estimator called a VotingRegressor. 
 
@@ -269,7 +263,7 @@ Yes they are, but they can be thought of as one big complex model used like any 
 
 A VotingRegressor can train several base estimators on the whole dataset, and it can take the average of the individual predictions to form a final prediction.
 
-~~~
+```python
 from sklearn.ensemble import (
     GradientBoostingRegressor,
     RandomForestRegressor,
@@ -290,12 +284,11 @@ voting_reg.fit(X_train, y_train)
 rf_reg.fit(X_train, y_train)
 gb_reg.fit(X_train, y_train)
 linear_reg.fit(X_train, y_train)
-~~~
-{: .language-python}
+```
 
 We fit the voting regressor in the same way we would fit a single model. When the voting regressor is instantiated we pass it a parameter containing a list of tuples that contain the estimators we wish to stack: in this case the random forest, gradient boosting and linear regressors. To get a sense of what this is doing lets predict the first 20 samples in the test portion of the data and plot the results.
 
-~~~
+```python
 import matplotlib.pyplot as plt
 
 # make predictions
@@ -319,14 +312,13 @@ plt.legend(loc="best")
 plt.title("Regressor predictions and their average")
 
 plt.show()
-~~~
-{: .language-python}
+```
 
-![Regressor predictions and average from stack](fig/house_price_voting_regressor.svg)
+![Regressor predictions and average from stack](fig/results/house_price_voting_regressor.svg)
 
 Finally, lets see how the average compares against each single estimator in the stack? 
 
-~~~
+```python
 print(f'random forest: {rf_reg.score(X_test, y_test)}')
 
 print(f'gradient boost: {gb_reg.score(X_test, y_test)}')
@@ -334,8 +326,7 @@ print(f'gradient boost: {gb_reg.score(X_test, y_test)}')
 print(f'linear regression: {linear_reg.score(X_test, y_test)}')
 
 print(f'voting regressor: {voting_reg.score(X_test, y_test)}')
-~~~
-{: .language-python}
+```
 
 Each of our models score between 0.61-0.82, which at the high end is good, but at the low end is a pretty poor prediction accuracy score. Do note that the toy datasets are not representative of real world data. However what we can see is that the stacked result generated by the voting regressor fits different sub-models and then averages the individual predictions to form a final prediction. The benefit of this approach is that, it reduces overfitting and increases generalizability. Of course, we could try and improve our accuracy score by tweaking with our indivdual model hyperparameters, using more advaced boosted models or adjusting our training data features and train-test-split data.
 
@@ -345,7 +336,7 @@ Each of our models score between 0.61-0.82, which at the high end is good, but a
 ## Exercise: Stacking a classification problem.
 Scikit learn also has method for stacking ensemble classifiers ```sklearn.ensemble.VotingClassifier``` do you think you could apply a stack to the penguins dataset using a random forest, SVM and decision tree classifier, or a selection of any other classifier estimators available in sci-kit learn? 
 
-~~~
+```python
 penguins = sns.load_dataset('penguins')
 
 feature_names = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
@@ -365,12 +356,12 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print(f'train size: {X_train.shape}')
 print(f'test size: {X_test.shape}')
-~~~
-{: .language.python} 
+```
+
 
 The code above loads the penguins data and splits it into test and training portions. Have a play around with stacking some classifiers using the ```sklearn.ensemble.VotingClassifier``` using the code comments below as a guide. 
 
-~~~
+```python
 # import classifiers 
 
 # instantiate classifiers 
@@ -382,8 +373,7 @@ The code above loads the penguins data and splits it into test and training port
 # make predictions
 
 # compare scores
-~~~
-{: .language.python}
+```
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

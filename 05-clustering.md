@@ -62,21 +62,19 @@ it with other tests to decide on the best combination.
 
 To perform a k-means clustering with Scikit-Learn we first need to import the sklearn.cluster module.
 
-~~~
+```python
 import sklearn.cluster as skl_cluster
-~~~
-{: .language-python}
+```
 
 For this example, we're going to use Scikit-Learn's built-in 'random data blob generator' instead of using an external dataset. Therefore we'll need the `sklearn.datasets.samples_generator` module.
 
-~~~
+```python
 import sklearn.datasets as skl_datasets
-~~~
-{: .language-python}
+```
 
 Now lets create some random blobs using the `make_blobs` function. The `n_samples` argument sets how many points we want to use in all of our blobs while `cluster_std` sets the standard deviation of the points. The smaller this value the closer together they will be. `centers` sets how many clusters we'd like. `random_state` is the initial state of the random number generator. By specifying this value we'll get the same results every time we run the program. If we don't specify a random state then we'll get different points every time we run. This function returns two things: an array of data points and a list of which cluster each point belongs to.
 
-~~~
+```python
 import matplotlib.pyplot as plt
 
 def plots_labels(data, labels):
@@ -132,42 +130,38 @@ def plot_clusters(data, clusters, Kmean):
     
     # Display the plot
     plt.show()
-~~~
-{: .language-python}
+```
 
 Lets create the clusters.
 
-~~~
+```python
 N_true_clusters = 4
 data, cluster_id = skl_datasets.make_blobs(n_samples=400, cluster_std=0.75, centers=N_true_clusters, random_state=1)
 plots_labels(data, cluster_id)
-~~~
-{: .language-python}
+```
 
-![Plot of the random clusters](fig/random_clusters.png)
+![Plot of the random clusters](fig/results/random_clusters.png)
 
 Now that we have some data we can try to identify the clusters using k-means. First, we need to initialise the KMeans module and tell it how many clusters to look for. Next, we supply it with some data via the `fit` function, in much the same way we did with the regression functions earlier on. Finally, we run the predict function to find the clusters.
 
-~~~
+```python
 N_pred_clusters = 4
 Kmean = skl_cluster.KMeans(n_clusters=N_pred_clusters)
 Kmean.fit(data)
 clusters = Kmean.predict(data)
-~~~
-{: .language-python}
+```
 
 The data can now be plotted to show all the points we randomly generated. To make it clearer which cluster points have been classified we can set the colours (the c parameter) to use the `clusters` list that was returned by the `predict` function. The Kmeans algorithm also lets us know where it identified the centre of each cluster. These are stored as a list called 'cluster_centers_' inside the `Kmean` object. Let's plot the points from the clusters, colouring them by the output from the K-means algorithm, and also plot the centres of each cluster as a red X.
 
-~~~
+```python
 plot_clusters(data, clusters, Kmean)
-~~~
-{: .language-python}
+```
 
-![Plot of the fitted random clusters](fig/random_clusters_centre.png)
+![Plot of the fitted random clusters](fig/results/random_clusters_centre.png)
 
 Here is the code all in a single block.
 
-~~~
+```python
 import sklearn.cluster as skl_cluster
 import sklearn.datasets as skl_datasets
 import matplotlib.pyplot as plt
@@ -179,8 +173,7 @@ Kmean.fit(data)
 clusters = Kmean.predict(data)
 
 plot_clusters(data, clusters, Kmean)
-~~~
-{: .language-python}
+```
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -203,7 +196,7 @@ The silhouette score can be averaged across all data points to provide an overal
 
 Here is the Python code to calculate both the overall silhouette score and the individual sample scores:
 
-~~~
+```python
 from sklearn.metrics import silhouette_score, silhouette_samples
 
 # Calculate the overall silhouette score
@@ -213,8 +206,7 @@ print(f"Overall Silhouette Score: {overall_silhouette:.2f}")
 # Calculate silhouette scores for individual samples
 sample_silhouettes = silhouette_samples(data, clusters)
 sample_silhouettes
-~~~
-{: .language-python}
+```
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -223,7 +215,7 @@ sample_silhouettes
 Using k-means requires us to specify the number of clusters to expect. A common strategy to get around this is to vary the number of clusters we are looking for, and use the silhouette score to select the most appropriate number of clusters.
 Use the code below to loop through searching for between 2 and 10 clusters, generating silhouette plots for each. Which (if any) of the results look more sensible? What criteria might you use to select the best one?
 
-~~~
+```python
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -276,17 +268,15 @@ def plot_silhouette(data, clusters):
 
     return overall_silhouette
 
-~~~
-{: .language-python}
+```
 
-~~~
+```python
 for cluster_count in range(2,11):
     Kmean = skl_cluster.KMeans(n_clusters=cluster_count)
     Kmean.fit(data)
     clusters = Kmean.predict(data)
     plot_silhouette(data, clusters)
-~~~
-{: .language-python}
+```
 
 ## Solution
 The silouette score, unfortunately, incorrectly identifies N=2 as the most approprirate clustering configuration in this case (silhouette = 0.73). However, the silhouette score for N=4 (true cluster number) is very close (silhouette = 0.72). The silhouette can act as a useful guide in selecting cluster number, but it doesn't always produce perfect results. Clustering with different feature sets or exploring different clustering algorithms may yield better results.
@@ -301,7 +291,7 @@ The silouette score, unfortunately, incorrectly identifies N=2 as the most appro
 * Will always produce an answer finding the required number of clusters even if the data isn't clustered (or clustered in that many clusters)
 * Requires linear cluster boundaries
 
-![An example of kmeans failing on non-linear cluster boundaries](fig/kmeans_concentric_circle.png)
+![An example of kmeans failing on non-linear cluster boundaries](fig/results/kmeans_concentric_circle.png)
 
 
 ### Advantages of k-means
@@ -322,7 +312,7 @@ Is there any strange behaviour?
 
 ## Solution
 Increasing n_samples to 4000 and cluster_std to 3.0 looks like this:
-![Kmeans attempting to classify overlapping clusters](fig/kmeans_overlapping_clusters.png)
+![Kmeans attempting to classify overlapping clusters](fig/results/kmeans_overlapping_clusters.png)
 The straight line boundaries between clusters look a bit strange.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -351,31 +341,28 @@ additional dimension. This does have the downside of being more computationally 
 
 Lets try out using Scikit-Learn's spectral clustering. To make the concentric circles in the above example we need to use the `make_circles` function in the sklearn.datasets module. This works in a very similar way to the make_blobs function we used earlier on.
 
-~~~
+```python
 import sklearn.datasets as skl_data
 
 circles, circles_clusters = skl_data.make_circles(n_samples=400, noise=.01, random_state=0)
 plots_labels(circles, circles_clusters)
-~~~
-{: .language-python}
+```
 
 The code for calculating the SpectralClustering is very similar to the kmeans clustering, but instead of using the sklearn.cluster.KMeans class we use the `sklearn.cluster.SpectralClustering` class.
-~~~
+```python
 model = skl_cluster.SpectralClustering(n_clusters=2, affinity='nearest_neighbors', assign_labels='kmeans')
-~~~
-{: .language-python}
+```
 
 The SpectralClustering class combines the fit and predict functions into a single function called fit_predict.
 
-~~~
+```python
 labels = model.fit_predict(circles)
 plots_labels(circles, labels)
-~~~
-{: .language-python}
+```
 
 Here is the whole program combined with the kmeans clustering for comparison. Note that this produces two figures. To view both of them use the "Inline" graphics terminal inside the Python console instead of the "Automatic" method which will open a window and only show you one of the graphs.
 
-~~~
+```python
 import sklearn.cluster as skl_cluster
 import sklearn.datasets as skl_data
 
@@ -393,11 +380,10 @@ plot_clusters(circles, clusters, Kmean)
 model = skl_cluster.SpectralClustering(n_clusters=2, affinity='nearest_neighbors', assign_labels='kmeans')
 labels = model.fit_predict(circles)
 plots_labels(circles, labels)
-~~~
-{: .language-python}
+```
 
-![Kmeans attempting to cluster the concentric circles](fig/kmeans_concentric_circle_2.png)
-![Spectral clustering on the concentric circles](fig/spectral_concentric_circle_2.png)
+![Kmeans attempting to cluster the concentric circles](fig/results/kmeans_concentric_circle_2.png)
+![Spectral clustering on the concentric circles](fig/results/spectral_concentric_circle_2.png)
 
 
 ::::::::::::::::::::::::::::::::::::: challenge
@@ -413,7 +399,7 @@ How much do they differ if you increase the number of samples to 8,000?
 How long do you think it would take to compute 800,000 samples (estimate this, it might take a while to run for real)?
 ## Solution
 KMeans version: runtime around 4 seconds (your computer might be faster/slower)
-~~~
+```python
 import matplotlib.pyplot as plt
 import sklearn.cluster as skl_cluster
 from sklearn.datasets import make_blobs 
@@ -435,11 +421,10 @@ plt.show()
 
 end_time = time.time()
 print("Elapsed time = ", end_time-start_time, "seconds")
-~~~
-{: .language-python}
+```
 
 Spectral version: runtime around 9 seconds (your computer might be faster/slower)
-~~~
+```python
 import matplotlib.pyplot as plt
 import sklearn.cluster as skl_cluster
 from sklearn.datasets import make_blobs 
@@ -460,8 +445,7 @@ for cluster_count in range(2,11):
 plt.show()
 end_time = time.time()
 print("Elapsed time = ", end_time-start_time, "seconds")
-~~~
-{: .language-python}
+```
 
 When the number of points increases to 8000 the runtimes are 24 seconds for the spectral version and 5.6 seconds for kmeans.
 The runtime numbers will differ depending on the speed of your computer, but the relative difference should be similar.
