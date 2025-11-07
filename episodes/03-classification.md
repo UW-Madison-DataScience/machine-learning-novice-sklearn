@@ -456,6 +456,11 @@ While this SVM model performs slightly worse than our decision tree (95.6% vs. 9
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Classification requires labelled data (is supervised)
+- Classification is a supervised learning task where the goal is to predict discrete class labels from labeled examples.
+- Train/test splits let us estimate how well a classifier will generalize to unseen data; for classification, stratifying by class is often important.
+- Decision trees are easy to train and interpret, but can overfit when depth and other hyperparameters are not controlled.
+- Hyperparameters (such as `max_depth`) control model complexity and behavior but are not learned directly from the data.
+- Models that rely on distances or geometric margins in feature space (such as SVMs) usually require standardized inputs; tree-based models typically do not.
+- Comparing different classifiers (for example, decision trees vs SVMs) on the same train/test split helps reveal tradeoffs between accuracy, robustness, and interpretability.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
