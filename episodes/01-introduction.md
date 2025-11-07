@@ -100,11 +100,10 @@ Scikit-Learn is built upon Python's [NumPy (Numerical Python)](http://numpy.org)
 
 Like any other Python package, we can import Scikit-Learn and check the package version using the following Python commands:
 
-~~~
+```python
 import sklearn
 print('scikit-learn:', sklearn.__version__)
-~~~
-{: .language-python}
+```
 
 ### Representation of Data in Scikit-learn
 
