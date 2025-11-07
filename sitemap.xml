@@ -1,45 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/404.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/01-introduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/CODE_OF_CONDUCT.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/02-regression.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/LICENSE.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/03-classification.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/index.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/04-ensemble-methods.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/404.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/05-clustering.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/CODE_OF_CONDUCT.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/06-dimensionality-reduction.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/LICENSE.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/07-neural-networks.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/index.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/08-ethics.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/introduction.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/09-learn-more.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/profiles.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/404.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/instructor/reference.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/introduction.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/profiles.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/aio.html</loc>
   </url>
   <url>
-    <loc>https://carpentries.github.io/workbench-template-md/reference.html</loc>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/images.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/index.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/01-introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/02-regression.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/03-classification.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/04-ensemble-methods.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/05-clustering.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/06-dimensionality-reduction.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/07-neural-networks.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/08-ethics.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/09-learn-more.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/404.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/images.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/reference.html</loc>
   </url>
 </urlset>
