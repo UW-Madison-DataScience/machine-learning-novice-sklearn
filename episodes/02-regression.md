@@ -49,23 +49,22 @@ We've had a lot of theory so time to start some actual coding! Let's create a re
 
 Let’s start by loading in and examining the penguin dataset, which containing a few hundred samples and a number of features and labels.
 
-~~~
+```python
 # !pip install seaborn if import fails, run this first
 import seaborn as sns
 
 dataset = sns.load_dataset("penguins")
 print(dataset.shape)
 dataset.head()
-~~~
-{: .language-python}
+```
+
 
 We can see that we have seven columns in total: 4 continuous (numerical) columns named `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, and `body_mass_g`; and 3 discrete (categorical) columns named `species`, `island`, and `sex`. We can also see from a quick inspection of the first 5 samples that we have some missing data in the form of `NaN` values. Missing data is a fairly common occurrence in real-life data, so let's go ahead and remove any rows that contain `NaN` values:
 
-~~~
+```python
 dataset.dropna(inplace=True)
 dataset.head()
-~~~
-{: .language-python}
+```
 
 
 In this scenario we will train a linear regression model using `body_mass_g` as our feature data and `bill_depth_mm` as our label data. We will train our model on a subset of the data by slicing the first 146 samples of our cleaned data. 
@@ -73,7 +72,7 @@ In this scenario we will train a linear regression model using `body_mass_g` as 
 In machine learning we often train our models on a subset of data, for reasons we will explain later in this lesson, so let us extract a subset of data to work on by slicing the first 146 samples of our cleaned data and extracting our feature and label data:
 
 
-~~~
+```python
 import matplotlib.pyplot as plt
 
 train_data = dataset[:146] # first 146 rows
@@ -85,8 +84,7 @@ plt.scatter(x_train, y_train)
 plt.xlabel("mass g")
 plt.ylabel("depth mm")
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Comparison of the regressions of our dataset](fig/penguin_regression.png)
 
@@ -107,15 +105,14 @@ A typical ML workflow is as following:
 We have already decided to use a linear regression model, so we’ll now pre-process our data into a format that Scikit-Learn can use.
 
 Let's check our current x/y types and shapes.
-~~~
+```python
 print(type(x_train))
 print(type(y_train))
 print(x_train.shape)
 print(y_train.shape)
-~~~
-{: .language-python}
+```
 
-~~~
+```python
 import numpy as np
 
 # sklearn requires a 2D array, so lets reshape our 1D arrays from (N) to (N,).
@@ -123,12 +120,11 @@ x_train = np.array(x_train).reshape(-1, 1)
 y_train = np.array(y_train).reshape(-1, 1)
 print(x_train.shape)
 print(y_train.shape)
-~~~
-{: .language-python}
+```
 
 Next we’ll define a model, and train it on the pre-processed data. We’ll also inspect the trained model parameters m and c:
 
-~~~
+```python
 from sklearn.linear_model import LinearRegression
 
 # Define our estimator/model
@@ -141,12 +137,11 @@ lin_regress = model.fit(x_train,y_train)
 m = lin_regress.coef_
 c = lin_regress.intercept_
 print("linear coefs=", m, c)
-~~~
-{: .language-python}
+```
 
 Now we can make predictions using our trained model, and calculate the Root Mean Squared Error (RMSE) of our predictions:
 
-~~~
+```python
 import math
 from sklearn.metrics import mean_squared_error
 
@@ -157,12 +152,11 @@ y_train_pred = lin_regress.predict(x_train)
 # calculated a RMS error as a quality of fit metric
 error = math.sqrt(mean_squared_error(y_train, y_train_pred))
 print("train RMSE =", error)
-~~~
-{: .language-python}
+```
 
 Finally, we’ll plot our input data, our linear fit, and our predictions:
 
-~~~
+```python
 plt.scatter(x_train, y_train, label="input")
 plt.plot(x_train, y_train_pred, "-", label="fit")
 plt.plot(x_train, y_train_pred, "rx", label="predictions")
@@ -170,8 +164,7 @@ plt.xlabel("body_mass_g")
 plt.ylabel("bill_depth_mm")
 plt.legend()
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Comparison of the regressions of our dataset](fig/regress_penguin_lin.png)
 
@@ -181,7 +174,7 @@ Congratulations! We've now created our first machine-learning model of the lesso
 
 Let's provide the model with all of the penguin samples and see how our model performs on the full dataset:
 
-~~~
+```python
 # Extract remaining observations for testing
 
 test_data = dataset[146:] # row 147 -> end 
@@ -198,12 +191,11 @@ y_test_pred = lin_regress.predict(x_test)
 # calculated a RMSE error for all data
 error_all = math.sqrt(mean_squared_error(y_test, y_test_pred))
 print("test RMSE =", error)
-~~~
-{: .language-python}
+```
 
 Our RMSE for predictions on all penguin samples is far larger than before, so let's visually inspect the situation:
 
-~~~
+```python
 plt.scatter(x_train, y_train, label="train")
 plt.scatter(x_test, y_test, label="test")
 plt.plot(x_train, y_train_pred, "-", label="fit")
@@ -212,8 +204,7 @@ plt.xlabel("body_mass_g")
 plt.ylabel("bill_depth_mm")
 plt.legend()
 plt.show()
-~~~
-{: .language-python}
+```
 
 ![Comparison of the regressions of our dataset](fig/penguin_regression_all.png)
 
@@ -238,7 +229,7 @@ At least two interpretrations of these results:
 
 Let's assume for a moment that we only have access to the two variables, body mass and bill depth. In this scenario, we may want a model that captures the global trend of bill depth decreasing with body mass. For this, we need to revisit how we split our data into train/test sets. Sklearn provides a tool to make it easy to split into these subsets using random shuffling of observations.
 
-~~~
+```python
 from sklearn.model_selection import train_test_split
 x = dataset['body_mass_g']
 y = dataset['bill_depth_mm']
@@ -248,8 +239,7 @@ x = np.array(x).reshape(-1, 1)
 y = np.array(y).reshape(-1, 1)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
-~~~
-{: .language-python}
+```
 
 ### Exercise: Try to re-implement our univariate regression model using these new train/test sets.
 Follow these steps:
@@ -260,7 +250,7 @@ Follow these steps:
 4. Calculate RMSE for train/test
 5. Plot scatter plot of train/test data, with line of best fit
 
-~~~
+```python
 from sklearn.linear_model import LinearRegression
 
 # Define our estimator/model
@@ -288,8 +278,7 @@ plt.xlabel("body_mass_g")
 plt.ylabel("bill_depth_mm")
 plt.legend()
 plt.show()
-~~~
-{: .language-python}
+```
 
 **Quick follow-up**: Interpret the results of your model. Is it accurate? What does it say about the relationship between body mass and bill depth? Is this a "good" model?
 
@@ -308,15 +297,14 @@ We'll follow the same workflow from before:
 
 We've decided to use a Polynomial estimator, so now let's tweak our dataset into the required format. For polynomial estimators in Scikit-Learn this is done in two steps. First we pre-process our input data `x_train` into a polynomial representation using the `PolynomialFeatures` function. Then we can create our polynomial regressions using the `LinearRegression().fit()` function as before, but this time using the polynomial representation of our `x_train`.
 
-~~~
+```python
 from sklearn.preprocessing import PolynomialFeatures
 
 # create a polynomial representation of our training data
 poly_features = PolynomialFeatures(degree=2)
 x_train_poly = poly_features.fit_transform(x_train)
 x_test_poly = poly_features.transform(x_test)
-~~~
-{: .language-python}
+```
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -328,16 +316,15 @@ By converting our input feature data into a polynomial representation we can now
 
 We are now ready to create and train our model using our polynomial feature data. 
 
-~~~
+```python
 # Define our estimator/model(s) and train our model
 poly_regress = LinearRegression()
 poly_regress.fit(x_train_poly, y_train)
-~~~
-{: .language-python}
+```
 
 We can now make predictions on train/test sets, and calculate RMSE
 
-~~~
+```python
 # Predictions
 y_train_pred = poly_regress.predict(x_train_poly)
 y_test_pred = poly_regress.predict(x_test_poly)
@@ -347,11 +334,10 @@ print("poly train error =", poly_train_error)
 
 poly_test_error = math.sqrt(mean_squared_error(y_test_pred, y_test))
 print("poly train error =", poly_test_error)
-~~~
-{: .language-python}
+```
 
 Finally, let's visualise our model fit on our training data and full dataset.
-~~~
+```python
 # Scatter plots for train and test data
 plt.scatter(x_train, y_train, label='Train', color='blue', alpha=0.6)
 plt.scatter(x_test, y_test, label='Test', color='red', alpha=0.6)
@@ -367,8 +353,7 @@ plt.ylabel("depth mm")
 plt.title('Polynomial Regression with Training and Testing Data')
 plt.legend()
 
-~~~
-{: .language-python}
+```
 
 
 ![Comparison of the regressions of our dataset](fig/penguin_regression_poly.png)
@@ -391,16 +376,15 @@ When you are doing any kind of modeling work, it is critical to spend your first
 - Check for outliers
 - Check for NaNs
 
-~~~
+```python
 # Create the pairs plot
 sns.pairplot(dataset, vars=["body_mass_g", "bill_depth_mm"], hue="species", diag_kind="kde", markers=["o", "s", "D"])
 plt.show()
-~~~
-{: .language-python}
+```
 
 Let's try a model that includes penguin species as a predictor.
 
-~~~
+```python
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -418,20 +402,18 @@ dataset = dataset.dropna(subset=['body_mass_g', 'bill_depth_mm', 'species'])
 # Define predictors and target
 X = dataset[['body_mass_g', 'species']]
 y = dataset['bill_depth_mm']
-~~~
-{: .language-python}
+```
 
 Since the species column is coded as a string, we need to convert it into a numerical format before we can use it in a machine learning model. To do this, we apply dummy coding (also called one-hot encoding), which creates new binary columns for each species category (e.g., species_Adelie, species_Chinstrap, species_Gentoo). Each row gets a 1 in the column that matches its species and 0 in the others.
 
 By default, we drop the first category to avoid multicollinearity—this means the omitted category serves as the reference group when interpreting model coefficients.
-~~~
+```python
 # One-hot encode species (drop_first avoids multicollinearity)
 X = pd.get_dummies(X, columns=['species'], drop_first=True)
-~~~
-{: .language-python}
+```
 
 We can than train/fit and evaluate our model as usual.
-~~~
+```python
 # Train/test split
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
@@ -448,8 +430,7 @@ print(f"RMSE with species as a predictor: {rmse:.2f}")
 coefficients = pd.Series(model.coef_, index=X.columns)
 print("\nModel coefficients:")
 print(coefficients)
-~~~
-{: .language-python}
+```
 
 {% include links.md %}
 
