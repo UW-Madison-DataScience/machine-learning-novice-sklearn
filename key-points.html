@@ -455,8 +455,24 @@ accuracy, robustness, and interpretability.</li>
 </ul></section><section id="04-ensemble-methods"><h2 class="section-heading"><a href="04-ensemble-methods.html">Ensemble methodsEnsemble methods<a class="anchor" aria-label="anchor" href="#ensemble-methods"></a></a></h2>
 <hr class="half-width">
 <ul>
-<li>Ensemble methods can be used to reduce under/over fitting training
-data.</li>
+<li>Ensemble methods combine predictions from multiple models to produce
+more stable and accurate results than most single models.</li>
+<li>Bagging (such as random forests) trains the same model on different
+bootstrap samples and averages their predictions, usually reducing
+variance and overfitting.</li>
+<li>Boosting trains models in sequence, focusing later models on the
+mistakes of earlier ones, often improving accuracy at the cost of
+increased complexity and computation.</li>
+<li>Stacking uses a meta-model to combine the outputs of several diverse
+base models trained on the same data.</li>
+<li>Random forests often outperform single decision trees by averaging
+many shallow, noisy trees into a more robust classifier.</li>
+<li>VotingRegressor and VotingClassifier provide a simple way to stack
+multiple estimators in Scikit-Learn for regression or classification
+tasks.</li>
+<li>Choosing an ensemble method and tuning its hyperparameters is
+closely tied to the bias–variance tradeoff and the characteristics of
+the dataset.</li>
 </ul></section><section id="05-clustering"><h2 class="section-heading"><a href="05-clustering.html">Unsupervised methods - ClusteringUnsupervised learning<a class="anchor" aria-label="anchor" href="#unsupervised-learning"></a>Clustering<a class="anchor" aria-label="anchor" href="#clustering"></a></a></h2>
 <hr class="half-width">
 <ul>

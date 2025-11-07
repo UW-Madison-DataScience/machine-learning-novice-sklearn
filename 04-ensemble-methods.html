@@ -365,9 +365,14 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>What are ensemble methods?</li>
-<li>What are random forests?</li>
-<li>How can we stack estimators in sci-kit learn?</li>
+<ul><li>What are ensemble methods, and why might they outperform a single
+model?</li>
+<li>How do stacking, bagging, and boosting differ conceptually and in
+practice?</li>
+<li>How can we use random forests in Scikit-Learn to improve on a single
+decision tree for classification?</li>
+<li>How can we combine different regression models into a single
+ensemble using VotingRegressor?</li>
 </ul></div>
 </div>
 </div>
@@ -375,8 +380,21 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Learn about applying ensemble methods in scikit-learn.</li>
-<li>Understand why ensemble methods are useful.</li>
+<ul><li>Define ensemble methods and explain why combining multiple models
+can reduce overfitting and improve robustness.</li>
+<li>Distinguish between stacking, bagging, and boosting and describe
+when each might be appropriate.</li>
+<li>Train and evaluate a RandomForestClassifier on the penguins dataset
+and compare its performance to a single decision tree.</li>
+<li>Inspect individual trees within a random forest and visualize
+decision boundaries to build intuition about how bagging works.</li>
+<li>Use Scikit-Learn’s VotingRegressor to stack multiple regression
+models (for example, random forest, gradient boosting, and linear
+regression) on the California housing dataset.</li>
+<li>Compare the performance of individual regressors to the stacked
+ensemble and interpret differences in test scores.</li>
+<li>Relate ensemble methods to bias–variance tradeoffs and overfitting,
+and discuss when ensembles are likely to be helpful in practice.</li>
 </ul></div>
 </div>
 </div>
@@ -882,8 +900,24 @@ comments below as a guide.</p>
 <span class="callout-header">Key Points</span>
 <div class="callout-inner">
 <div class="callout-content">
-<ul><li>Ensemble methods can be used to reduce under/over fitting training
-data.</li>
+<ul><li>Ensemble methods combine predictions from multiple models to produce
+more stable and accurate results than most single models.</li>
+<li>Bagging (such as random forests) trains the same model on different
+bootstrap samples and averages their predictions, usually reducing
+variance and overfitting.</li>
+<li>Boosting trains models in sequence, focusing later models on the
+mistakes of earlier ones, often improving accuracy at the cost of
+increased complexity and computation.</li>
+<li>Stacking uses a meta-model to combine the outputs of several diverse
+base models trained on the same data.</li>
+<li>Random forests often outperform single decision trees by averaging
+many shallow, noisy trees into a more robust classifier.</li>
+<li>VotingRegressor and VotingClassifier provide a simple way to stack
+multiple estimators in Scikit-Learn for regression or classification
+tasks.</li>
+<li>Choosing an ensemble method and tuning its hyperparameters is
+closely tied to the bias–variance tradeoff and the characteristics of
+the dataset.</li>
 </ul></div>
 </div>
 </div>
