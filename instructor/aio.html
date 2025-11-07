@@ -2391,9 +2391,29 @@ of how this model differs from a single decision tree.</p>
 <figure><img src="../fig/results/rf_5_trees.png" alt="random forest trees" class="figure mx-auto d-block"><div class="figcaption">random forest trees</div>
 </figure><p>We can see the first 5 (of 100) trees that were fitted as part of the
 forest.</p>
-<p>If we train the random forest estimator using the same two parameters
-used to plot the classification space for the decision tree classifier
-what do we think the plot will look like?</p>
+<div class="section level3">
+<h3 id="how-votes-are-averaged-in-scikit-learns-random-forest">How votes are averaged in scikit-learn’s Random Forest<a class="anchor" aria-label="anchor" href="#how-votes-are-averaged-in-scikit-learns-random-forest"></a>
+</h3>
+<p>In scikit-learn, the <em>RandomForestClassifier</em> aggregates votes
+using averaged class probabilities rather than a strict majority
+vote.</p>
+<ul>
+<li>Each decision tree produces a probability distribution over classes
+for a given input (based on the proportion of samples from each class in
+the leaf node where that input ends up).</li>
+<li>The forest then takes the mean of those probabilities across all
+trees.</li>
+<li>The predicted class is the one with the highest average
+probability.</li>
+</ul>
+<p>While traditional random forests are often described as using a
+“majority vote”, scikit-learn implements what’s called <em>soft
+voting</em>—averaging probabilities instead of labels.<br>
+This provides smoother decision boundaries and can improve
+calibration.</p>
+<p>If we train the random forest estimator using the same two features
+from our decision tree example — what do we think the plot will look
+like?</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2417,6 +2437,7 @@ what do we think the plot will look like?</p>
 only single points but using the same hyper-parameter settings used to
 fit the decision tree classifier, we can see that overfitting is
 reduced.</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="stacking-a-regression-problem">Stacking a regression problem<a class="anchor" aria-label="anchor" href="#stacking-a-regression-problem"></a>
