@@ -442,7 +442,7 @@ rmse = mean_squared_error(y_test, y_pred)
 print(f"RMSE with species as a predictor: {rmse:.2f}")
 
 # Optional: view learned coefficients
-coefficients = pd.Series(model.coef_, index=X.columns)
+coefficients = pd.Series(model.coef_, index=X_dummies.columns)
 print("\nModel coefficients:")
 print(coefficients)
 ```
