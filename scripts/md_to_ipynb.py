@@ -11,7 +11,7 @@ notebooks_dir = "notebooks"
 # Adjust this if your repo or branch name changes.
 IMAGE_BASE_URL = (
     "https://github.com/UW-Madison-DataScience/"
-    "machine-learning-novice-sklearn/raw/gh-pages/episodes/"
+    "machine-learning-novice-sklearn-v2/raw/gh-pages/episodes/"
 )
 
 # List of Markdown files to ignore (no conversion needed)
