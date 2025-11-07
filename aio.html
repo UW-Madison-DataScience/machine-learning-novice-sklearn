@@ -606,9 +606,12 @@ processing small to medium datasets with Scikit-Learn, without the need
 for a graphical processing unit (GPU).</p>
 <p>Like any other Python package, we can import Scikit-Learn and check
 the package version using the following Python commands:</p>
-<pre><code>import sklearn
-print('scikit-learn:', sklearn.__version__)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'scikit-learn:'</span>, sklearn.__version__)</span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="representation-of-data-in-scikit-learn">Representation of Data in Scikit-learn<a class="anchor" aria-label="anchor" href="#representation-of-data-in-scikit-learn"></a>
@@ -826,7 +829,7 @@ cleaned data and extracting our feature and label data:</p>
 <span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>plt.ylabel(<span class="st">"depth mm"</span>)</span>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/penguin_regression.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
+<figure><img src="fig/results/penguin_regression.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
 dataset</div>
 </figure><p>In this regression example we will create a Linear Regression model
 that will try to predict <code>y</code> values based upon <code>x</code>
@@ -916,7 +919,7 @@ predictions:</p>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>plt.legend()</span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/regress_penguin_lin.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
+<figure><img src="fig/results/regress_penguin_lin.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
 dataset</div>
 </figure><p>Congratulations! We’ve now created our first machine-learning model
 of the lesson and we can now make predictions of
@@ -958,7 +961,7 @@ before, so let’s visually inspect the situation:</p>
 <span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>plt.legend()</span>
 <span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/penguin_regression_all.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
+<figure><img src="fig/results/penguin_regression_all.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
 dataset</div>
 </figure><p>Oh dear. It looks like our linear regression fits okay for our subset
 of the penguin data, and a few additional samples, but there appears to
@@ -1167,7 +1170,7 @@ dataset.</p>
 <span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>plt.title(<span class="st">'Polynomial Regression with Training and Testing Data'</span>)</span>
 <span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>plt.legend()</span></code></pre>
 </div>
-<figure><img src="fig/penguin_regression_poly.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
+<figure><img src="fig/results/penguin_regression_poly.png" alt="Comparison of the regressions of our dataset" class="figure mx-auto d-block"><div class="figcaption">Comparison of the regressions of our
 dataset</div>
 </figure><div id="exercise-vary-your-polynomial-degree-to-try-and-improve-fitting" class="callout discussion">
 <div class="callout-square">
@@ -1478,7 +1481,7 @@ might identify.</p>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>fig01 <span class="op">=</span> sns.scatterplot(X_train, x<span class="op">=</span>feature_names[<span class="dv">0</span>], y<span class="op">=</span>feature_names[<span class="dv">1</span>], hue<span class="op">=</span>dataset[<span class="st">'species'</span>])</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/e3_penguins_vis.png" alt="Visualising the penguins dataset" class="figure mx-auto d-block"><div class="figcaption">Visualising the penguins dataset</div>
+<figure><img src="fig/results/e3_penguins_vis.png" alt="Visualising the penguins dataset" class="figure mx-auto d-block"><div class="figcaption">Visualising the penguins dataset</div>
 </figure><p>As there are four measurements for each penguin, we need quite a few
 plots to visualise all four dimensions against each other. Here is a
 handy Seaborn function to do so:</p>
@@ -1488,7 +1491,7 @@ handy Seaborn function to do so:</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>sns.pairplot(dataset, hue<span class="op">=</span><span class="st">"species"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/pairplot.png" alt="Visualising the penguins dataset" class="figure mx-auto d-block"><div class="figcaption">Visualising the penguins dataset</div>
+<figure><img src="fig/results/pairplot.png" alt="Visualising the penguins dataset" class="figure mx-auto d-block"><div class="figcaption">Visualising the penguins dataset</div>
 </figure><p>We can see that penguins from each species form fairly distinct
 spatial clusters in these plots, so that you could draw lines between
 those clusters to delineate each species. This is effectively what many
@@ -1557,7 +1560,7 @@ look at the decision tree that was generated:</p>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>plot_tree(clf, class_names<span class="op">=</span>class_names, feature_names<span class="op">=</span>feature_names, filled<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>fig.gca())</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/e3_dt_2.png" alt="Decision tree for classifying penguins" class="figure mx-auto d-block"><div class="figcaption">Decision tree for classifying penguins</div>
+<figure><img src="fig/results/e3_dt_2.png" alt="Decision tree for classifying penguins" class="figure mx-auto d-block"><div class="figcaption">Decision tree for classifying penguins</div>
 </figure><p>The first first question (<code>depth=1</code>) splits the training
 data into “Adelie” and “Gentoo” categories using the criteria
 <code>flipper_length_mm &lt;= 206.5</code>, and the next two questions
@@ -1591,7 +1594,7 @@ training a new model on only 2 features:</p>
 <span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>sns.scatterplot(X_train, x<span class="op">=</span>f1, y<span class="op">=</span>f2, hue<span class="op">=</span>y_train, palette<span class="op">=</span><span class="st">"husl"</span>)</span>
 <span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/e3_dt_space_2.png" alt="Classification space for our decision tree" class="figure mx-auto d-block"><div class="figcaption">Classification space for our decision tree</div>
+<figure><img src="fig/results/e3_dt_space_2.png" alt="Classification space for our decision tree" class="figure mx-auto d-block"><div class="figcaption">Classification space for our decision tree</div>
 </figure>
 </div>
 </div>
@@ -1625,7 +1628,7 @@ hyperparameter to see if we can improve our model predictions.</p>
 <span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>plt.ylabel(<span class="st">'Accuracy'</span>)</span>
 <span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/e3_dt_overfit.png" alt="Performance of decision trees of various depths" class="figure mx-auto d-block"><div class="figcaption">Performance of decision trees of various
+<figure><img src="fig/results/e3_dt_overfit.png" alt="Performance of decision trees of various depths" class="figure mx-auto d-block"><div class="figcaption">Performance of decision trees of various
 depths</div>
 </figure><p>Here we can see that a <code>max_depth=2</code> performs slightly
 better on the test data than those with <code>max_depth &gt; 2</code>.
@@ -1643,7 +1646,7 @@ decision tree that has <code>max_depth=5</code>:</p>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>plot_tree(clf, class_names<span class="op">=</span>class_names, feature_names<span class="op">=</span>feature_names, filled<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>fig.gca())</span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/e3_dt_6.png" alt="Simplified decision tree" class="figure mx-auto d-block"><div class="figcaption">Simplified decision tree</div>
+<figure><img src="fig/results/e3_dt_6.png" alt="Simplified decision tree" class="figure mx-auto d-block"><div class="figcaption">Simplified decision tree</div>
 </figure><p>It looks like our decision tree has split up the training data into
 the correct penguin categories and more accurately than the
 <code>max_depth=2</code> model did, however it used some very specific
@@ -1664,7 +1667,7 @@ understanding:</p>
 <span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>sns.scatterplot(X_train, x<span class="op">=</span>f1, y<span class="op">=</span>f2, hue<span class="op">=</span>y_train, palette<span class="op">=</span><span class="st">'husl'</span>)</span>
 <span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="fig/e3_dt_space_6.png" alt="Classification space of the simplified decision tree" class="figure mx-auto d-block"><div class="figcaption">Classification space of the simplified decision
+<figure><img src="fig/results/e3_dt_space_6.png" alt="Classification space of the simplified decision tree" class="figure mx-auto d-block"><div class="figcaption">Classification space of the simplified decision
 tree</div>
 </figure><p>Earlier we saw that the <code>max_depth=2</code> model split the data
 into 3 simple bounding boxes, whereas for <code>max_depth=5</code> we
@@ -1673,62 +1676,94 @@ to correctly classify every point in the training data.</p>
 <p>This is a classic case of over-fitting - our model has produced
 extremely specific parameters that work for the training data but are
 not representitive of our test data. Sometimes simplicity is better!</p>
-<blockquote>
-<h2 id="exercise-adding-noise-to-the-training-data">Exercise: Adding
-noise to the training data</h2>
+<div id="exercise-adding-noise-to-the-training-data" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="exercise-adding-noise-to-the-training-data" class="callout-inner">
+<h3 class="callout-title">Exercise: Adding noise to the training
+data</h3>
+<div class="callout-content">
 <p>We observed that this data doesn’t seem prone to overfitting effects.
 Why might this be? There are at least two factors contributing to these
 results:</p>
 <ol style="list-style-type: decimal">
 <li>We only have 4 predictors. With so few predictors, there are only so
 many unique tree structures that can be tested/formed. This makes
-overfitting less likely.</li>
-<li>Our data is sourced from a python library, and has been
-cleaned/vetted. Real-world data typically has more noise. Let’s try
-adding a small amount of noise to the data using the below code. How
-does this impact the ideal setting for depth level?</li>
+overfitting less likely.<br>
+</li>
+<li>Our data is sourced from a Python library, and has been
+cleaned/vetted. Real-world data typically has more noise.</li>
 </ol>
-<p>```python # 1) LOAD DATA (if not loaded already) import seaborn as
-sns dataset = sns.load_dataset(‘penguins’) dataset.head()</p>
-<h1 id="extract-the-data-we-need-and-drop-nans-if-not-done-already">2)
-Extract the data we need and drop NaNs (if not done already)</h1>
-<p>feature_names = [‘bill_length_mm’, ‘bill_depth_mm’,
-‘flipper_length_mm’, ‘body_mass_g’] dataset.dropna(subset=feature_names,
-inplace=True) class_names = dataset[‘species’].unique() X =
-dataset[feature_names] y = dataset[‘species’]</p>
-<h1 id="add-random-noise-to-x">3) ADD RANDOM NOISE TO X</h1>
-<p>import numpy as np stds = X.std(axis=0).to_numpy()</p>
-<h1 id="generate-noise-and-scale-it">Generate noise and scale it</h1>
-<h1 id="set-seed-for-reproducibility">Set seed for reproducibility</h1>
-<p>np.random.seed(42) noise = np.random.normal(0, 1, X.shape) # sample
-numbers from normal distribution scaled_noise = noise * stds # up to 1
-X_noisy = X + scaled_noise</p>
-<p>import matplotlib.pyplot as plt fig01 = sns.scatterplot(X,
-x=feature_names[0], y=feature_names[1], hue=dataset[‘species’])
-plt.show() fig02 = sns.scatterplot(X_noisy, x=feature_names[0],
-y=feature_names[1], hue=dataset[‘species’]) plt.show()</p>
-<h1 id="traintest-split">4) TRAIN/TEST SPLIT</h1>
-<p>from sklearn.model_selection import train_test_split # X_train,
-X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
-random_state=0, stratify=y) X_train, X_test, y_train, y_test =
-train_test_split(X_noisy, y, test_size=0.2, random_state=0,
-stratify=y)</p>
-<h1 id="hyperparam-tuning">5) HYPERPARAM TUNING</h1>
-<p>from sklearn.tree import DecisionTreeClassifier import pandas as pd
-import matplotlib.pyplot as plt</p>
-<p>max_depths = list(range(1,200)) accuracy = [] for d in max_depths:
-clf = DecisionTreeClassifier(max_depth=d) clf.fit(X_train, y_train) acc
-= clf.score(X_test, y_test)</p>
+<p>Let’s try adding a small amount of noise to the data using the code
+below. How does this impact the ideal setting for the tree depth?</p>
 <div class="codewrapper sourceCode" id="cb13">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">accuracy.append</span><span class="er">((</span><span class="va">d</span><span class="kw">,</span> <span class="va">acc</span><span class="kw">))</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># 1) LOAD DATA (if not loaded already)</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>dataset <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>dataset.head()</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co"># 2) Extract the data we need and drop NaNs (if not done already)</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>feature_names <span class="op">=</span> [<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>, <span class="st">"flipper_length_mm"</span>, <span class="st">"body_mass_g"</span>]</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>dataset.dropna(subset<span class="op">=</span>feature_names, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>class_names <span class="op">=</span> dataset[<span class="st">"species"</span>].unique()</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>X <span class="op">=</span> dataset[feature_names]</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>y <span class="op">=</span> dataset[<span class="st">"species"</span>]</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co"># 3) ADD RANDOM NOISE TO X</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>stds <span class="op">=</span> X.std(axis<span class="op">=</span><span class="dv">0</span>).to_numpy()</span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co"># Generate noise and scale it</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a>noise <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, X.shape)  <span class="co"># sample numbers from normal distribution</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a>scaled_noise <span class="op">=</span> noise <span class="op">*</span> stds  <span class="co"># noise up to 1 standard deviation</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a>X_noisy <span class="op">=</span> X <span class="op">+</span> scaled_noise</span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a>fig01 <span class="op">=</span> sns.scatterplot(X, x<span class="op">=</span>feature_names[<span class="dv">0</span>], y<span class="op">=</span>feature_names[<span class="dv">1</span>], hue<span class="op">=</span>dataset[<span class="st">"species"</span>])</span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a>fig02 <span class="op">=</span> sns.scatterplot(X_noisy, x<span class="op">=</span>feature_names[<span class="dv">0</span>], y<span class="op">=</span>feature_names[<span class="dv">1</span>], hue<span class="op">=</span>dataset[<span class="st">"species"</span>])</span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a></span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="co"># 4) TRAIN/</span><span class="al">TEST</span><span class="co"> SPLIT</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" tabindex="-1"></a><span class="co"># X_train, X_test, y_train, y_test = train_test_split(</span></span>
+<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a><span class="co">#     X, y, test_size=0.2, random_state=0, stratify=y</span></span>
+<span id="cb13-37"><a href="#cb13-37" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb13-38"><a href="#cb13-38" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb13-39"><a href="#cb13-39" tabindex="-1"></a>    X_noisy, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>, stratify<span class="op">=</span>y</span>
+<span id="cb13-40"><a href="#cb13-40" tabindex="-1"></a>)</span>
+<span id="cb13-41"><a href="#cb13-41" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" tabindex="-1"></a><span class="co"># 5) HYPERPARAMETER TUNING</span></span>
+<span id="cb13-43"><a href="#cb13-43" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb13-44"><a href="#cb13-44" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-45"><a href="#cb13-45" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="#cb13-46" tabindex="-1"></a>max_depths <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">200</span>))</span>
+<span id="cb13-47"><a href="#cb13-47" tabindex="-1"></a>accuracy <span class="op">=</span> []</span>
+<span id="cb13-48"><a href="#cb13-48" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> max_depths:</span>
+<span id="cb13-49"><a href="#cb13-49" tabindex="-1"></a>    clf <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span>d)</span>
+<span id="cb13-50"><a href="#cb13-50" tabindex="-1"></a>    clf.fit(X_train, y_train)</span>
+<span id="cb13-51"><a href="#cb13-51" tabindex="-1"></a>    acc <span class="op">=</span> clf.score(X_test, y_test)</span>
+<span id="cb13-52"><a href="#cb13-52" tabindex="-1"></a>    accuracy.append((d, acc))</span>
+<span id="cb13-53"><a href="#cb13-53" tabindex="-1"></a></span>
+<span id="cb13-54"><a href="#cb13-54" tabindex="-1"></a>acc_df <span class="op">=</span> pd.DataFrame(accuracy, columns<span class="op">=</span>[<span class="st">"depth"</span>, <span class="st">"accuracy"</span>])</span>
+<span id="cb13-55"><a href="#cb13-55" tabindex="-1"></a></span>
+<span id="cb13-56"><a href="#cb13-56" tabindex="-1"></a>sns.lineplot(acc_df, x<span class="op">=</span><span class="st">"depth"</span>, y<span class="op">=</span><span class="st">"accuracy"</span>)</span>
+<span id="cb13-57"><a href="#cb13-57" tabindex="-1"></a>plt.xlabel(<span class="st">"Tree depth"</span>)</span>
+<span id="cb13-58"><a href="#cb13-58" tabindex="-1"></a>plt.ylabel(<span class="st">"Accuracy"</span>)</span>
+<span id="cb13-59"><a href="#cb13-59" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<p>acc_df = pd.DataFrame(accuracy, columns=[‘depth’, ‘accuracy’])</p>
-<p>sns.lineplot(acc_df, x=‘depth’, y=‘accuracy’) plt.xlabel(‘Tree
-depth’) plt.ylabel(‘Accuracy’) plt.show() ```python {:
-.language-python}</p>
-</blockquote>
+</div>
+</div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="classification-using-support-vector-machines">Classification using support vector machines<a class="anchor" aria-label="anchor" href="#classification-using-support-vector-machines"></a>
@@ -1936,7 +1971,7 @@ and avoid going higher unless you have lots of data.</li>
 boundary and misclassifications; start with <code>C=1</code>, increase
 for tighter boundaries, decrease to prevent overfitting.</li>
 </ul>
-<figure><img src="fig/e3_svc_space.png" alt="Classification space generated by the SVM model" class="figure mx-auto d-block"><div class="figcaption">Classification space generated by the SVM
+<figure><img src="fig/results/e3_svc_space.png" alt="Classification space generated by the SVM model" class="figure mx-auto d-block"><div class="figcaption">Classification space generated by the SVM
 model</div>
 </figure><p>While this SVM model performs slightly worse than our decision tree
 (95.6% vs. 98.5%), it’s likely that the non-linear boundaries will
@@ -2148,30 +2183,33 @@ resources.</td>
 applying one of the most common bagging approaches, random forests, to
 try and solve our species classification problem. First we’ll load in
 the dataset and define a train and test split.</p>
-<pre><code># import libraries
-import numpy as np
-import pandas as pd
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-
-# load penguins data
-penguins = sns.load_dataset('penguins')
-
-# prepare and define our data and targets
-feature_names = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
-penguins.dropna(subset=feature_names, inplace=True)
-
-species_names = penguins['species'].unique()
-
-X = penguins[feature_names]
-y = penguins.species
-
-# Split data in training and test set
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5, stratify=y)
-
-print("train size:", X_train.shape)
-print("test size", X_test.shape)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># load penguins data</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">'penguins'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># prepare and define our data and targets</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>feature_names <span class="op">=</span> [<span class="st">'bill_length_mm'</span>, <span class="st">'bill_depth_mm'</span>, <span class="st">'flipper_length_mm'</span>, <span class="st">'body_mass_g'</span>]</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>penguins.dropna(subset<span class="op">=</span>feature_names, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>species_names <span class="op">=</span> penguins[<span class="st">'species'</span>].unique()</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>X <span class="op">=</span> penguins[feature_names]</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>y <span class="op">=</span> penguins.species</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co"># Split data in training and test set</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">5</span>, stratify<span class="op">=</span>y)</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"train size:"</span>, X_train.shape)</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"test size"</span>, X_test.shape)</span></code></pre>
+</div>
 <p>We’ll now take a look how we can use ensemble methods to perform a
 classification task such as identifying penguin species! We’re going to
 use a Random forest classifier available in scikit-learn which is a
@@ -2188,62 +2226,71 @@ from Venkatak Jagannath</a></p>
 penguin training data. We have a similar set of attritbutes to the
 DecisionTreeClassifier but with an extra parameter called n_estimators
 which is the number of trees in the forest.</p>
-<pre><code>from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import plot_tree
-
-# Define our model
-# extra parameter called n_estimators which is number of trees in the forest
-# a leaf is a class label at the end of the decision tree
-forest = RandomForestClassifier(n_estimators=100, max_depth=5, min_samples_leaf=1, random_state=0)
-
-# train our model
-forest.fit(X_train, y_train)
-
-# Score our model
-print(forest.score(X_test, y_test))</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> plot_tree</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co"># Define our model</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># extra parameter called n_estimators which is number of trees in the forest</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># a leaf is a class label at the end of the decision tree</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>forest <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, max_depth<span class="op">=</span><span class="dv">5</span>, min_samples_leaf<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span><span class="dv">0</span>) </span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># train our model</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>forest.fit(X_train, y_train)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co"># Score our model</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="bu">print</span>(forest.score(X_test, y_test))</span></code></pre>
+</div>
 <p>You might notice that we have a different value (hopefully increased)
 compared with the decision tree classifier used above on the same
 training data. Lets plot the first 5 trees in the forest to get an idea
 of how this model differs from a single decision tree.</p>
-<pre><code>import matplotlib.pyplot as plt
-
-fig, axes = plt.subplots(nrows=1, ncols=5 ,figsize=(12,6))
-
-# plot first 5 trees in forest
-for index in range(0, 5):
-    plot_tree(forest.estimators_[index],
-        class_names=species_names,
-        feature_names=feature_names,
-        filled=True,
-        ax=axes[index])
-
-    axes[index].set_title(f'Tree: {index}')
-
-plt.show()</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/rf_5_trees.png" alt="random forest trees" class="figure mx-auto d-block"><div class="figcaption">random forest trees</div>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">5</span> ,figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">6</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co"># plot first 5 trees in forest</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="cf">for</span> index <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">5</span>):</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    plot_tree(forest.estimators_[index], </span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>        class_names<span class="op">=</span>species_names,</span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>        feature_names<span class="op">=</span>feature_names, </span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>        filled<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>        ax<span class="op">=</span>axes[index])</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>    axes[index].set_title(<span class="ss">f'Tree: </span><span class="sc">{</span>index<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>    </span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>plt.show()</span></code></pre>
+</div>
+<figure><img src="fig/results/rf_5_trees.png" alt="random forest trees" class="figure mx-auto d-block"><div class="figcaption">random forest trees</div>
 </figure><p>We can see the first 5 (of 100) trees that were fitted as part of the
 forest.</p>
 <p>If we train the random forest estimator using the same two parameters
 used to plot the classification space for the decision tree classifier
 what do we think the plot will look like?</p>
-<pre><code># lets train a random forest for only two features (body mass and bill length)
-from sklearn.inspection import DecisionBoundaryDisplay
-f1 = feature_names[0]
-f2 = feature_names[3]
-
-# plot classification space for body mass and bill length with random forest
-forest_2d = RandomForestClassifier(n_estimators=100, max_depth=5, min_samples_leaf=1, random_state=0)
-forest_2d.fit(X_train[[f1, f2]], y_train)
-
-# Lets plot the decision boundaries made by the model for the two trained features
-d = DecisionBoundaryDisplay.from_estimator(forest_2d, X_train[[f1, f2]])
-
-sns.scatterplot(X_train, x=f1, y=f2, hue=y_train, palette="husl")
-plt.show()</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/EM_rf_clf_space.png" alt="random forest clf space" class="figure mx-auto d-block"><div class="figcaption">random forest clf space</div>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># lets train a random forest for only two features (body mass and bill length)</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> DecisionBoundaryDisplay</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>f1 <span class="op">=</span> feature_names[<span class="dv">0</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>f2 <span class="op">=</span> feature_names[<span class="dv">3</span>]</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co"># plot classification space for body mass and bill length with random forest</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>forest_2d <span class="op">=</span> RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">100</span>, max_depth<span class="op">=</span><span class="dv">5</span>, min_samples_leaf<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>forest_2d.fit(X_train[[f1, f2]], y_train)</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co"># Lets plot the decision boundaries made by the model for the two trained features</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>d <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(forest_2d, X_train[[f1, f2]])</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>sns.scatterplot(X_train, x<span class="op">=</span>f1, y<span class="op">=</span>f2, hue<span class="op">=</span>y_train, palette<span class="op">=</span><span class="st">"husl"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>plt.show()</span></code></pre>
+</div>
+<figure><img src="fig/results/EM_rf_clf_space.png" alt="random forest clf space" class="figure mx-auto d-block"><div class="figcaption">random forest clf space</div>
 </figure><p>There is still some overfitting indicated by the regions that contain
 only single points but using the same hyper-parameter settings used to
 fit the decision tree classifier, we can see that overfitting is
@@ -2265,22 +2312,25 @@ median house value for those 20,640 properties, note that all prices are
 in units of $100,000. This toy dataset is available as part of the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html" class="external-link">scikit
 learn library</a>. We’ll start by loading the dataset to very briefly
 inspect the attributes by printing them out.</p>
-<pre><code>import sklearn
-from sklearn.datasets import fetch_california_housing
-
-# load the dataset
-X, y = fetch_california_housing(return_X_y=True, as_frame=True)
-
-## All price variables are in units of $100,000
-print(X.shape)
-print(X.head())
-
-print("Housing price as the target: ")
-
-## Target is in units of $100,000
-print(y.head())
-print(y.shape)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_california_housing</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co"># load the dataset</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>X, y <span class="op">=</span> fetch_california_housing(return_X_y<span class="op">=</span><span class="va">True</span>, as_frame<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">## All price variables are in units of $100,000</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="bu">print</span>(X.shape)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="bu">print</span>(X.head())</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Housing price as the target: "</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">## Target is in units of $100,000</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="bu">print</span>(y.head())</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="bu">print</span>(y.shape)</span></code></pre>
+</div>
 <p>For the the purposes of learning how to create and use ensemble
 methods and since it is a toy dataset, we will blindly use this dataset
 without inspecting it, cleaning or pre-processing it further.</p>
@@ -2304,14 +2354,17 @@ problems?</p>
 </div>
 <p>Lets start by splitting the dataset into training and testing
 subsets:</p>
-<pre><code># split into train and test sets, We are selecting an 80%-20% train-test split.
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5)
-
-print(f'train size: {X_train.shape}')
-print(f'test size: {X_test.shape}')</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># split into train and test sets, We are selecting an 80%-20% train-test split.</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'train size: </span><span class="sc">{</span>X_train<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'test size: </span><span class="sc">{</span>X_test<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span></code></pre>
+</div>
 <p>Lets stack a series of regression models. In the same way the
 RandomForest classifier derives a results from a series of trees, we
 will combine the results from a series of different models in our stack.
@@ -2366,69 +2419,78 @@ ensemble in an ensemble!</p>
 <p>A VotingRegressor can train several base estimators on the whole
 dataset, and it can take the average of the individual predictions to
 form a final prediction.</p>
-<pre><code>from sklearn.ensemble import (
-    GradientBoostingRegressor,
-    RandomForestRegressor,
-    VotingRegressor,
-)
-from sklearn.linear_model import LinearRegression
-
-# Initialize estimators
-rf_reg = RandomForestRegressor(random_state=5)
-gb_reg = GradientBoostingRegressor(random_state=5)
-linear_reg = LinearRegression()
-voting_reg = VotingRegressor([("rf", rf_reg), ("gb", gb_reg), ("lr", linear_reg)])
-
-# fit/train voting estimator
-voting_reg.fit(X_train, y_train)
-
-# lets also fit/train the individual models for comparison
-rf_reg.fit(X_train, y_train)
-gb_reg.fit(X_train, y_train)
-linear_reg.fit(X_train, y_train)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> (</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    GradientBoostingRegressor,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    RandomForestRegressor,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>    VotingRegressor,</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co"># Initialize estimators </span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>rf_reg <span class="op">=</span> RandomForestRegressor(random_state<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>gb_reg <span class="op">=</span> GradientBoostingRegressor(random_state<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>linear_reg <span class="op">=</span> LinearRegression()</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>voting_reg <span class="op">=</span> VotingRegressor([(<span class="st">"rf"</span>, rf_reg), (<span class="st">"gb"</span>, gb_reg), (<span class="st">"lr"</span>, linear_reg)])</span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co"># fit/train voting estimator</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>voting_reg.fit(X_train, y_train)</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co"># lets also fit/train the individual models for comparison</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>rf_reg.fit(X_train, y_train)</span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>gb_reg.fit(X_train, y_train)</span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>linear_reg.fit(X_train, y_train)</span></code></pre>
+</div>
 <p>We fit the voting regressor in the same way we would fit a single
 model. When the voting regressor is instantiated we pass it a parameter
 containing a list of tuples that contain the estimators we wish to
 stack: in this case the random forest, gradient boosting and linear
 regressors. To get a sense of what this is doing lets predict the first
 20 samples in the test portion of the data and plot the results.</p>
-<pre><code>import matplotlib.pyplot as plt
-
-# make predictions
-X_test_20 = X_test[:20] # first 20 for visualisation
-
-rf_pred = rf_reg.predict(X_test_20)
-gb_pred = gb_reg.predict(X_test_20)
-linear_pred = linear_reg.predict(X_test_20)
-voting_pred = voting_reg.predict(X_test_20)
-
-plt.figure()
-plt.plot(gb_pred,  "o", color="black", label="GradientBoostingRegressor")
-plt.plot(rf_pred,  "o", color="blue", label="RandomForestRegressor")
-plt.plot(linear_pred,  "o", color="green", label="LinearRegression")
-plt.plot(voting_pred,  "x", color="red", ms=10, label="VotingRegressor")
-
-plt.tick_params(axis="x", which="both", bottom=False, top=False, labelbottom=False)
-plt.ylabel("predicted")
-plt.xlabel("training samples")
-plt.legend(loc="best")
-plt.title("Regressor predictions and their average")
-
-plt.show()</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/house_price_voting_regressor.svg" alt="Regressor predictions and average from stack" class="figure mx-auto d-block"><div class="figcaption">Regressor predictions and average from
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># make predictions</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>X_test_20 <span class="op">=</span> X_test[:<span class="dv">20</span>] <span class="co"># first 20 for visualisation</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>rf_pred <span class="op">=</span> rf_reg.predict(X_test_20)</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>gb_pred <span class="op">=</span> gb_reg.predict(X_test_20)</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>linear_pred <span class="op">=</span> linear_reg.predict(X_test_20)</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>voting_pred <span class="op">=</span> voting_reg.predict(X_test_20)</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>plt.figure()</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>plt.plot(gb_pred,  <span class="st">"o"</span>, color<span class="op">=</span><span class="st">"black"</span>, label<span class="op">=</span><span class="st">"GradientBoostingRegressor"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>plt.plot(rf_pred,  <span class="st">"o"</span>, color<span class="op">=</span><span class="st">"blue"</span>, label<span class="op">=</span><span class="st">"RandomForestRegressor"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>plt.plot(linear_pred,  <span class="st">"o"</span>, color<span class="op">=</span><span class="st">"green"</span>, label<span class="op">=</span><span class="st">"LinearRegression"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>plt.plot(voting_pred,  <span class="st">"x"</span>, color<span class="op">=</span><span class="st">"red"</span>, ms<span class="op">=</span><span class="dv">10</span>, label<span class="op">=</span><span class="st">"VotingRegressor"</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>plt.tick_params(axis<span class="op">=</span><span class="st">"x"</span>, which<span class="op">=</span><span class="st">"both"</span>, bottom<span class="op">=</span><span class="va">False</span>, top<span class="op">=</span><span class="va">False</span>, labelbottom<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>plt.ylabel(<span class="st">"predicted"</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a>plt.xlabel(<span class="st">"training samples"</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"best"</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>plt.title(<span class="st">"Regressor predictions and their average"</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a>plt.show()</span></code></pre>
+</div>
+<figure><img src="fig/results/house_price_voting_regressor.svg" alt="Regressor predictions and average from stack" class="figure mx-auto d-block"><div class="figcaption">Regressor predictions and average from
 stack</div>
 </figure><p>Finally, lets see how the average compares against each single
 estimator in the stack?</p>
-<pre><code>print(f'random forest: {rf_reg.score(X_test, y_test)}')
-
-print(f'gradient boost: {gb_reg.score(X_test, y_test)}')
-
-print(f'linear regression: {linear_reg.score(X_test, y_test)}')
-
-print(f'voting regressor: {voting_reg.score(X_test, y_test)}')</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'random forest: </span><span class="sc">{</span>rf_reg<span class="sc">.</span>score(X_test, y_test)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'gradient boost: </span><span class="sc">{</span>gb_reg<span class="sc">.</span>score(X_test, y_test)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'linear regression: </span><span class="sc">{</span>linear_reg<span class="sc">.</span>score(X_test, y_test)<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'voting regressor: </span><span class="sc">{</span>voting_reg<span class="sc">.</span>score(X_test, y_test)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre>
+</div>
 <p>Each of our models score between 0.61-0.82, which at the high end is
 good, but at the low end is a pretty poor prediction accuracy score. Do
 note that the toy datasets are not representative of real world data.
@@ -2453,42 +2515,48 @@ problem.</h3>
 apply a stack to the penguins dataset using a random forest, SVM and
 decision tree classifier, or a selection of any other classifier
 estimators available in sci-kit learn?</p>
-<pre><code>penguins = sns.load_dataset('penguins')
-
-feature_names = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
-penguins.dropna(subset=feature_names, inplace=True)
-
-species_names = penguins['species'].unique()
-
-# Define data and targets
-X = penguins[feature_names]
-
-y = penguins.species
-
-# Split data in training and test set
-from sklearn.model_selection import train_test_split
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5)
-
-print(f'train size: {X_train.shape}')
-print(f'test size: {X_test.shape}')</code></pre>
-<p>{: .language.python}</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">'penguins'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>feature_names <span class="op">=</span> [<span class="st">'bill_length_mm'</span>, <span class="st">'bill_depth_mm'</span>, <span class="st">'flipper_length_mm'</span>, <span class="st">'body_mass_g'</span>]</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>penguins.dropna(subset<span class="op">=</span>feature_names, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>species_names <span class="op">=</span> penguins[<span class="st">'species'</span>].unique()</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co"># Define data and targets</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>X <span class="op">=</span> penguins[feature_names]</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>y <span class="op">=</span> penguins.species</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co"># Split data in training and test set</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'train size: </span><span class="sc">{</span>X_train<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'test size: </span><span class="sc">{</span>X_test<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span></code></pre>
+</div>
 <p>The code above loads the penguins data and splits it into test and
 training portions. Have a play around with stacking some classifiers
 using the <code>sklearn.ensemble.VotingClassifier</code> using the code
 comments below as a guide.</p>
-<pre><code><span><span class="co"># import classifiers</span></span>
-<span></span>
-<span><span class="co"># instantiate classifiers</span></span>
-<span></span>
-<span><span class="co"># fit classifiers</span></span>
-<span></span>
-<span><span class="co"># instantiate voting classifier and fit data</span></span>
-<span></span>
-<span><span class="co"># make predictions</span></span>
-<span></span>
-<span><span class="co"># compare scores</span></span></code></pre>
-<p>{: .language.python}</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># import classifiers </span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co"># instantiate classifiers </span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co"># fit classifiers</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co"># instantiate voting classifier and fit data</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co"># make predictions</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co"># compare scores</span></span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2621,14 +2689,20 @@ others throughout the lesson!</p>
 </h3>
 <p>To perform a k-means clustering with Scikit-Learn we first need to
 import the sklearn.cluster module.</p>
-<pre><code>import sklearn.cluster as skl_cluster</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> sklearn.cluster <span class="im">as</span> skl_cluster</span></code></pre>
+</div>
 <p>For this example, we’re going to use Scikit-Learn’s built-in ‘random
 data blob generator’ instead of using an external dataset. Therefore
 we’ll need the <code>sklearn.datasets.samples_generator</code>
 module.</p>
-<pre><code>import sklearn.datasets as skl_datasets</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_datasets</span></code></pre>
+</div>
 <p>Now lets create some random blobs using the <code>make_blobs</code>
 function. The <code>n_samples</code> argument sets how many points we
 want to use in all of our blobs while <code>cluster_std</code> sets the
@@ -2640,79 +2714,88 @@ every time we run the program. If we don’t specify a random state then
 we’ll get different points every time we run. This function returns two
 things: an array of data points and a list of which cluster each point
 belongs to.</p>
-<pre><code>import matplotlib.pyplot as plt
-
-def plots_labels(data, labels):
-    """
-    Visualizes data points with associated labels in a 2D scatter plot.
-
-    Parameters:
-    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
-    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.
-
-    Returns:
-    None: Displays the scatter plot with labels as colors.
-    """
-    # Extract the x and y coordinates from the data
-    tx = data[:, 0]
-    ty = data[:, 1]
-
-    # Create a figure with a specified size
-    fig = plt.figure(1, figsize=(4, 4))
-
-    # Scatter plot the data points, coloring them by their labels
-    plt.scatter(tx, ty, edgecolor='k', c=labels)
-
-    # Display the plot
-    plt.show()
-
-def plot_clusters(data, clusters, Kmean):
-    """
-    Visualizes clustered data points with centroids marked.
-
-    Parameters:
-    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
-    clusters (ndarray or list): A 1D array or list of cluster assignments for each data point.
-    Kmean (KMeans object): The fitted KMeans object containing cluster centers.
-
-    Returns:
-    None: Displays the scatter plot with clusters as colors and centroids marked with red crosses.
-    """
-    # Extract the x and y coordinates from the data
-    tx = data[:, 0]
-    ty = data[:, 1]
-
-    # Create a figure with a specified size
-    fig = plt.figure(1, figsize=(4, 4))
-
-    # Scatter plot the data points, coloring them by their cluster assignment
-    # plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)
-    plt.scatter(tx, ty, c=clusters, cmap="nipy_spectral", edgecolor='k')
-
-    # Loop through cluster centers and mark them with a red 'x'
-    for cluster_x, cluster_y in Kmean.cluster_centers_:
-        plt.scatter(cluster_x, cluster_y, s=100, c='r', marker='x')
-
-    # Display the plot
-    plt.show()</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="kw">def</span> plots_labels(data, labels):</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">    Visualizes data points with associated labels in a 2D scatter plot.</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">    None: Displays the scatter plot with labels as colors.</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>    <span class="co"># Extract the x and y coordinates from the data</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>    tx <span class="op">=</span> data[:, <span class="dv">0</span>]</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>    ty <span class="op">=</span> data[:, <span class="dv">1</span>]</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>    </span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>    <span class="co"># Create a figure with a specified size</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>    </span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>    <span class="co"># Scatter plot the data points, coloring them by their labels</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>    plt.scatter(tx, ty, edgecolor<span class="op">=</span><span class="st">'k'</span>, c<span class="op">=</span>labels)</span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>    </span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>    <span class="co"># Display the plot</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>    plt.show()</span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="kw">def</span> plot_clusters(data, clusters, Kmean):</span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a><span class="co">    Visualizes clustered data points with centroids marked.</span></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a><span class="co">    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.</span></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co">    clusters (ndarray or list): A 1D array or list of cluster assignments for each data point.</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a><span class="co">    Kmean (KMeans object): The fitted KMeans object containing cluster centers.</span></span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a><span class="co">    None: Displays the scatter plot with clusters as colors and centroids marked with red crosses.</span></span>
+<span id="cb3-38"><a href="#cb3-38" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-39"><a href="#cb3-39" tabindex="-1"></a>    <span class="co"># Extract the x and y coordinates from the data</span></span>
+<span id="cb3-40"><a href="#cb3-40" tabindex="-1"></a>    tx <span class="op">=</span> data[:, <span class="dv">0</span>]</span>
+<span id="cb3-41"><a href="#cb3-41" tabindex="-1"></a>    ty <span class="op">=</span> data[:, <span class="dv">1</span>]</span>
+<span id="cb3-42"><a href="#cb3-42" tabindex="-1"></a>    </span>
+<span id="cb3-43"><a href="#cb3-43" tabindex="-1"></a>    <span class="co"># Create a figure with a specified size</span></span>
+<span id="cb3-44"><a href="#cb3-44" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb3-45"><a href="#cb3-45" tabindex="-1"></a>    </span>
+<span id="cb3-46"><a href="#cb3-46" tabindex="-1"></a>    <span class="co"># Scatter plot the data points, coloring them by their cluster assignment</span></span>
+<span id="cb3-47"><a href="#cb3-47" tabindex="-1"></a>    <span class="co"># plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)</span></span>
+<span id="cb3-48"><a href="#cb3-48" tabindex="-1"></a>    plt.scatter(tx, ty, c<span class="op">=</span>clusters, cmap<span class="op">=</span><span class="st">"nipy_spectral"</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" tabindex="-1"></a>    </span>
+<span id="cb3-50"><a href="#cb3-50" tabindex="-1"></a>    <span class="co"># Loop through cluster centers and mark them with a red 'x'</span></span>
+<span id="cb3-51"><a href="#cb3-51" tabindex="-1"></a>    <span class="cf">for</span> cluster_x, cluster_y <span class="kw">in</span> Kmean.cluster_centers_:</span>
+<span id="cb3-52"><a href="#cb3-52" tabindex="-1"></a>        plt.scatter(cluster_x, cluster_y, s<span class="op">=</span><span class="dv">100</span>, c<span class="op">=</span><span class="st">'r'</span>, marker<span class="op">=</span><span class="st">'x'</span>)</span>
+<span id="cb3-53"><a href="#cb3-53" tabindex="-1"></a>    </span>
+<span id="cb3-54"><a href="#cb3-54" tabindex="-1"></a>    <span class="co"># Display the plot</span></span>
+<span id="cb3-55"><a href="#cb3-55" tabindex="-1"></a>    plt.show()</span></code></pre>
+</div>
 <p>Lets create the clusters.</p>
-<pre><code>N_true_clusters = 4
-data, cluster_id = skl_datasets.make_blobs(n_samples=400, cluster_std=0.75, centers=N_true_clusters, random_state=1)
-plots_labels(data, cluster_id)</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/random_clusters.png" alt="Plot of the random clusters" class="figure mx-auto d-block"><div class="figcaption">Plot of the random clusters</div>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>N_true_clusters <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>data, cluster_id <span class="op">=</span> skl_datasets.make_blobs(n_samples<span class="op">=</span><span class="dv">400</span>, cluster_std<span class="op">=</span><span class="fl">0.75</span>, centers<span class="op">=</span>N_true_clusters, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>plots_labels(data, cluster_id)</span></code></pre>
+</div>
+<figure><img src="fig/results/random_clusters.png" alt="Plot of the random clusters" class="figure mx-auto d-block"><div class="figcaption">Plot of the random clusters</div>
 </figure><p>Now that we have some data we can try to identify the clusters using
 k-means. First, we need to initialise the KMeans module and tell it how
 many clusters to look for. Next, we supply it with some data via the
 <code>fit</code> function, in much the same way we did with the
 regression functions earlier on. Finally, we run the predict function to
 find the clusters.</p>
-<pre><code><span><span class="va">N_pred_clusters</span> <span class="op">=</span> <span class="fl">4</span></span>
-<span><span class="va">Kmean</span> <span class="op">=</span> <span class="fu">skl_cluster.KMeans</span><span class="op">(</span>n_clusters<span class="op">=</span><span class="va">N_pred_clusters</span><span class="op">)</span></span>
-<span><span class="fu">Kmean.fit</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="va">clusters</span> <span class="op">=</span> <span class="fu">Kmean.predict</span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>N_pred_clusters <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>Kmean <span class="op">=</span> skl_cluster.KMeans(n_clusters<span class="op">=</span>N_pred_clusters)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>Kmean.fit(data)</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>clusters <span class="op">=</span> Kmean.predict(data)</span></code></pre>
+</div>
 <p>The data can now be plotted to show all the points we randomly
 generated. To make it clearer which cluster points have been classified
 we can set the colours (the c parameter) to use the
@@ -2722,22 +2805,28 @@ centre of each cluster. These are stored as a list called
 ‘cluster_centers_’ inside the <code>Kmean</code> object. Let’s plot the
 points from the clusters, colouring them by the output from the K-means
 algorithm, and also plot the centres of each cluster as a red X.</p>
-<pre><code><span><span class="fu">plot_clusters</span><span class="op">(</span><span class="va">data</span>, <span class="va">clusters</span>, <span class="va">Kmean</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/random_clusters_centre.png" alt="Plot of the fitted random clusters" class="figure mx-auto d-block"><div class="figcaption">Plot of the fitted random clusters</div>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>plot_clusters(data, clusters, Kmean)</span></code></pre>
+</div>
+<figure><img src="fig/results/random_clusters_centre.png" alt="Plot of the fitted random clusters" class="figure mx-auto d-block"><div class="figcaption">Plot of the fitted random clusters</div>
 </figure><p>Here is the code all in a single block.</p>
-<pre><code>import sklearn.cluster as skl_cluster
-import sklearn.datasets as skl_datasets
-import matplotlib.pyplot as plt
-
-data, cluster_id = skl_datasets.make_blobs(n_samples=400, cluster_std=0.75, centers=4, random_state=1)
-
-Kmean = skl_cluster.KMeans(n_clusters=4)
-Kmean.fit(data)
-clusters = Kmean.predict(data)
-
-plot_clusters(data, clusters, Kmean)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> sklearn.cluster <span class="im">as</span> skl_cluster</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_datasets</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>data, cluster_id <span class="op">=</span> skl_datasets.make_blobs(n_samples<span class="op">=</span><span class="dv">400</span>, cluster_std<span class="op">=</span><span class="fl">0.75</span>, centers<span class="op">=</span><span class="dv">4</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>Kmean <span class="op">=</span> skl_cluster.KMeans(n_clusters<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>Kmean.fit(data)</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>clusters <span class="op">=</span> Kmean.predict(data)</span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>plot_clusters(data, clusters, Kmean)</span></code></pre>
+</div>
 <div id="working-in-multiple-dimensions" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -2781,16 +2870,19 @@ examining silhouette scores for individual samples can help identify
 outliers or problematic clusters.</p>
 <p>Here is the Python code to calculate both the overall silhouette
 score and the individual sample scores:</p>
-<pre><code>from sklearn.metrics import silhouette_score, silhouette_samples
-
-# Calculate the overall silhouette score
-overall_silhouette = silhouette_score(data, clusters)
-print(f"Overall Silhouette Score: {overall_silhouette:.2f}")
-
-# Calculate silhouette scores for individual samples
-sample_silhouettes = silhouette_samples(data, clusters)
-sample_silhouettes</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score, silhouette_samples</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># Calculate the overall silhouette score</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>overall_silhouette <span class="op">=</span> silhouette_score(data, clusters)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Overall Silhouette Score: </span><span class="sc">{</span>overall_silhouette<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># Calculate silhouette scores for individual samples</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>sample_silhouettes <span class="op">=</span> silhouette_samples(data, clusters)</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>sample_silhouettes</span></code></pre>
+</div>
 <div id="exercise-how-many-clusters-should-we-look-for" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -2807,65 +2899,70 @@ most appropriate number of clusters. Use the code below to loop through
 searching for between 2 and 10 clusters, generating silhouette plots for
 each. Which (if any) of the results look more sensible? What criteria
 might you use to select the best one?</p>
-<pre><code>import matplotlib.pyplot as plt
-import numpy as np
-
-def plot_silhouette(data, clusters):
-    """
-    Calculates and plots silhouette scores for clustering results.
-
-    Parameters:
-    - data: array-like of shape (n_samples, n_features)
-        Feature matrix of the dataset.
-    - clusters: array-like of shape (n_samples,)
-        Cluster labels for each sample in the dataset.
-
-    Returns:
-    - overall_silhouette: float
-        The overall silhouette score for the clustering result.
-    """
-    # Calculate the overall silhouette score
-    overall_silhouette = silhouette_score(data, clusters)
-    print(f"Overall Silhouette Score: {overall_silhouette:.2f}")
-
-    # Calculate silhouette scores for individual samples
-    sample_silhouettes = silhouette_samples(data, clusters)
-
-    # Plot silhouette values for each cluster
-    y_lower = 10
-    n_clusters = len(np.unique(clusters))
-
-    for i in range(n_clusters):  # Iterate over each cluster
-        cluster_silhouettes = sample_silhouettes[clusters == i]
-        cluster_silhouettes.sort()
-        cluster_size = len(cluster_silhouettes)
-        y_upper = y_lower + cluster_size
-
-        plt.fill_betweenx(
-            np.arange(y_lower, y_upper),
-            0,
-            cluster_silhouettes,
-            alpha=0.7
-        )
-        plt.text(-0.05, y_lower + 0.5 * cluster_size, str(i))
-        y_lower = y_upper + 10
-
-    plt.xlabel("Silhouette Coefficient")
-    plt.ylabel("Cluster")
-    plt.title("Silhouette Analysis")
-    # Set x-axis limits
-    plt.xlim([-.2, 1])
-    plt.show()
-
-    return overall_silhouette
-</code></pre>
-<p>{: .language-python}</p>
-<pre><code>for cluster_count in range(2,11):
-    Kmean = skl_cluster.KMeans(n_clusters=cluster_count)
-    Kmean.fit(data)
-    clusters = Kmean.predict(data)
-    plot_silhouette(data, clusters)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="kw">def</span> plot_silhouette(data, clusters):</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">    Calculates and plots silhouette scores for clustering results.</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">    </span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">    - data: array-like of shape (n_samples, n_features)</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">        Feature matrix of the dataset.</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">    - clusters: array-like of shape (n_samples,)</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">        Cluster labels for each sample in the dataset.</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a><span class="co">        </span></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a><span class="co">    - overall_silhouette: float</span></span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a><span class="co">        The overall silhouette score for the clustering result.</span></span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>    <span class="co"># Calculate the overall silhouette score</span></span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a>    overall_silhouette <span class="op">=</span> silhouette_score(data, clusters)</span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Overall Silhouette Score: </span><span class="sc">{</span>overall_silhouette<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a>    <span class="co"># Calculate silhouette scores for individual samples</span></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a>    sample_silhouettes <span class="op">=</span> silhouette_samples(data, clusters)</span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>    <span class="co"># Plot silhouette values for each cluster</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a>    y_lower <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a>    n_clusters <span class="op">=</span> <span class="bu">len</span>(np.unique(clusters))</span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a></span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_clusters):  <span class="co"># Iterate over each cluster</span></span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a>        cluster_silhouettes <span class="op">=</span> sample_silhouettes[clusters <span class="op">==</span> i]</span>
+<span id="cb9-31"><a href="#cb9-31" tabindex="-1"></a>        cluster_silhouettes.sort()</span>
+<span id="cb9-32"><a href="#cb9-32" tabindex="-1"></a>        cluster_size <span class="op">=</span> <span class="bu">len</span>(cluster_silhouettes)</span>
+<span id="cb9-33"><a href="#cb9-33" tabindex="-1"></a>        y_upper <span class="op">=</span> y_lower <span class="op">+</span> cluster_size</span>
+<span id="cb9-34"><a href="#cb9-34" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" tabindex="-1"></a>        plt.fill_betweenx(</span>
+<span id="cb9-36"><a href="#cb9-36" tabindex="-1"></a>            np.arange(y_lower, y_upper),</span>
+<span id="cb9-37"><a href="#cb9-37" tabindex="-1"></a>            <span class="dv">0</span>,</span>
+<span id="cb9-38"><a href="#cb9-38" tabindex="-1"></a>            cluster_silhouettes,</span>
+<span id="cb9-39"><a href="#cb9-39" tabindex="-1"></a>            alpha<span class="op">=</span><span class="fl">0.7</span></span>
+<span id="cb9-40"><a href="#cb9-40" tabindex="-1"></a>        )</span>
+<span id="cb9-41"><a href="#cb9-41" tabindex="-1"></a>        plt.text(<span class="op">-</span><span class="fl">0.05</span>, y_lower <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> cluster_size, <span class="bu">str</span>(i))</span>
+<span id="cb9-42"><a href="#cb9-42" tabindex="-1"></a>        y_lower <span class="op">=</span> y_upper <span class="op">+</span> <span class="dv">10</span></span>
+<span id="cb9-43"><a href="#cb9-43" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" tabindex="-1"></a>    plt.xlabel(<span class="st">"Silhouette Coefficient"</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" tabindex="-1"></a>    plt.ylabel(<span class="st">"Cluster"</span>)</span>
+<span id="cb9-46"><a href="#cb9-46" tabindex="-1"></a>    plt.title(<span class="st">"Silhouette Analysis"</span>)</span>
+<span id="cb9-47"><a href="#cb9-47" tabindex="-1"></a>    <span class="co"># Set x-axis limits</span></span>
+<span id="cb9-48"><a href="#cb9-48" tabindex="-1"></a>    plt.xlim([<span class="op">-</span><span class="fl">.2</span>, <span class="dv">1</span>])</span>
+<span id="cb9-49"><a href="#cb9-49" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-50"><a href="#cb9-50" tabindex="-1"></a></span>
+<span id="cb9-51"><a href="#cb9-51" tabindex="-1"></a>    <span class="cf">return</span> overall_silhouette</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="cf">for</span> cluster_count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">11</span>):</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>    Kmean <span class="op">=</span> skl_cluster.KMeans(n_clusters<span class="op">=</span>cluster_count)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    Kmean.fit(data)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    clusters <span class="op">=</span> Kmean.predict(data)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    plot_silhouette(data, clusters)</span></code></pre>
+</div>
 <div class="section level2">
 <h2 id="solution">Solution<a class="anchor" aria-label="anchor" href="#solution"></a>
 </h2>
@@ -2892,7 +2989,7 @@ clusters even if the data isn’t clustered (or clustered in that many
 clusters)</li>
 <li>Requires linear cluster boundaries</li>
 </ul>
-<figure><img src="fig/kmeans_concentric_circle.png" alt="An example of kmeans failing on non-linear cluster boundaries" class="figure mx-auto d-block"><div class="figcaption">An example of kmeans failing on non-linear
+<figure><img src="fig/results/kmeans_concentric_circle.png" alt="An example of kmeans failing on non-linear cluster boundaries" class="figure mx-auto d-block"><div class="figcaption">An example of kmeans failing on non-linear
 cluster boundaries</div>
 </figure>
 </div>
@@ -2924,7 +3021,7 @@ any strange behaviour?</p>
 <h2 id="solution-1">Solution<a class="anchor" aria-label="anchor" href="#solution-1"></a>
 </h2>
 <p>Increasing n_samples to 4000 and cluster_std to 3.0 looks like this:
-<img src="fig/kmeans_overlapping_clusters.png" alt="Kmeans attempting to classify overlapping clusters" class="figure"> The straight
+<img src="fig/results/kmeans_overlapping_clusters.png" alt="Kmeans attempting to classify overlapping clusters" class="figure"> The straight
 line boundaries between clusters look a bit strange.</p>
 </div>
 </div>
@@ -2964,46 +3061,58 @@ concentric circles in the above example we need to use the
 <code>make_circles</code> function in the sklearn.datasets module. This
 works in a very similar way to the make_blobs function we used earlier
 on.</p>
-<pre><code>import sklearn.datasets as skl_data
-
-circles, circles_clusters = skl_data.make_circles(n_samples=400, noise=.01, random_state=0)
-plots_labels(circles, circles_clusters)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_data</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>circles, circles_clusters <span class="op">=</span> skl_data.make_circles(n_samples<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">.01</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>plots_labels(circles, circles_clusters)</span></code></pre>
+</div>
 <p>The code for calculating the SpectralClustering is very similar to
 the kmeans clustering, but instead of using the sklearn.cluster.KMeans
-class we use the <code>sklearn.cluster.SpectralClustering</code> class.
-~~~ model = skl_cluster.SpectralClustering(n_clusters=2,
-affinity=‘nearest_neighbors’, assign_labels=‘kmeans’) ~~~ {:
-.language-python}</p>
+class we use the <code>sklearn.cluster.SpectralClustering</code>
+class.</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>model <span class="op">=</span> skl_cluster.SpectralClustering(n_clusters<span class="op">=</span><span class="dv">2</span>, affinity<span class="op">=</span><span class="st">'nearest_neighbors'</span>, assign_labels<span class="op">=</span><span class="st">'kmeans'</span>)</span></code></pre>
+</div>
 <p>The SpectralClustering class combines the fit and predict functions
 into a single function called fit_predict.</p>
-<pre><code><span><span class="va">labels</span> <span class="op">=</span> <span class="fu">model.fit_predict</span><span class="op">(</span><span class="va">circles</span><span class="op">)</span></span>
-<span><span class="fu">plots_labels</span><span class="op">(</span><span class="va">circles</span>, <span class="va">labels</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>labels <span class="op">=</span> model.fit_predict(circles)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>plots_labels(circles, labels)</span></code></pre>
+</div>
 <p>Here is the whole program combined with the kmeans clustering for
 comparison. Note that this produces two figures. To view both of them
 use the “Inline” graphics terminal inside the Python console instead of
 the “Automatic” method which will open a window and only show you one of
 the graphs.</p>
-<pre><code>import sklearn.cluster as skl_cluster
-import sklearn.datasets as skl_data
-
-circles, circles_clusters = skl_data.make_circles(n_samples=400, noise=.01, random_state=0)
-
-# cluster with kmeans
-Kmean = skl_cluster.KMeans(n_clusters=2)
-Kmean.fit(circles)
-clusters = Kmean.predict(circles)
-
-# plot the data, colouring it by cluster
-plot_clusters(circles, clusters, Kmean)
-
-# cluster with spectral clustering
-model = skl_cluster.SpectralClustering(n_clusters=2, affinity='nearest_neighbors', assign_labels='kmeans')
-labels = model.fit_predict(circles)
-plots_labels(circles, labels)</code></pre>
-<p>{: .language-python}</p>
-<p><img src="fig/kmeans_concentric_circle_2.png" alt="Kmeans attempting to cluster the concentric circles" class="figure"><img src="fig/spectral_concentric_circle_2.png" alt="Spectral clustering on the concentric circles" class="figure"></p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">import</span> sklearn.cluster <span class="im">as</span> skl_cluster</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_data</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>circles, circles_clusters <span class="op">=</span> skl_data.make_circles(n_samples<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">.01</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co"># cluster with kmeans</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>Kmean <span class="op">=</span> skl_cluster.KMeans(n_clusters<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>Kmean.fit(circles)</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>clusters <span class="op">=</span> Kmean.predict(circles)</span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="co"># plot the data, colouring it by cluster</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>plot_clusters(circles, clusters, Kmean)</span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="co"># cluster with spectral clustering</span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>model <span class="op">=</span> skl_cluster.SpectralClustering(n_clusters<span class="op">=</span><span class="dv">2</span>, affinity<span class="op">=</span><span class="st">'nearest_neighbors'</span>, assign_labels<span class="op">=</span><span class="st">'kmeans'</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>labels <span class="op">=</span> model.fit_predict(circles)</span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>plots_labels(circles, labels)</span></code></pre>
+</div>
+<p><img src="fig/results/kmeans_concentric_circle_2.png" alt="Kmeans attempting to cluster the concentric circles" class="figure"><img src="fig/results/spectral_concentric_circle_2.png" alt="Spectral clustering on the concentric circles" class="figure"></p>
 <div id="comparing-k-means-and-spectral-clustering-performance" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -3027,41 +3136,58 @@ did your run times differ? How much do they differ if you increase the
 number of samples to 8,000? How long do you think it would take to
 compute 800,000 samples (estimate this, it might take a while to run for
 real)? ## Solution KMeans version: runtime around 4 seconds (your
-computer might be faster/slower) ~~~ import matplotlib.pyplot as plt
-import sklearn.cluster as skl_cluster from sklearn.datasets import
-make_blobs import time</p>
-<p>start_time = time.time() data, cluster_id =
-make_blobs(n_samples=4000, cluster_std=3, centers=4, random_state=1)</p>
-<p>for cluster_count in range(2,11): Kmean =
-skl_cluster.KMeans(n_clusters=cluster_count) Kmean.fit(data) clusters =
-Kmean.predict(data)</p>
-<div class="codewrapper sourceCode" id="cb14">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">plt.scatter</span><span class="er">(</span><span class="va">data</span><span class="op">[</span>:, 0<span class="op">]</span><span class="ex">,</span> data[:, 1], s=15, linewidth=0, c=clusters<span class="kw">)</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">plt.title</span><span class="er">(</span><span class="ex">str</span><span class="er">(</span><span class="ex">cluster_count</span><span class="kw">)</span><span class="ex">+</span><span class="st">" Clusters"</span><span class="kw">)</span></span></code></pre>
-</div>
-<p>plt.show()</p>
-<p>end_time = time.time() print(“Elapsed time =”, end_time-start_time,
-“seconds”) ~~~ {: .language-python}</p>
-<p>Spectral version: runtime around 9 seconds (your computer might be
-faster/slower) ~~~ import matplotlib.pyplot as plt import
-sklearn.cluster as skl_cluster from sklearn.datasets import make_blobs
-import time</p>
-<p>start_time = time.time() data, cluster_id =
-make_blobs(n_samples=4000, cluster_std=3, centers=4, random_state=1)</p>
-<p>for cluster_count in range(2,11): model =
-skl_cluster.SpectralClustering(n_clusters=cluster_count,
-affinity=‘nearest_neighbors’, assign_labels=‘kmeans’) labels =
-model.fit_predict(data)</p>
+computer might be faster/slower)</p>
 <div class="codewrapper sourceCode" id="cb15">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">plt.scatter</span><span class="er">(</span><span class="va">data</span><span class="op">[</span>:, 0<span class="op">]</span><span class="ex">,</span> data[:, 1], s=15, linewidth=0, c=labels<span class="kw">)</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">plt.title</span><span class="er">(</span><span class="ex">str</span><span class="er">(</span><span class="ex">cluster_count</span><span class="kw">)</span><span class="ex">+</span><span class="st">" Clusters"</span><span class="kw">)</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="im">import</span> sklearn.cluster <span class="im">as</span> skl_cluster</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>data, cluster_id <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">4000</span>, cluster_std<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>                                       centers<span class="op">=</span><span class="dv">4</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="cf">for</span> cluster_count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">11</span>):</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>    Kmean <span class="op">=</span> skl_cluster.KMeans(n_clusters<span class="op">=</span>cluster_count)</span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>    Kmean.fit(data)</span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>    clusters <span class="op">=</span> Kmean.predict(data)</span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a>    plt.scatter(data[:, <span class="dv">0</span>], data[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">15</span>, linewidth<span class="op">=</span><span class="dv">0</span>, c<span class="op">=</span>clusters)</span>
+<span id="cb15-16"><a href="#cb15-16" tabindex="-1"></a>    plt.title(<span class="bu">str</span>(cluster_count)<span class="op">+</span><span class="st">" Clusters"</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" tabindex="-1"></a>plt.show()</span>
+<span id="cb15-19"><a href="#cb15-19" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
+<span id="cb15-21"><a href="#cb15-21" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Elapsed time = "</span>, end_time<span class="op">-</span>start_time, <span class="st">"seconds"</span>)</span></code></pre>
 </div>
-<p>plt.show() end_time = time.time() print(“Elapsed time =”,
-end_time-start_time, “seconds”) ~~~ {: .language-python}</p>
+<p>Spectral version: runtime around 9 seconds (your computer might be
+faster/slower)</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="im">import</span> sklearn.cluster <span class="im">as</span> skl_cluster</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs </span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>start_time <span class="op">=</span> time.time()</span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>data, cluster_id <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">4000</span>, cluster_std<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>                                       centers<span class="op">=</span><span class="dv">4</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="cf">for</span> cluster_count <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">11</span>):</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>    model <span class="op">=</span> skl_cluster.SpectralClustering(n_clusters<span class="op">=</span>cluster_count,</span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a>                                       affinity<span class="op">=</span><span class="st">'nearest_neighbors'</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a>                                       assign_labels<span class="op">=</span><span class="st">'kmeans'</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a>    labels <span class="op">=</span> model.fit_predict(data)</span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a>    </span>
+<span id="cb16-16"><a href="#cb16-16" tabindex="-1"></a>    plt.scatter(data[:, <span class="dv">0</span>], data[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">15</span>, linewidth<span class="op">=</span><span class="dv">0</span>, c<span class="op">=</span>labels)</span>
+<span id="cb16-17"><a href="#cb16-17" tabindex="-1"></a>    plt.title(<span class="bu">str</span>(cluster_count)<span class="op">+</span><span class="st">" Clusters"</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" tabindex="-1"></a>plt.show()</span>
+<span id="cb16-19"><a href="#cb16-19" tabindex="-1"></a>end_time <span class="op">=</span> time.time()</span>
+<span id="cb16-20"><a href="#cb16-20" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Elapsed time = "</span>, end_time<span class="op">-</span>start_time, <span class="st">"seconds"</span>)</span></code></pre>
+</div>
 <p>When the number of points increases to 8000 the runtimes are 24
 seconds for the spectral version and 5.6 seconds for kmeans. The runtime
 numbers will differ depending on the speed of your computer, but the
@@ -3173,104 +3299,109 @@ images. Each image is 8x8 in size for a total of 64 pixels per image,
 resulting in 64 features for us to work with. The pixels can take a
 value between 0-15 (4bits). Let’s retrieve and inspect the Scikit-Learn
 dataset with the following code:</p>
-<pre><code>
-# Let's define these here to avoid repetitive code
-import numpy as np
-import matplotlib.pyplot as plt
-
-def plots_labels(data, labels):
-    """
-    Visualizes data points with associated labels in a 2D scatter plot.
-
-    Parameters:
-    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
-    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.
-
-    Returns:
-    None: Displays the scatter plot with labels as colors.
-    """
-    # Extract the x and y coordinates from the data
-    tx = data[:, 0]
-    ty = data[:, 1]
-
-    # Create a figure with a specified size
-    fig = plt.figure(1, figsize=(4, 4))
-
-    # Scatter plot the data points, coloring them by their labels
-    plt.scatter(tx, ty, edgecolor='k', c=labels)
-
-    # Display the plot
-    plt.show()
-
-def plot_clusters(data, clusters, Kmean):
-    """
-    Visualizes clustered data points with centroids marked.
-
-    Parameters:
-    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
-    clusters (ndarray or list): A 1D array or list of cluster assignments for each data point.
-    Kmean (KMeans object): The fitted KMeans object containing cluster centers.
-
-    Returns:
-    None: Displays the scatter plot with clusters as colors and centroids marked with red crosses.
-    """
-    # Extract the x and y coordinates from the data
-    tx = data[:, 0]
-    ty = data[:, 1]
-
-    # Create a figure with a specified size
-    fig = plt.figure(1, figsize=(4, 4))
-
-    # Scatter plot the data points, coloring them by their cluster assignment
-    # plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)
-    plt.scatter(tx, ty, c=clusters, cmap="nipy_spectral", edgecolor='k')
-
-    # Loop through cluster centers and mark them with a red 'x'
-    for cluster_x, cluster_y in Kmean.cluster_centers_:
-        plt.scatter(cluster_x, cluster_y, s=100, c='r', marker='x')
-
-    # Display the plot
-    plt.show()
-
-def plot_clusters_labels(data, labels):
-    """
-    Visualizes data points with associated labels using a color map and displays a legend.
-
-    Parameters:
-    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.
-    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.
-
-    Returns:
-    None: Displays the scatter plot with labels as colors and a color bar for the label legend.
-    """
-    # Extract the x and y coordinates from the data
-    tx = data[:, 0]
-    ty = data[:, 1]
-
-    # Create a figure with a specified size
-    fig = plt.figure(1, figsize=(5, 4))
-
-    # Scatter plot the data points, coloring them by their labels and using a colormap
-    plt.scatter(tx, ty, c=labels, cmap="nipy_spectral",
-                edgecolor='k', label=labels)
-
-    # Add a color bar to show the label legend
-    plt.colorbar(boundaries=np.arange(11) - 0.5).set_ticks(np.arange(10))
-
-    # Display the plot
-    plt.show()
-</code></pre>
-<p>{: .language-python}</p>
-<p>Next lets load in the digits dataset, ~~~ from sklearn import
-datasets</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co"># Let's define these here to avoid repetitive code</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="kw">def</span> plots_labels(data, labels):</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">    Visualizes data points with associated labels in a 2D scatter plot.</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">    None: Displays the scatter plot with labels as colors.</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>    <span class="co"># Extract the x and y coordinates from the data</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>    tx <span class="op">=</span> data[:, <span class="dv">0</span>]</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>    ty <span class="op">=</span> data[:, <span class="dv">1</span>]</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>    </span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>    <span class="co"># Create a figure with a specified size</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>    </span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>    <span class="co"># Scatter plot the data points, coloring them by their labels</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>    plt.scatter(tx, ty, edgecolor<span class="op">=</span><span class="st">'k'</span>, c<span class="op">=</span>labels)</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>    </span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>    <span class="co"># Display the plot</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>    plt.show()</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="kw">def</span> plot_clusters(data, clusters, Kmean):</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="co">    Visualizes clustered data points with centroids marked.</span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="co">    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="co">    clusters (ndarray or list): A 1D array or list of cluster assignments for each data point.</span></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="co">    Kmean (KMeans object): The fitted KMeans object containing cluster centers.</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="co">    None: Displays the scatter plot with clusters as colors and centroids marked with red crosses.</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>    <span class="co"># Extract the x and y coordinates from the data</span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>    tx <span class="op">=</span> data[:, <span class="dv">0</span>]</span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a>    ty <span class="op">=</span> data[:, <span class="dv">1</span>]</span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a>    </span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a>    <span class="co"># Create a figure with a specified size</span></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a>    </span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a>    <span class="co"># Scatter plot the data points, coloring them by their cluster assignment</span></span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a>    <span class="co"># plt.scatter(tx, ty, s=5, linewidth=0, c=clusters)</span></span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a>    plt.scatter(tx, ty, c<span class="op">=</span>clusters, cmap<span class="op">=</span><span class="st">"nipy_spectral"</span>, edgecolor<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>    <span class="co"># Loop through cluster centers and mark them with a red 'x'</span></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a>    <span class="cf">for</span> cluster_x, cluster_y <span class="kw">in</span> Kmean.cluster_centers_:</span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>        plt.scatter(cluster_x, cluster_y, s<span class="op">=</span><span class="dv">100</span>, c<span class="op">=</span><span class="st">'r'</span>, marker<span class="op">=</span><span class="st">'x'</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a>    </span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a>    <span class="co"># Display the plot</span></span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a>    plt.show()</span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a><span class="kw">def</span> plot_clusters_labels(data, labels):</span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a><span class="co">    Visualizes data points with associated labels using a color map and displays a legend.</span></span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb1-65"><a href="#cb1-65" tabindex="-1"></a><span class="co">    data (ndarray): A 2D NumPy array with shape (n_samples, 2), representing the data points.</span></span>
+<span id="cb1-66"><a href="#cb1-66" tabindex="-1"></a><span class="co">    labels (ndarray or list): A 1D array or list of labels corresponding to the data points.</span></span>
+<span id="cb1-67"><a href="#cb1-67" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-69"><a href="#cb1-69" tabindex="-1"></a><span class="co">    None: Displays the scatter plot with labels as colors and a color bar for the label legend.</span></span>
+<span id="cb1-70"><a href="#cb1-70" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-71"><a href="#cb1-71" tabindex="-1"></a>    <span class="co"># Extract the x and y coordinates from the data</span></span>
+<span id="cb1-72"><a href="#cb1-72" tabindex="-1"></a>    tx <span class="op">=</span> data[:, <span class="dv">0</span>]</span>
+<span id="cb1-73"><a href="#cb1-73" tabindex="-1"></a>    ty <span class="op">=</span> data[:, <span class="dv">1</span>]</span>
+<span id="cb1-74"><a href="#cb1-74" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" tabindex="-1"></a>    <span class="co"># Create a figure with a specified size</span></span>
+<span id="cb1-76"><a href="#cb1-76" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">4</span>))</span>
+<span id="cb1-77"><a href="#cb1-77" tabindex="-1"></a>    </span>
+<span id="cb1-78"><a href="#cb1-78" tabindex="-1"></a>    <span class="co"># Scatter plot the data points, coloring them by their labels and using a colormap</span></span>
+<span id="cb1-79"><a href="#cb1-79" tabindex="-1"></a>    plt.scatter(tx, ty, c<span class="op">=</span>labels, cmap<span class="op">=</span><span class="st">"nipy_spectral"</span>, </span>
+<span id="cb1-80"><a href="#cb1-80" tabindex="-1"></a>                edgecolor<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span>labels)</span>
+<span id="cb1-81"><a href="#cb1-81" tabindex="-1"></a>    </span>
+<span id="cb1-82"><a href="#cb1-82" tabindex="-1"></a>    <span class="co"># Add a color bar to show the label legend</span></span>
+<span id="cb1-83"><a href="#cb1-83" tabindex="-1"></a>    plt.colorbar(boundaries<span class="op">=</span>np.arange(<span class="dv">11</span>) <span class="op">-</span> <span class="fl">0.5</span>).set_ticks(np.arange(<span class="dv">10</span>))</span>
+<span id="cb1-84"><a href="#cb1-84" tabindex="-1"></a>    </span>
+<span id="cb1-85"><a href="#cb1-85" tabindex="-1"></a>    <span class="co"># Display the plot</span></span>
+<span id="cb1-86"><a href="#cb1-86" tabindex="-1"></a>    plt.show()</span></code></pre>
 </div>
-<div class="section level1">
-<h1 id="load-in-dataset-as-a-pandas-dataframe-return-x-and-y">load in dataset as a Pandas Dataframe, return X and Y<a class="anchor" aria-label="anchor" href="#load-in-dataset-as-a-pandas-dataframe-return-x-and-y"></a>
-</h1>
-<p>features, labels = datasets.load_digits(return_X_y=True,
-as_frame=True)</p>
-<p>print(features.shape, labels.shape) print(labels) features.head() ~~~
-{: .language-python}</p>
+<p>Next lets load in the digits dataset,</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co"># load in dataset as a Pandas Dataframe, return X and Y</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>features, labels <span class="op">=</span> datasets.load_digits(return_X_y<span class="op">=</span><span class="va">True</span>, as_frame<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="bu">print</span>(features.shape, labels.shape)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="bu">print</span>(labels)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>features.head()</span></code></pre>
+</div>
 <div class="section level2">
 <h2 id="preview-data">Preview data<a class="anchor" aria-label="anchor" href="#preview-data"></a>
 </h2>
@@ -3278,10 +3409,16 @@ as_frame=True)</p>
 vectorized) form by using reshape. The -1 tells NumPy to infer the
 appropriate number of rows automatically. NumPy does this by dividing
 the total number of elements in the original 1D array (image_1D.size) by
-8 (the specified number of columns). ~~~ print(features.iloc[0])
-image_1D = features.iloc[0] image_2D =
-np.array(image_1D).reshape(-1,8)</p>
-<p>plt.imshow(image_2D,cmap=“gray_r”) ~~~ {: .language-python}</p>
+8 (the specified number of columns).</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">print</span>(features.iloc[<span class="dv">0</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>image_1D <span class="op">=</span> features.iloc[<span class="dv">0</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>image_2D <span class="op">=</span> np.array(image_1D).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">8</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>plt.imshow(image_2D,cmap<span class="op">=</span><span class="st">"gray_r"</span>)</span></code></pre>
+</div>
 </div>
 <div class="section level2">
 <h2 id="our-goal-using-dimensionality-reduction-to-help-with-machine-learning">Our goal: using dimensionality-reduction to help with machine
@@ -3310,36 +3447,42 @@ for relations (written “row_column”): 0_4, 1_4, 2_4, and 3_4.</p>
 <div class="section level2">
 <h2 id="solution">Solution<a class="anchor" aria-label="anchor" href="#solution"></a>
 </h2>
-<pre><code>
-print(features.iloc[0])
-image_1D = features.iloc[0]
-image_2D = np.array(image_1D).reshape(-1,8)
-
-plt.imshow(image_2D,cmap="gray_r")
-# these points are the pixels we will investigate
-# pixels 0,1,2,3 of row 4 of the image
-plt.plot([0,1,2,3],[4,4,4,4],"rx")
-plt.show()</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/mnist_pairplot_pixels.png" alt="SKLearn image with highlighted pixels" class="figure mx-auto d-block"><div class="figcaption">SKLearn image with highlighted pixels</div>
-</figure><pre><code>import seaborn as sns
-
-# make a temporary copy of data for plotting here only
-seaborn_data = features
-
-# add labels for pairplot color coding
-seaborn_data["labels"] = labels
-
-# make a short list of N features for plotting N*N figures
-# 4**2 = 16 plots, whereas 64**2 is over 4000!
-feature_subset = []
-for i in range(4):
-    feature_subset.append("pixel_"+str(i)+"_4")
-
-sns.pairplot(seaborn_data, vars=feature_subset, hue="labels",
-             palette=sns.mpl_palette("Spectral", n_colors=10))</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/mnist_pairplot.png" alt="SKLearn image with highlighted pixels" class="figure mx-auto d-block"><div class="figcaption">SKLearn image with highlighted pixels</div>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="bu">print</span>(features.iloc[<span class="dv">0</span>])</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>image_1D <span class="op">=</span> features.iloc[<span class="dv">0</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>image_2D <span class="op">=</span> np.array(image_1D).reshape(<span class="op">-</span><span class="dv">1</span>,<span class="dv">8</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>plt.imshow(image_2D,cmap<span class="op">=</span><span class="st">"gray_r"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co"># these points are the pixels we will investigate</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co"># pixels 0,1,2,3 of row 4 of the image</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>plt.plot([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">4</span>],<span class="st">"rx"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>plt.show()</span></code></pre>
+</div>
+<figure><img src="fig/results/mnist_pairplot_pixels.png" alt="SKLearn image with highlighted pixels" class="figure mx-auto d-block"><div class="figcaption">SKLearn image with highlighted pixels</div>
+</figure><div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co"># make a temporary copy of data for plotting here only</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>seaborn_data <span class="op">=</span> features</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># add labels for pairplot color coding</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>seaborn_data[<span class="st">"labels"</span>] <span class="op">=</span> labels</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># make a short list of N features for plotting N*N figures</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co"># 4**2 = 16 plots, whereas 64**2 is over 4000!</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>feature_subset <span class="op">=</span> []</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>    feature_subset.append(<span class="st">"pixel_"</span><span class="op">+</span><span class="bu">str</span>(i)<span class="op">+</span><span class="st">"_4"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>sns.pairplot(seaborn_data, <span class="bu">vars</span><span class="op">=</span>feature_subset, hue<span class="op">=</span><span class="st">"labels"</span>, </span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>             palette<span class="op">=</span>sns.mpl_palette(<span class="st">"Spectral"</span>, n_colors<span class="op">=</span><span class="dv">10</span>))</span></code></pre>
+</div>
+<figure><img src="fig/results/mnist_pairplot.png" alt="SKLearn image with highlighted pixels" class="figure mx-auto d-block"><div class="figcaption">SKLearn image with highlighted pixels</div>
 </figure><p>As we can see the dataset relations are far more complex than our
 previous examples. The histograms show that some numbers appear in those
 pixel positions more than others, but the
@@ -3375,39 +3518,51 @@ relatively simple way.</p>
 * <a href="https://scikit-learn.org/stable/modules/decomposition.html#pca" class="external-link">https://scikit-learn.org/stable/modules/decomposition.html#pca</a></p>
 <p>Let’s apply PCA to the MNIST dataset and retain the two most-major
 components:</p>
-<pre><code># PCA with 2 components
-from sklearn import decomposition
-pca = decomposition.PCA(n_components=2)
-x_pca = pca.fit_transform(features)
-
-print(x_pca.shape)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># PCA with 2 components</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> decomposition</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>pca <span class="op">=</span> decomposition.PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>x_pca <span class="op">=</span> pca.fit_transform(features)</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="bu">print</span>(x_pca.shape)</span></code></pre>
+</div>
 <p>This returns us an array of 1797x2 where the 2 remaining columns(our
 new “features” or “dimensions”) contain vector representations of the
 first principle components (column 0) and second principle components
 (column 1) for each of the images. We can plot these two new features
 against each other:</p>
-<pre><code><span><span class="co"># We are passing None becuase it is an unlabelled plot</span></span>
-<span><span class="fu">plots_labels</span><span class="op">(</span><span class="va">x_pca</span>, <span class="va">None</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/pca_unlabelled.png" alt="Reduction using PCA" class="figure mx-auto d-block"><div class="figcaption">Reduction using PCA</div>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># We are passing None becuase it is an unlabelled plot</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>plots_labels(x_pca, <span class="va">None</span>)</span></code></pre>
+</div>
+<figure><img src="fig/results/pca_unlabelled.png" alt="Reduction using PCA" class="figure mx-auto d-block"><div class="figcaption">Reduction using PCA</div>
 </figure><p>We now have a 2D representation of our 64D dataset that we can work
 with instead. Let’s try some quick K-means clustering on our 2D
 representation of the data. Because we already have some knowledge about
 our data we can set <code>k=10</code> for the 10 digits present in the
 dataset.</p>
-<pre><code>import sklearn.cluster as skl_cluster
-Kmean = skl_cluster.KMeans(n_clusters=10)
-Kmean.fit(x_pca)
-clusters = Kmean.predict(x_pca)
-plot_clusters(x_pca, clusters, Kmean)</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/pca_clustered.png" alt="Reduction using PCA" class="figure mx-auto d-block"><div class="figcaption">Reduction using PCA</div>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">import</span> sklearn.cluster <span class="im">as</span> skl_cluster</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>Kmean <span class="op">=</span> skl_cluster.KMeans(n_clusters<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>Kmean.fit(x_pca)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>clusters <span class="op">=</span> Kmean.predict(x_pca)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>plot_clusters(x_pca, clusters, Kmean)</span></code></pre>
+</div>
+<figure><img src="fig/results/pca_clustered.png" alt="Reduction using PCA" class="figure mx-auto d-block"><div class="figcaption">Reduction using PCA</div>
 </figure><p>And now we can compare how these clusters look against our actual
 image labels by colour coding our first scatter plot:</p>
-<pre><code><span><span class="fu">plot_clusters_labels</span><span class="op">(</span><span class="va">x_pca</span>, <span class="va">labels</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/pca_labelled.png" alt="Reduction using PCA" class="figure mx-auto d-block"><div class="figcaption">Reduction using PCA</div>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>plot_clusters_labels(x_pca, labels)</span></code></pre>
+</div>
+<figure><img src="fig/results/pca_labelled.png" alt="Reduction using PCA" class="figure mx-auto d-block"><div class="figcaption">Reduction using PCA</div>
 </figure><p>PCA has done a valiant effort to reduce the dimensionality of our
 problem from 64D to 2D while still retaining some of our key structural
 information. We can see that the digits
@@ -3477,29 +3632,35 @@ of manifold learning in action: * <a href="https://thedatafrog.com/en/articles/v
 Lets code and apply t-SNE to the MNIST dataset in the same manner that
 we did for the PCA example, and reduce the data down from 64D to 2D
 again:</p>
-<pre><code># t-SNE embedding
-from sklearn import manifold
-
-# initialising with "pca" explicitly preserves global structure
-tsne = manifold.TSNE(n_components=2, init='pca', random_state = 0)
-x_tsne = tsne.fit_transform(features)
-
-plots_labels(x_tsne, None)</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/tsne_unlabelled.png" alt="Reduction using PCA" class="figure mx-auto d-block"><div class="figcaption">Reduction using PCA</div>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co"># t-SNE embedding</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> manifold</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># initialising with "pca" explicitly preserves global structure</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>tsne <span class="op">=</span> manifold.TSNE(n_components<span class="op">=</span><span class="dv">2</span>, init<span class="op">=</span><span class="st">'pca'</span>, random_state <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>x_tsne <span class="op">=</span> tsne.fit_transform(features)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>plots_labels(x_tsne, <span class="va">None</span>)</span></code></pre>
+</div>
+<figure><img src="fig/results/tsne_unlabelled.png" alt="Reduction using PCA" class="figure mx-auto d-block"><div class="figcaption">Reduction using PCA</div>
 </figure><p>It looks like t-SNE has done a much better job of splitting our data
 up into clusters using only a 2D representation of the data. Once again,
 let’s run a simple k-means clustering on this new 2D representation, and
 compare with the actual color-labelled data:</p>
-<pre><code><span><span class="va">Kmean</span> <span class="op">=</span> <span class="fu">skl_cluster.KMeans</span><span class="op">(</span>n_clusters<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">Kmean.fit</span><span class="op">(</span><span class="va">x_tsne</span><span class="op">)</span></span>
-<span><span class="va">clusters</span> <span class="op">=</span> <span class="fu">Kmean.predict</span><span class="op">(</span><span class="va">x_tsne</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">plot_clusters</span><span class="op">(</span><span class="va">x_tsne</span>, <span class="va">clusters</span>, <span class="va">Kmean</span><span class="op">)</span></span>
-<span><span class="fu">plot_clusters_labels</span><span class="op">(</span><span class="va">x_tsne</span>, <span class="va">labels</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
-<p><img src="fig/tsne_clustered.png" alt="Reduction using PCA" class="figure"><img src="fig/tsne_labelled.png" alt="Reduction using PCA" class="figure"></p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>Kmean <span class="op">=</span> skl_cluster.KMeans(n_clusters<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>Kmean.fit(x_tsne)</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>clusters <span class="op">=</span> Kmean.predict(x_tsne)</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>plot_clusters(x_tsne, clusters, Kmean)</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>plot_clusters_labels(x_tsne, labels)</span></code></pre>
+</div>
+<p><img src="fig/results/tsne_clustered.png" alt="Reduction using PCA" class="figure"><img src="fig/tsne_labelled.png" alt="Reduction using PCA" class="figure"></p>
 <p>It looks like t-SNE has successfully separated out our digits into
 accurate clusters using as little as a 2D representation and a simple
 k-means clustering algorithm. It has worked so well that you can clearly
@@ -3536,29 +3697,35 @@ between the digits?</p>
 <div class="section level2">
 <h2 id="solution-1">Solution<a class="anchor" aria-label="anchor" href="#solution-1"></a>
 </h2>
-<pre><code>from mpl_toolkits.mplot3d import Axes3D
-# PCA
-pca = decomposition.PCA(n_components=3)
-pca.fit(features)
-x_pca = pca.transform(features)
-fig = plt.figure(1, figsize=(4, 4))
-ax = fig.add_subplot(projection='3d')
-ax.scatter(x_pca[:, 0], x_pca[:, 1], x_pca[:, 2], c=labels,
-          cmap=plt.cm.nipy_spectral, s=9, lw=0)
-plt.show()</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/pca_3d.svg" alt="Reduction to 3 components using pca" class="figure mx-auto d-block"><div class="figcaption">Reduction to 3 components using pca</div>
-</figure><pre><code># t-SNE embedding
-tsne = manifold.TSNE(n_components=3, init='pca',
-        random_state = 0)
-x_tsne = tsne.fit_transform(features)
-fig = plt.figure(1, figsize=(4, 4))
-ax = fig.add_subplot(projection='3d')
-ax.scatter(x_tsne[:, 0], x_tsne[:, 1], x_tsne[:, 2], c=labels,
-          cmap=plt.cm.nipy_spectral, s=9, lw=0)
-plt.show()</code></pre>
-<p>{: .language-python}</p>
-<figure><img src="fig/tsne_3d.svg" alt="Reduction to 3 components using tsne" class="figure mx-auto d-block"><div class="figcaption">Reduction to 3 components using tsne</div>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co"># PCA</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>pca <span class="op">=</span> decomposition.PCA(n_components<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>pca.fit(features)</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>x_pca <span class="op">=</span> pca.transform(features)</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>ax.scatter(x_pca[:, <span class="dv">0</span>], x_pca[:, <span class="dv">1</span>], x_pca[:, <span class="dv">2</span>], c<span class="op">=</span>labels,</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>          cmap<span class="op">=</span>plt.cm.nipy_spectral, s<span class="op">=</span><span class="dv">9</span>, lw<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>plt.show()</span></code></pre>
+</div>
+<figure><img src="fig/results/pca_3d.svg" alt="Reduction to 3 components using pca" class="figure mx-auto d-block"><div class="figcaption">Reduction to 3 components using pca</div>
+</figure><div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># t-SNE embedding</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>tsne <span class="op">=</span> manifold.TSNE(n_components<span class="op">=</span><span class="dv">3</span>, init<span class="op">=</span><span class="st">'pca'</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>        random_state <span class="op">=</span> <span class="dv">0</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>x_tsne <span class="op">=</span> tsne.fit_transform(features)</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(<span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>ax.scatter(x_tsne[:, <span class="dv">0</span>], x_tsne[:, <span class="dv">1</span>], x_tsne[:, <span class="dv">2</span>], c<span class="op">=</span>labels,</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>          cmap<span class="op">=</span>plt.cm.nipy_spectral, s<span class="op">=</span><span class="dv">9</span>, lw<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>plt.show()</span></code></pre>
+</div>
+<figure><img src="fig/results/tsne_3d.svg" alt="Reduction to 3 components using tsne" class="figure mx-auto d-block"><div class="figcaption">Reduction to 3 components using tsne</div>
 </figure>
 </div>
 </div>
@@ -3699,23 +3866,26 @@ list.</p>
 <p>We then take the sum of all the inputs multiplied by their weights.
 Finally, if this value is less than the activation threshold, we output
 zero, otherwise we output a one.</p>
-<pre><code>import numpy as np
-def perceptron(inputs, weights, threshold):
-
-    assert len(inputs) == len(weights)
-
-    # multiply the inputs and weights
-    values = np.multiply(inputs,weights)
-
-    # sum the results
-    total = sum(values)
-
-    # decide if we should activate the perceptron
-    if total &lt; threshold:
-        return 0
-    else:
-        return 1</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="kw">def</span> perceptron(inputs, weights, threshold):</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(inputs) <span class="op">==</span> <span class="bu">len</span>(weights)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="co"># multiply the inputs and weights</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    values <span class="op">=</span> np.multiply(inputs,weights)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="co"># sum the results</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">sum</span>(values)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    <span class="co"># decide if we should activate the perceptron</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="cf">if</span> total <span class="op">&lt;</span> threshold:</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="computing-with-a-perceptron">Computing with a perceptron<a class="anchor" aria-label="anchor" href="#computing-with-a-perceptron"></a>
@@ -3800,19 +3970,34 @@ such as computing the logical AND, OR, and NOT functions.</p>
 </tbody>
 </table>
 <p>We can get a single perceptron to compute each of these functions</p>
-<p>OR: ~~~ inputs = [[0.0,0.0],[1.0,0.0],[0.0,1.0],[1.0,1.0]] for input
-in inputs: print(input,perceptron(input, [0.5,0.5], 0.5)) ~~~ {:
-.language-python}</p>
-<p>AND: ~~~ inputs = [[0.0,0.0],[1.0,0.0],[0.0,1.0],[1.0,1.0]] for input
-in inputs: print(input,perceptron(input, [0.5,0.5], 1.0)) ~~~ {:
-.language-python}</p>
+<p>OR:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>inputs <span class="op">=</span> [[<span class="fl">0.0</span>,<span class="fl">0.0</span>],[<span class="fl">1.0</span>,<span class="fl">0.0</span>],[<span class="fl">0.0</span>,<span class="fl">1.0</span>],[<span class="fl">1.0</span>,<span class="fl">1.0</span>]]</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">for</span> <span class="bu">input</span> <span class="kw">in</span> inputs:</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">input</span>,perceptron(<span class="bu">input</span>, [<span class="fl">0.5</span>,<span class="fl">0.5</span>], <span class="fl">0.5</span>))</span></code></pre>
+</div>
+<p>AND:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>inputs <span class="op">=</span> [[<span class="fl">0.0</span>,<span class="fl">0.0</span>],[<span class="fl">1.0</span>,<span class="fl">0.0</span>],[<span class="fl">0.0</span>,<span class="fl">1.0</span>],[<span class="fl">1.0</span>,<span class="fl">1.0</span>]]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="cf">for</span> <span class="bu">input</span> <span class="kw">in</span> inputs:</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">input</span>,perceptron(<span class="bu">input</span>, [<span class="fl">0.5</span>,<span class="fl">0.5</span>], <span class="fl">1.0</span>))</span></code></pre>
+</div>
 <p>NOT:</p>
 <p>The NOT function only has a single input. To make it work in the
 perceptron we need to introduce a bias term which is always the same
 value. In this example it is the second input. It has a weight of 1.0
-while the weight on the real input is -1.0. ~~~ inputs =
-[[0.0,1.0],[1.0,1.0]] for input in inputs: print(input,perceptron(input,
-[-1.0,1.0], 1.0)) ~~~ {: .language-python}</p>
+while the weight on the real input is -1.0.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>inputs <span class="op">=</span> [[<span class="fl">0.0</span>,<span class="fl">1.0</span>],[<span class="fl">1.0</span>,<span class="fl">1.0</span>]]</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="cf">for</span> <span class="bu">input</span> <span class="kw">in</span> inputs:</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">input</span>,perceptron(<span class="bu">input</span>, [<span class="op">-</span><span class="fl">1.0</span>,<span class="fl">1.0</span>], <span class="fl">1.0</span>))</span></code></pre>
+</div>
 <p>A perceptron can be trained to compute any function which has linear
 separability. A simple training algorithm called the perceptron learning
 algorithm can be used to do this and Scikit-Learn has its own
@@ -3912,9 +4097,12 @@ oversimplification!).</p>
 <p>We can import this dataset from <code>sklearn.datasets</code> then
 load it into memory by calling the <code>fetch_openml</code>
 function.</p>
-<pre><code>import sklearn.datasets as skl_data
-data, labels = skl_data.fetch_openml('mnist_784', version=1, return_X_y=True)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_data</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>data, labels <span class="op">=</span> skl_data.fetch_openml(<span class="st">'mnist_784'</span>, version<span class="op">=</span><span class="dv">1</span>, return_X_y<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+</div>
 <p>This creates two arrays of data, one called <code>data</code> which
 contains the image data and the other <code>labels</code> that contains
 the labels for those images which will tell us which digit is in the
@@ -3924,8 +4112,11 @@ labels <code>y</code>.</p>
 between 0 and 1.0 we need to normalise our data to this range. Python
 has a shortcut which lets us divide the entire data array by 255 and
 store the result, we can simply do:</p>
-<pre><code><span><span class="va">data</span> <span class="op">=</span> <span class="va">data</span> <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>data <span class="op">=</span> data <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
+</div>
 <p>This is instead of writing a loop ourselves to divide every pixel by
 255. Although the final result is the same and will take about the same
 amount of computation (possibly a little less, it might do some clever
@@ -3956,9 +4147,12 @@ of iterations, not epochs. Since MLPClassifier uses stochastic gradient
 descent (or its variants), each iteration processes a small random
 subset of the data (a batch), and the full dataset may not be seen in a
 single iteration.</p>
-<pre><code>import sklearn.neural_network as skl_nn
-mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, verbose=1, random_state=1)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> sklearn.neural_network <span class="im">as</span> skl_nn</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>mlp <span class="op">=</span> skl_nn.MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">50</span>,), max_iter<span class="op">=</span><span class="dv">50</span>, verbose<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
+</div>
 <p>We now have a neural network but we have not trained it yet. Before
 training, we will split our dataset into two parts: a training set which
 we will use to train the classifier and a test set which we will use to
@@ -3969,53 +4163,67 @@ data.</p>
 <p>Typically, the majority of the data will be used as training data
 (70-90%), to help avoid overfitting. Let us see how big our dataset is
 to decide how many samples we want to train with.</p>
-<pre><code><span><span class="va">data.shape</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>data.shape</span></code></pre>
+</div>
 <p>This tells us we have 70,000 rows in the dataset.</p>
-<pre><code>&lt;bound method NDFrame.describe of        pixel1  pixel2  pixel3  pixel4  pixel5  pixel6  pixel7  pixel8  pixel9  pixel10  ...  pixel775  pixel776  pixel777  pixel778  pixel779  pixel780  pixel781  pixel782  pixel783  pixel784
-0         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-1         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-2         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-3         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-4         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-...       ...     ...     ...     ...     ...     ...     ...     ...     ...      ...  ...       ...       ...       ...       ...       ...       ...       ...       ...       ...       ...
-69995     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69996     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69997     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69998     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69999     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-
-[70000 rows x 784 columns]&gt;</code></pre>
-<p>{: .output}</p>
-<p>Let us take 90% of the data for training and 10% for testing, so we
-will use the first 63,000 samples in the dataset as the training data
-and the last 7,000 as the test data.</p>
-<pre><code>from sklearn.model_selection import train_test_split
-
-# Assuming `data` is your feature matrix and `labels` is your target vector
-X_train, X_test, y_train, y_test = train_test_split(
-    data.values,        # Features
-    labels.values,      # Labels
-    test_size=0.1,      # Reserve 10% of data for testing
-    random_state=42     # For reproducibility
-)
-X_train.shape</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="op">&lt;</span>bound method NDFrame.describe of        pixel1  pixel2  pixel3  pixel4  pixel5  pixel6  pixel7  pixel8  pixel9  pixel10  ...  pixel775  pixel776  pixel777  pixel778  pixel779  pixel780  pixel781  pixel782  pixel783  pixel784</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="dv">0</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="dv">1</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="dv">2</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="dv">3</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="dv">4</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>...       ...     ...     ...     ...     ...     ...     ...     ...     ...      ...  ...       ...       ...       ...       ...       ...       ...       ...       ...       ...       ...</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="dv">69995</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="dv">69996</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="dv">69997</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="dv">69998</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="dv">69999</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>[<span class="dv">70000</span> rows x <span class="dv">784</span> columns]<span class="op">&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>```python</span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>{: .output}</span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>Let us take <span class="dv">90</span><span class="op">%</span> of the data <span class="cf">for</span> training <span class="kw">and</span> <span class="dv">10</span><span class="op">%</span> <span class="cf">for</span> testing, so we will use the first <span class="dv">63</span>,<span class="dv">000</span> samples <span class="kw">in</span> the dataset <span class="im">as</span> the training data <span class="kw">and</span> the last <span class="dv">7</span>,<span class="dv">000</span> <span class="im">as</span> the test data. </span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>```python</span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co"># Assuming `data` is your feature matrix and `labels` is your target vector</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>    data.values,        <span class="co"># Features</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a>    labels.values,      <span class="co"># Labels</span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.1</span>,      <span class="co"># Reserve 10% of data for testing</span></span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>     <span class="co"># For reproducibility</span></span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a>)</span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a>X_train.shape</span></code></pre>
+</div>
 <p>Now lets train the network. This line will take about one minute to
 run. We do this by calling the <code>fit</code> function inside the
 <code>mlp</code> class instance. This needs two arguments: the data
 itself, and the labels showing what class each item should be classified
 to.</p>
-<pre><code><span><span class="fu">mlp.fit</span><span class="op">(</span><span class="va">X_train</span>, <span class="va">y_train</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>mlp.fit(X_train, y_train)</span></code></pre>
+</div>
 <p>Finally, we will score the accuracy of our network against both the
 original training data and the test data. If the training had converged
 to the point where each iteration of training was not improving the
 accuracy, then the accuracy of the training data should be 1.0
 (100%).</p>
-<pre><code><span><span class="fu">print</span><span class="op">(</span><span class="st">"Training set score"</span>, <span class="fu">mlp.score</span><span class="op">(</span><span class="va">X_train</span>, <span class="va">y_train</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">print</span><span class="op">(</span><span class="st">"Testing set score"</span>, <span class="fu">mlp.score</span><span class="op">(</span><span class="va">X_test</span>, <span class="va">y_test</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training set score"</span>, mlp.score(X_train, y_train))</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(X_test, y_test))</span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="prediction-using-a-multi-layer-perceptron">Prediction using a multi-layer perceptron<a class="anchor" aria-label="anchor" href="#prediction-using-a-multi-layer-perceptron"></a>
@@ -4039,14 +4247,20 @@ multiple inputs), the first element of this will be the predicted digit.
 You may get a warning stating “X does not have valid feature names”,
 this is because we didn’t encode feature names into our X (digit images)
 data.</p>
-<pre><code>test_digit = X_test[0].reshape(1,784) # current shape is (784,)
-test_digit_prediction = mlp.predict(test_digit)[0]
-print("Predicted value",test_digit_prediction)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>test_digit <span class="op">=</span> X_test[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">784</span>) <span class="co"># current shape is (784,)</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>test_digit_prediction <span class="op">=</span> mlp.predict(test_digit)[<span class="dv">0</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predicted value"</span>,test_digit_prediction)</span></code></pre>
+</div>
 <p>We can now verify if the prediction is correct by looking at the
 corresponding item in the <code>labels_test</code> array.</p>
-<pre><code><span><span class="fu">print</span><span class="op">(</span><span class="st">"Actual value"</span>,<span class="va">y_test</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Actual value"</span>,y_test[<span class="dv">0</span>])</span></code></pre>
+</div>
 <p>This should be the same value which is being predicted.</p>
 <div id="changing-the-learning-parameters" class="callout discussion">
 <div class="callout-square">
@@ -4097,11 +4311,18 @@ function.</p>
 <p>Did it correctly classify your hand(mouse) writing? Try a few images.
 If you have time try drawing images on a touch screen or taking a photo
 of something you have really written by hand. Remember that you will
-have to resize it to be 28x28 pixels. ~~~ import cv2 import
-matplotlib.pyplot as plt digit = cv2.imread(“digit.png”) digit_gray =
-cv2.cvtColor(digit, cv2.COLOR_BGR2GRAY) digit_norm = digit_gray/255.0
-cv2.imshow(“Normalised Digit”,digit_norm) print(“Your digit
-is”,mlp.predict(digit_norm.reshape(1,784))) ~~~ {: .language-python}</p>
+have to resize it to be 28x28 pixels.</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>digit <span class="op">=</span> cv2.imread(<span class="st">"digit.png"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>digit_gray <span class="op">=</span> cv2.cvtColor(digit, cv2.COLOR_BGR2GRAY)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>digit_norm <span class="op">=</span> digit_gray<span class="op">/</span><span class="fl">255.0</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>cv2.imshow(<span class="st">"Normalised Digit"</span>,digit_norm)</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Your digit is"</span>,mlp.predict(digit_norm.reshape(<span class="dv">1</span>,<span class="dv">784</span>)))</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -4127,18 +4348,25 @@ and the classifications. We already have the real data in the
 labels_test array, but we need to build it for the classifications by
 classifying each image (in the same order as the real data) and storing
 the result in another array.</p>
-<pre><code><span><span class="co"># extract all test set predictions</span></span>
-<span><span class="va">y_test_pred</span> <span class="op">=</span> <span class="fu">mlp.predict</span><span class="op">(</span><span class="va">X_test</span><span class="op">)</span></span>
-<span><span class="va">y_test_pred</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># extract all test set predictions</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>y_test_pred <span class="op">=</span> mlp.predict(X_test)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>y_test_pred</span></code></pre>
+</div>
 <p>The <code>ConfusionMatrixDisplay</code> class in the
 <code>sklearn.metrics</code> package can create a graphical
 representation of a confusion matrix with colour coding to highlight how
 many items are in each cell. This colour coding can be useful when
-working with very large numbers of classes. ~~~ import numpy as np from
-sklearn.metrics import ConfusionMatrixDisplay
-ConfusionMatrixDisplay.from_predictions(y_test,y_test_pred) ~~~ {:
-.language-python}</p>
+working with very large numbers of classes.</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test,y_test_pred)</span></code></pre>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -4167,20 +4395,29 @@ entire dataset.</p>
 doing k-fold cross validation in Scikit-Learn. It can automatically
 partition our data for cross validation.</p>
 <p>Import this and call it <code>skl_msel</code></p>
-<pre><code>import sklearn.model_selection as skl_msel</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection <span class="im">as</span> skl_msel</span></code></pre>
+</div>
 <p>Now we can choose how many ways we would like to split our data
 (three or four are common choices).</p>
-<pre><code><span><span class="va">kfold</span> <span class="op">=</span> <span class="fu">skl_msel.KFold</span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>kfold <span class="op">=</span> skl_msel.KFold(<span class="dv">4</span>)</span></code></pre>
+</div>
 <p>Now we can loop through our data and test on each combination. The
 <code>kfold.split</code> function returns two variables and we will have
 our for loop work through both of them. The train variable will contain
 a list of which items (by index number) we are currently using to train
 and the test one will contain the list of which items we are going to
 test on.</p>
-<pre><code>for (train, test) in kfold.split(data):</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="cf">for</span> (train, test) <span class="kw">in</span> kfold.split(data):</span></code></pre>
+</div>
 <p>Now inside the loop, we can select the data with
 <code>data_train = data.iloc[train]</code> and
 <code>labels_train = labels.iloc[train]</code>. In some versions of
@@ -4190,45 +4427,54 @@ Python/Pandas/Scikit-Learn, you might be able to use
 shorthand which will use the list of indices from <code>train</code> to
 select which items from <code>data</code> and <code>labels</code> we
 use. We can repeat this process with the test set.</p>
-<pre><code><span>    <span class="va">data_train</span> <span class="op">=</span> <span class="va">data.iloc</span><span class="op">[</span><span class="va">train</span><span class="op">]</span></span>
-<span>    <span class="va">labels_train</span> <span class="op">=</span> <span class="va">labels.iloc</span><span class="op">[</span><span class="va">train</span><span class="op">]</span></span>
-<span></span>
-<span>    <span class="va">data_test</span> <span class="op">=</span> <span class="va">data.iloc</span><span class="op">[</span><span class="va">test</span><span class="op">]</span></span>
-<span>    <span class="va">labels_test</span> <span class="op">=</span> <span class="va">labels.iloc</span><span class="op">[</span><span class="va">test</span><span class="op">]</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>    data_train <span class="op">=</span> data.iloc[train]</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    labels_train <span class="op">=</span> labels.iloc[train]</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>    data_test <span class="op">=</span> data.iloc[test]</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>    labels_test <span class="op">=</span> labels.iloc[test]</span></code></pre>
+</div>
 <p>Finally, we need to train the classifier with the selected training
 data and then score it against the test data. The scores for each set of
 test data should be similar.</p>
-<pre><code><span>    <span class="fu">mlp.fit</span><span class="op">(</span><span class="va">data_train</span>,<span class="va">labels_train</span><span class="op">)</span></span>
-<span>    <span class="fu">print</span><span class="op">(</span><span class="st">"Testing set score"</span>, <span class="fu">mlp.score</span><span class="op">(</span><span class="va">data_test</span>, <span class="va">labels_test</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>    mlp.fit(data_train,labels_train)</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(data_test, labels_test))</span></code></pre>
+</div>
 <p>Once we have established that the cross validation was ok, we can go
 ahead and train using the entire dataset by doing
 <code>mlp.fit(data,labels)</code>.</p>
 <p>Here is the entire example program:</p>
-<pre><code>import matplotlib.pyplot as plt
-import sklearn.datasets as skl_data
-import sklearn.neural_network as skl_nn
-import sklearn.model_selection as skl_msel
-
-data, labels = skl_data.fetch_openml('mnist_784', version=1, return_X_y=True)
-data = data / 255.0
-
-mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, random_state=1)
-
-kfold = skl_msel.KFold(4)
-
-for (train, test) in kfold.split(data):
-    data_train = data.iloc[train]
-    labels_train = labels.iloc[train]
-
-    data_test = data.iloc[test]
-    labels_test = labels.iloc[test]
-    mlp.fit(data_train,labels_train)
-    print("Training set score", mlp.score(data_train, labels_train))
-    print("Testing set score", mlp.score(data_test, labels_test))
-mlp.fit(data,labels)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_data</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="im">import</span> sklearn.neural_network <span class="im">as</span> skl_nn</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection <span class="im">as</span> skl_msel</span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>data, labels <span class="op">=</span> skl_data.fetch_openml(<span class="st">'mnist_784'</span>, version<span class="op">=</span><span class="dv">1</span>, return_X_y<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>data <span class="op">=</span> data <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>mlp <span class="op">=</span> skl_nn.MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">50</span>,), max_iter<span class="op">=</span><span class="dv">50</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a>kfold <span class="op">=</span> skl_msel.KFold(<span class="dv">4</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="cf">for</span> (train, test) <span class="kw">in</span> kfold.split(data):</span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a>    data_train <span class="op">=</span> data.iloc[train]</span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a>    labels_train <span class="op">=</span> labels.iloc[train]</span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a>    data_test <span class="op">=</span> data.iloc[test]</span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a>    labels_test <span class="op">=</span> labels.iloc[test]</span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a>    mlp.fit(data_train,labels_train)</span>
+<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Training set score"</span>, mlp.score(data_train, labels_train))</span>
+<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(data_test, labels_test))</span>
+<span id="cb22-22"><a href="#cb22-22" tabindex="-1"></a>mlp.fit(data,labels)</span></code></pre>
+</div>
 </div>
 </div>
 <div class="section level2">

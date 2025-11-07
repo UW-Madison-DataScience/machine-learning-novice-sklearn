@@ -425,23 +425,26 @@ list.</p>
 <p>We then take the sum of all the inputs multiplied by their weights.
 Finally, if this value is less than the activation threshold, we output
 zero, otherwise we output a one.</p>
-<pre><code>import numpy as np
-def perceptron(inputs, weights, threshold):
-
-    assert len(inputs) == len(weights)
-
-    # multiply the inputs and weights
-    values = np.multiply(inputs,weights)
-
-    # sum the results
-    total = sum(values)
-
-    # decide if we should activate the perceptron
-    if total &lt; threshold:
-        return 0
-    else:
-        return 1</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="kw">def</span> perceptron(inputs, weights, threshold):</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">len</span>(inputs) <span class="op">==</span> <span class="bu">len</span>(weights)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>    <span class="co"># multiply the inputs and weights</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    values <span class="op">=</span> np.multiply(inputs,weights)</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="co"># sum the results</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">sum</span>(values)</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    <span class="co"># decide if we should activate the perceptron</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="cf">if</span> total <span class="op">&lt;</span> threshold:</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="computing-with-a-perceptron">Computing with a perceptron<a class="anchor" aria-label="anchor" href="#computing-with-a-perceptron"></a></h3>
@@ -487,19 +490,34 @@ such as computing the logical AND, OR, and NOT functions.</p>
 </tr><tr class="even"><td>1</td>
 <td>0</td>
 </tr></tbody></table><p>We can get a single perceptron to compute each of these functions</p>
-<p>OR: ~~~ inputs = [[0.0,0.0],[1.0,0.0],[0.0,1.0],[1.0,1.0]] for input
-in inputs: print(input,perceptron(input, [0.5,0.5], 0.5)) ~~~ {:
-.language-python}</p>
-<p>AND: ~~~ inputs = [[0.0,0.0],[1.0,0.0],[0.0,1.0],[1.0,1.0]] for input
-in inputs: print(input,perceptron(input, [0.5,0.5], 1.0)) ~~~ {:
-.language-python}</p>
+<p>OR:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>inputs <span class="op">=</span> [[<span class="fl">0.0</span>,<span class="fl">0.0</span>],[<span class="fl">1.0</span>,<span class="fl">0.0</span>],[<span class="fl">0.0</span>,<span class="fl">1.0</span>],[<span class="fl">1.0</span>,<span class="fl">1.0</span>]]</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">for</span> <span class="bu">input</span> <span class="kw">in</span> inputs:</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">input</span>,perceptron(<span class="bu">input</span>, [<span class="fl">0.5</span>,<span class="fl">0.5</span>], <span class="fl">0.5</span>))</span></code></pre>
+</div>
+<p>AND:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>inputs <span class="op">=</span> [[<span class="fl">0.0</span>,<span class="fl">0.0</span>],[<span class="fl">1.0</span>,<span class="fl">0.0</span>],[<span class="fl">0.0</span>,<span class="fl">1.0</span>],[<span class="fl">1.0</span>,<span class="fl">1.0</span>]]</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="cf">for</span> <span class="bu">input</span> <span class="kw">in</span> inputs:</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">input</span>,perceptron(<span class="bu">input</span>, [<span class="fl">0.5</span>,<span class="fl">0.5</span>], <span class="fl">1.0</span>))</span></code></pre>
+</div>
 <p>NOT:</p>
 <p>The NOT function only has a single input. To make it work in the
 perceptron we need to introduce a bias term which is always the same
 value. In this example it is the second input. It has a weight of 1.0
-while the weight on the real input is -1.0. ~~~ inputs =
-[[0.0,1.0],[1.0,1.0]] for input in inputs: print(input,perceptron(input,
-[-1.0,1.0], 1.0)) ~~~ {: .language-python}</p>
+while the weight on the real input is -1.0.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>inputs <span class="op">=</span> [[<span class="fl">0.0</span>,<span class="fl">1.0</span>],[<span class="fl">1.0</span>,<span class="fl">1.0</span>]]</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="cf">for</span> <span class="bu">input</span> <span class="kw">in</span> inputs:</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">input</span>,perceptron(<span class="bu">input</span>, [<span class="op">-</span><span class="fl">1.0</span>,<span class="fl">1.0</span>], <span class="fl">1.0</span>))</span></code></pre>
+</div>
 <p>A perceptron can be trained to compute any function which has linear
 separability. A simple training algorithm called the perceptron learning
 algorithm can be used to do this and Scikit-Learn has its own
@@ -581,9 +599,12 @@ oversimplification!).</p>
 <p>We can import this dataset from <code>sklearn.datasets</code> then
 load it into memory by calling the <code>fetch_openml</code>
 function.</p>
-<pre><code>import sklearn.datasets as skl_data
-data, labels = skl_data.fetch_openml('mnist_784', version=1, return_X_y=True)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_data</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>data, labels <span class="op">=</span> skl_data.fetch_openml(<span class="st">'mnist_784'</span>, version<span class="op">=</span><span class="dv">1</span>, return_X_y<span class="op">=</span><span class="va">True</span>)</span></code></pre>
+</div>
 <p>This creates two arrays of data, one called <code>data</code> which
 contains the image data and the other <code>labels</code> that contains
 the labels for those images which will tell us which digit is in the
@@ -593,8 +614,11 @@ labels <code>y</code>.</p>
 between 0 and 1.0 we need to normalise our data to this range. Python
 has a shortcut which lets us divide the entire data array by 255 and
 store the result, we can simply do:</p>
-<pre><code><span><span class="va">data</span> <span class="op">=</span> <span class="va">data</span> <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>data <span class="op">=</span> data <span class="op">/</span> <span class="fl">255.0</span></span></code></pre>
+</div>
 <p>This is instead of writing a loop ourselves to divide every pixel by
 255. Although the final result is the same and will take about the same
 amount of computation (possibly a little less, it might do some clever
@@ -625,9 +649,12 @@ of iterations, not epochs. Since MLPClassifier uses stochastic gradient
 descent (or its variants), each iteration processes a small random
 subset of the data (a batch), and the full dataset may not be seen in a
 single iteration.</p>
-<pre><code>import sklearn.neural_network as skl_nn
-mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, verbose=1, random_state=1)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="im">import</span> sklearn.neural_network <span class="im">as</span> skl_nn</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>mlp <span class="op">=</span> skl_nn.MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">50</span>,), max_iter<span class="op">=</span><span class="dv">50</span>, verbose<span class="op">=</span><span class="dv">1</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span></code></pre>
+</div>
 <p>We now have a neural network but we have not trained it yet. Before
 training, we will split our dataset into two parts: a training set which
 we will use to train the classifier and a test set which we will use to
@@ -638,53 +665,67 @@ data.</p>
 <p>Typically, the majority of the data will be used as training data
 (70-90%), to help avoid overfitting. Let us see how big our dataset is
 to decide how many samples we want to train with.</p>
-<pre><code><span><span class="va">data.shape</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>data.shape</span></code></pre>
+</div>
 <p>This tells us we have 70,000 rows in the dataset.</p>
-<pre><code>&lt;bound method NDFrame.describe of        pixel1  pixel2  pixel3  pixel4  pixel5  pixel6  pixel7  pixel8  pixel9  pixel10  ...  pixel775  pixel776  pixel777  pixel778  pixel779  pixel780  pixel781  pixel782  pixel783  pixel784
-0         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-1         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-2         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-3         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-4         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-...       ...     ...     ...     ...     ...     ...     ...     ...     ...      ...  ...       ...       ...       ...       ...       ...       ...       ...       ...       ...       ...
-69995     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69996     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69997     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69998     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69999     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-
-[70000 rows x 784 columns]&gt;</code></pre>
-<p>{: .output}</p>
-<p>Let us take 90% of the data for training and 10% for testing, so we
-will use the first 63,000 samples in the dataset as the training data
-and the last 7,000 as the test data.</p>
-<pre><code>from sklearn.model_selection import train_test_split
-
-# Assuming `data` is your feature matrix and `labels` is your target vector
-X_train, X_test, y_train, y_test = train_test_split(
-    data.values,        # Features
-    labels.values,      # Labels
-    test_size=0.1,      # Reserve 10% of data for testing
-    random_state=42     # For reproducibility
-)
-X_train.shape</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="op">&lt;</span>bound method NDFrame.describe of        pixel1  pixel2  pixel3  pixel4  pixel5  pixel6  pixel7  pixel8  pixel9  pixel10  ...  pixel775  pixel776  pixel777  pixel778  pixel779  pixel780  pixel781  pixel782  pixel783  pixel784</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="dv">0</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="dv">1</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="dv">2</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="dv">3</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="dv">4</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>...       ...     ...     ...     ...     ...     ...     ...     ...     ...      ...  ...       ...       ...       ...       ...       ...       ...       ...       ...       ...       ...</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="dv">69995</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="dv">69996</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="dv">69997</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="dv">69998</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="dv">69999</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>[<span class="dv">70000</span> rows x <span class="dv">784</span> columns]<span class="op">&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>```python</span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>{: .output}</span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>Let us take <span class="dv">90</span><span class="op">%</span> of the data <span class="cf">for</span> training <span class="kw">and</span> <span class="dv">10</span><span class="op">%</span> <span class="cf">for</span> testing, so we will use the first <span class="dv">63</span>,<span class="dv">000</span> samples <span class="kw">in</span> the dataset <span class="im">as</span> the training data <span class="kw">and</span> the last <span class="dv">7</span>,<span class="dv">000</span> <span class="im">as</span> the test data. </span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>```python</span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co"># Assuming `data` is your feature matrix and `labels` is your target vector</span></span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>    data.values,        <span class="co"># Features</span></span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a>    labels.values,      <span class="co"># Labels</span></span>
+<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.1</span>,      <span class="co"># Reserve 10% of data for testing</span></span>
+<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>     <span class="co"># For reproducibility</span></span>
+<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a>)</span>
+<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a>X_train.shape</span></code></pre>
+</div>
 <p>Now lets train the network. This line will take about one minute to
 run. We do this by calling the <code>fit</code> function inside the
 <code>mlp</code> class instance. This needs two arguments: the data
 itself, and the labels showing what class each item should be classified
 to.</p>
-<pre><code><span><span class="fu">mlp.fit</span><span class="op">(</span><span class="va">X_train</span>, <span class="va">y_train</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>mlp.fit(X_train, y_train)</span></code></pre>
+</div>
 <p>Finally, we will score the accuracy of our network against both the
 original training data and the test data. If the training had converged
 to the point where each iteration of training was not improving the
 accuracy, then the accuracy of the training data should be 1.0
 (100%).</p>
-<pre><code><span><span class="fu">print</span><span class="op">(</span><span class="st">"Training set score"</span>, <span class="fu">mlp.score</span><span class="op">(</span><span class="va">X_train</span>, <span class="va">y_train</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">print</span><span class="op">(</span><span class="st">"Testing set score"</span>, <span class="fu">mlp.score</span><span class="op">(</span><span class="va">X_test</span>, <span class="va">y_test</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training set score"</span>, mlp.score(X_train, y_train))</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(X_test, y_test))</span></code></pre>
+</div>
 </div>
 <div class="section level3">
 <h3 id="prediction-using-a-multi-layer-perceptron">Prediction using a multi-layer perceptron<a class="anchor" aria-label="anchor" href="#prediction-using-a-multi-layer-perceptron"></a></h3>
@@ -707,14 +748,20 @@ multiple inputs), the first element of this will be the predicted digit.
 You may get a warning stating “X does not have valid feature names”,
 this is because we didn’t encode feature names into our X (digit images)
 data.</p>
-<pre><code>test_digit = X_test[0].reshape(1,784) # current shape is (784,)
-test_digit_prediction = mlp.predict(test_digit)[0]
-print("Predicted value",test_digit_prediction)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>test_digit <span class="op">=</span> X_test[<span class="dv">0</span>].reshape(<span class="dv">1</span>,<span class="dv">784</span>) <span class="co"># current shape is (784,)</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>test_digit_prediction <span class="op">=</span> mlp.predict(test_digit)[<span class="dv">0</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predicted value"</span>,test_digit_prediction)</span></code></pre>
+</div>
 <p>We can now verify if the prediction is correct by looking at the
 corresponding item in the <code>labels_test</code> array.</p>
-<pre><code><span><span class="fu">print</span><span class="op">(</span><span class="st">"Actual value"</span>,<span class="va">y_test</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Actual value"</span>,y_test[<span class="dv">0</span>])</span></code></pre>
+</div>
 <p>This should be the same value which is being predicted.</p>
 <div id="changing-the-learning-parameters" class="callout discussion">
 <div class="callout-square">
@@ -765,11 +812,18 @@ function.</p>
 <p>Did it correctly classify your hand(mouse) writing? Try a few images.
 If you have time try drawing images on a touch screen or taking a photo
 of something you have really written by hand. Remember that you will
-have to resize it to be 28x28 pixels. ~~~ import cv2 import
-matplotlib.pyplot as plt digit = cv2.imread(“digit.png”) digit_gray =
-cv2.cvtColor(digit, cv2.COLOR_BGR2GRAY) digit_norm = digit_gray/255.0
-cv2.imshow(“Normalised Digit”,digit_norm) print(“Your digit
-is”,mlp.predict(digit_norm.reshape(1,784))) ~~~ {: .language-python}</p>
+have to resize it to be 28x28 pixels.</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>digit <span class="op">=</span> cv2.imread(<span class="st">"digit.png"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>digit_gray <span class="op">=</span> cv2.cvtColor(digit, cv2.COLOR_BGR2GRAY)</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>digit_norm <span class="op">=</span> digit_gray<span class="op">/</span><span class="fl">255.0</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>cv2.imshow(<span class="st">"Normalised Digit"</span>,digit_norm)</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Your digit is"</span>,mlp.predict(digit_norm.reshape(<span class="dv">1</span>,<span class="dv">784</span>)))</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -794,18 +848,25 @@ and the classifications. We already have the real data in the
 labels_test array, but we need to build it for the classifications by
 classifying each image (in the same order as the real data) and storing
 the result in another array.</p>
-<pre><code><span><span class="co"># extract all test set predictions</span></span>
-<span><span class="va">y_test_pred</span> <span class="op">=</span> <span class="fu">mlp.predict</span><span class="op">(</span><span class="va">X_test</span><span class="op">)</span></span>
-<span><span class="va">y_test_pred</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># extract all test set predictions</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>y_test_pred <span class="op">=</span> mlp.predict(X_test)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>y_test_pred</span></code></pre>
+</div>
 <p>The <code>ConfusionMatrixDisplay</code> class in the
 <code>sklearn.metrics</code> package can create a graphical
 representation of a confusion matrix with colour coding to highlight how
 many items are in each cell. This colour coding can be useful when
-working with very large numbers of classes. ~~~ import numpy as np from
-sklearn.metrics import ConfusionMatrixDisplay
-ConfusionMatrixDisplay.from_predictions(y_test,y_test_pred) ~~~ {:
-.language-python}</p>
+working with very large numbers of classes.</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test,y_test_pred)</span></code></pre>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -832,20 +893,29 @@ entire dataset.</p>
 doing k-fold cross validation in Scikit-Learn. It can automatically
 partition our data for cross validation.</p>
 <p>Import this and call it <code>skl_msel</code></p>
-<pre><code>import sklearn.model_selection as skl_msel</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection <span class="im">as</span> skl_msel</span></code></pre>
+</div>
 <p>Now we can choose how many ways we would like to split our data
 (three or four are common choices).</p>
-<pre><code><span><span class="va">kfold</span> <span class="op">=</span> <span class="fu">skl_msel.KFold</span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>kfold <span class="op">=</span> skl_msel.KFold(<span class="dv">4</span>)</span></code></pre>
+</div>
 <p>Now we can loop through our data and test on each combination. The
 <code>kfold.split</code> function returns two variables and we will have
 our for loop work through both of them. The train variable will contain
 a list of which items (by index number) we are currently using to train
 and the test one will contain the list of which items we are going to
 test on.</p>
-<pre><code>for (train, test) in kfold.split(data):</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="cf">for</span> (train, test) <span class="kw">in</span> kfold.split(data):</span></code></pre>
+</div>
 <p>Now inside the loop, we can select the data with
 <code>data_train = data.iloc[train]</code> and
 <code>labels_train = labels.iloc[train]</code>. In some versions of
@@ -855,45 +925,54 @@ Python/Pandas/Scikit-Learn, you might be able to use
 shorthand which will use the list of indices from <code>train</code> to
 select which items from <code>data</code> and <code>labels</code> we
 use. We can repeat this process with the test set.</p>
-<pre><code><span>    <span class="va">data_train</span> <span class="op">=</span> <span class="va">data.iloc</span><span class="op">[</span><span class="va">train</span><span class="op">]</span></span>
-<span>    <span class="va">labels_train</span> <span class="op">=</span> <span class="va">labels.iloc</span><span class="op">[</span><span class="va">train</span><span class="op">]</span></span>
-<span></span>
-<span>    <span class="va">data_test</span> <span class="op">=</span> <span class="va">data.iloc</span><span class="op">[</span><span class="va">test</span><span class="op">]</span></span>
-<span>    <span class="va">labels_test</span> <span class="op">=</span> <span class="va">labels.iloc</span><span class="op">[</span><span class="va">test</span><span class="op">]</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb20">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>    data_train <span class="op">=</span> data.iloc[train]</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    labels_train <span class="op">=</span> labels.iloc[train]</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>    data_test <span class="op">=</span> data.iloc[test]</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>    labels_test <span class="op">=</span> labels.iloc[test]</span></code></pre>
+</div>
 <p>Finally, we need to train the classifier with the selected training
 data and then score it against the test data. The scores for each set of
 test data should be similar.</p>
-<pre><code><span>    <span class="fu">mlp.fit</span><span class="op">(</span><span class="va">data_train</span>,<span class="va">labels_train</span><span class="op">)</span></span>
-<span>    <span class="fu">print</span><span class="op">(</span><span class="st">"Testing set score"</span>, <span class="fu">mlp.score</span><span class="op">(</span><span class="va">data_test</span>, <span class="va">labels_test</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>    mlp.fit(data_train,labels_train)</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(data_test, labels_test))</span></code></pre>
+</div>
 <p>Once we have established that the cross validation was ok, we can go
 ahead and train using the entire dataset by doing
 <code>mlp.fit(data,labels)</code>.</p>
 <p>Here is the entire example program:</p>
-<pre><code>import matplotlib.pyplot as plt
-import sklearn.datasets as skl_data
-import sklearn.neural_network as skl_nn
-import sklearn.model_selection as skl_msel
-
-data, labels = skl_data.fetch_openml('mnist_784', version=1, return_X_y=True)
-data = data / 255.0
-
-mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, random_state=1)
-
-kfold = skl_msel.KFold(4)
-
-for (train, test) in kfold.split(data):
-    data_train = data.iloc[train]
-    labels_train = labels.iloc[train]
-
-    data_test = data.iloc[test]
-    labels_test = labels.iloc[test]
-    mlp.fit(data_train,labels_train)
-    print("Training set score", mlp.score(data_train, labels_train))
-    print("Testing set score", mlp.score(data_test, labels_test))
-mlp.fit(data,labels)</code></pre>
-<p>{: .language-python}</p>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_data</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="im">import</span> sklearn.neural_network <span class="im">as</span> skl_nn</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection <span class="im">as</span> skl_msel</span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>data, labels <span class="op">=</span> skl_data.fetch_openml(<span class="st">'mnist_784'</span>, version<span class="op">=</span><span class="dv">1</span>, return_X_y<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>data <span class="op">=</span> data <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>mlp <span class="op">=</span> skl_nn.MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">50</span>,), max_iter<span class="op">=</span><span class="dv">50</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a>kfold <span class="op">=</span> skl_msel.KFold(<span class="dv">4</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="cf">for</span> (train, test) <span class="kw">in</span> kfold.split(data):</span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a>    data_train <span class="op">=</span> data.iloc[train]</span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a>    labels_train <span class="op">=</span> labels.iloc[train]</span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a>    data_test <span class="op">=</span> data.iloc[test]</span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a>    labels_test <span class="op">=</span> labels.iloc[test]</span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a>    mlp.fit(data_train,labels_train)</span>
+<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Training set score"</span>, mlp.score(data_train, labels_train))</span>
+<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(data_test, labels_test))</span>
+<span id="cb22-22"><a href="#cb22-22" tabindex="-1"></a>mlp.fit(data,labels)</span></code></pre>
+</div>
 </div>
 </div>
 <div class="section level2">

@@ -532,7 +532,7 @@ might identify.</p>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>fig01 <span class="op">=</span> sns.scatterplot(X_train, x<span class="op">=</span>feature_names[<span class="dv">0</span>], y<span class="op">=</span>feature_names[<span class="dv">1</span>], hue<span class="op">=</span>dataset[<span class="st">'species'</span>])</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/e3_penguins_vis.png" alt="Visualising the penguins dataset" class="figure mx-auto d-block"><div class="figcaption">Visualising the penguins dataset</div>
+<figure><img src="../fig/results/e3_penguins_vis.png" alt="Visualising the penguins dataset" class="figure mx-auto d-block"><div class="figcaption">Visualising the penguins dataset</div>
 </figure><p>As there are four measurements for each penguin, we need quite a few
 plots to visualise all four dimensions against each other. Here is a
 handy Seaborn function to do so:</p>
@@ -542,7 +542,7 @@ handy Seaborn function to do so:</p>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>sns.pairplot(dataset, hue<span class="op">=</span><span class="st">"species"</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/pairplot.png" alt="Visualising the penguins dataset" class="figure mx-auto d-block"><div class="figcaption">Visualising the penguins dataset</div>
+<figure><img src="../fig/results/pairplot.png" alt="Visualising the penguins dataset" class="figure mx-auto d-block"><div class="figcaption">Visualising the penguins dataset</div>
 </figure><p>We can see that penguins from each species form fairly distinct
 spatial clusters in these plots, so that you could draw lines between
 those clusters to delineate each species. This is effectively what many
@@ -610,7 +610,7 @@ look at the decision tree that was generated:</p>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>plot_tree(clf, class_names<span class="op">=</span>class_names, feature_names<span class="op">=</span>feature_names, filled<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>fig.gca())</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/e3_dt_2.png" alt="Decision tree for classifying penguins" class="figure mx-auto d-block"><div class="figcaption">Decision tree for classifying penguins</div>
+<figure><img src="../fig/results/e3_dt_2.png" alt="Decision tree for classifying penguins" class="figure mx-auto d-block"><div class="figcaption">Decision tree for classifying penguins</div>
 </figure><p>The first first question (<code>depth=1</code>) splits the training
 data into “Adelie” and “Gentoo” categories using the criteria
 <code>flipper_length_mm &lt;= 206.5</code>, and the next two questions
@@ -643,7 +643,7 @@ training a new model on only 2 features:</p>
 <span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>sns.scatterplot(X_train, x<span class="op">=</span>f1, y<span class="op">=</span>f2, hue<span class="op">=</span>y_train, palette<span class="op">=</span><span class="st">"husl"</span>)</span>
 <span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/e3_dt_space_2.png" alt="Classification space for our decision tree" class="figure mx-auto d-block"><div class="figcaption">Classification space for our decision tree</div>
+<figure><img src="../fig/results/e3_dt_space_2.png" alt="Classification space for our decision tree" class="figure mx-auto d-block"><div class="figcaption">Classification space for our decision tree</div>
 </figure></div>
 </div>
 <div class="section level2">
@@ -675,7 +675,7 @@ hyperparameter to see if we can improve our model predictions.</p>
 <span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>plt.ylabel(<span class="st">'Accuracy'</span>)</span>
 <span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/e3_dt_overfit.png" alt="Performance of decision trees of various depths" class="figure mx-auto d-block"><div class="figcaption">Performance of decision trees of various
+<figure><img src="../fig/results/e3_dt_overfit.png" alt="Performance of decision trees of various depths" class="figure mx-auto d-block"><div class="figcaption">Performance of decision trees of various
 depths</div>
 </figure><p>Here we can see that a <code>max_depth=2</code> performs slightly
 better on the test data than those with <code>max_depth &gt; 2</code>.
@@ -693,7 +693,7 @@ decision tree that has <code>max_depth=5</code>:</p>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>plot_tree(clf, class_names<span class="op">=</span>class_names, feature_names<span class="op">=</span>feature_names, filled<span class="op">=</span><span class="va">True</span>, ax<span class="op">=</span>fig.gca())</span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/e3_dt_6.png" alt="Simplified decision tree" class="figure mx-auto d-block"><div class="figcaption">Simplified decision tree</div>
+<figure><img src="../fig/results/e3_dt_6.png" alt="Simplified decision tree" class="figure mx-auto d-block"><div class="figcaption">Simplified decision tree</div>
 </figure><p>It looks like our decision tree has split up the training data into
 the correct penguin categories and more accurately than the
 <code>max_depth=2</code> model did, however it used some very specific
@@ -714,7 +714,7 @@ understanding:</p>
 <span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>sns.scatterplot(X_train, x<span class="op">=</span>f1, y<span class="op">=</span>f2, hue<span class="op">=</span>y_train, palette<span class="op">=</span><span class="st">'husl'</span>)</span>
 <span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<figure><img src="../fig/e3_dt_space_6.png" alt="Classification space of the simplified decision tree" class="figure mx-auto d-block"><div class="figcaption">Classification space of the simplified decision
+<figure><img src="../fig/results/e3_dt_space_6.png" alt="Classification space of the simplified decision tree" class="figure mx-auto d-block"><div class="figcaption">Classification space of the simplified decision
 tree</div>
 </figure><p>Earlier we saw that the <code>max_depth=2</code> model split the data
 into 3 simple bounding boxes, whereas for <code>max_depth=5</code> we
@@ -723,60 +723,91 @@ to correctly classify every point in the training data.</p>
 <p>This is a classic case of over-fitting - our model has produced
 extremely specific parameters that work for the training data but are
 not representitive of our test data. Sometimes simplicity is better!</p>
-<blockquote>
-<h2 id="exercise-adding-noise-to-the-training-data">Exercise: Adding
-noise to the training data</h2>
+<div id="exercise-adding-noise-to-the-training-data" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="exercise-adding-noise-to-the-training-data" class="callout-inner">
+<h3 class="callout-title">Exercise: Adding noise to the training
+data</h3>
+<div class="callout-content">
 <p>We observed that this data doesn’t seem prone to overfitting effects.
 Why might this be? There are at least two factors contributing to these
 results:</p>
 <ol style="list-style-type: decimal"><li>We only have 4 predictors. With so few predictors, there are only so
 many unique tree structures that can be tested/formed. This makes
-overfitting less likely.</li>
-<li>Our data is sourced from a python library, and has been
-cleaned/vetted. Real-world data typically has more noise. Let’s try
-adding a small amount of noise to the data using the below code. How
-does this impact the ideal setting for depth level?</li>
-</ol><p>```python # 1) LOAD DATA (if not loaded already) import seaborn as
-sns dataset = sns.load_dataset(‘penguins’) dataset.head()</p>
-<h1 id="extract-the-data-we-need-and-drop-nans-if-not-done-already">2)
-Extract the data we need and drop NaNs (if not done already)</h1>
-<p>feature_names = [‘bill_length_mm’, ‘bill_depth_mm’,
-‘flipper_length_mm’, ‘body_mass_g’] dataset.dropna(subset=feature_names,
-inplace=True) class_names = dataset[‘species’].unique() X =
-dataset[feature_names] y = dataset[‘species’]</p>
-<h1 id="add-random-noise-to-x">3) ADD RANDOM NOISE TO X</h1>
-<p>import numpy as np stds = X.std(axis=0).to_numpy()</p>
-<h1 id="generate-noise-and-scale-it">Generate noise and scale it</h1>
-<h1 id="set-seed-for-reproducibility">Set seed for reproducibility</h1>
-<p>np.random.seed(42) noise = np.random.normal(0, 1, X.shape) # sample
-numbers from normal distribution scaled_noise = noise * stds # up to 1
-X_noisy = X + scaled_noise</p>
-<p>import matplotlib.pyplot as plt fig01 = sns.scatterplot(X,
-x=feature_names[0], y=feature_names[1], hue=dataset[‘species’])
-plt.show() fig02 = sns.scatterplot(X_noisy, x=feature_names[0],
-y=feature_names[1], hue=dataset[‘species’]) plt.show()</p>
-<h1 id="traintest-split">4) TRAIN/TEST SPLIT</h1>
-<p>from sklearn.model_selection import train_test_split # X_train,
-X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,
-random_state=0, stratify=y) X_train, X_test, y_train, y_test =
-train_test_split(X_noisy, y, test_size=0.2, random_state=0,
-stratify=y)</p>
-<h1 id="hyperparam-tuning">5) HYPERPARAM TUNING</h1>
-<p>from sklearn.tree import DecisionTreeClassifier import pandas as pd
-import matplotlib.pyplot as plt</p>
-<p>max_depths = list(range(1,200)) accuracy = [] for d in max_depths:
-clf = DecisionTreeClassifier(max_depth=d) clf.fit(X_train, y_train) acc
-= clf.score(X_test, y_test)</p>
+overfitting less likely.<br></li>
+<li>Our data is sourced from a Python library, and has been
+cleaned/vetted. Real-world data typically has more noise.</li>
+</ol><p>Let’s try adding a small amount of noise to the data using the code
+below. How does this impact the ideal setting for the tree depth?</p>
 <div class="codewrapper sourceCode" id="cb13">
-<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">accuracy.append</span><span class="er">((</span><span class="va">d</span><span class="kw">,</span> <span class="va">acc</span><span class="kw">))</span></span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># 1) LOAD DATA (if not loaded already)</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>dataset <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>dataset.head()</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="co"># 2) Extract the data we need and drop NaNs (if not done already)</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>feature_names <span class="op">=</span> [<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>, <span class="st">"flipper_length_mm"</span>, <span class="st">"body_mass_g"</span>]</span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>dataset.dropna(subset<span class="op">=</span>feature_names, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>class_names <span class="op">=</span> dataset[<span class="st">"species"</span>].unique()</span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>X <span class="op">=</span> dataset[feature_names]</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>y <span class="op">=</span> dataset[<span class="st">"species"</span>]</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="co"># 3) ADD RANDOM NOISE TO X</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>stds <span class="op">=</span> X.std(axis<span class="op">=</span><span class="dv">0</span>).to_numpy()</span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a><span class="co"># Generate noise and scale it</span></span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a><span class="co"># Set seed for reproducibility</span></span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a>noise <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, X.shape)  <span class="co"># sample numbers from normal distribution</span></span>
+<span id="cb13-22"><a href="#cb13-22" tabindex="-1"></a>scaled_noise <span class="op">=</span> noise <span class="op">*</span> stds  <span class="co"># noise up to 1 standard deviation</span></span>
+<span id="cb13-23"><a href="#cb13-23" tabindex="-1"></a>X_noisy <span class="op">=</span> X <span class="op">+</span> scaled_noise</span>
+<span id="cb13-24"><a href="#cb13-24" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb13-26"><a href="#cb13-26" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" tabindex="-1"></a>fig01 <span class="op">=</span> sns.scatterplot(X, x<span class="op">=</span>feature_names[<span class="dv">0</span>], y<span class="op">=</span>feature_names[<span class="dv">1</span>], hue<span class="op">=</span>dataset[<span class="st">"species"</span>])</span>
+<span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a>fig02 <span class="op">=</span> sns.scatterplot(X_noisy, x<span class="op">=</span>feature_names[<span class="dv">0</span>], y<span class="op">=</span>feature_names[<span class="dv">1</span>], hue<span class="op">=</span>dataset[<span class="st">"species"</span>])</span>
+<span id="cb13-30"><a href="#cb13-30" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-31"><a href="#cb13-31" tabindex="-1"></a></span>
+<span id="cb13-32"><a href="#cb13-32" tabindex="-1"></a><span class="co"># 4) TRAIN/</span><span class="al">TEST</span><span class="co"> SPLIT</span></span>
+<span id="cb13-33"><a href="#cb13-33" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb13-34"><a href="#cb13-34" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" tabindex="-1"></a><span class="co"># X_train, X_test, y_train, y_test = train_test_split(</span></span>
+<span id="cb13-36"><a href="#cb13-36" tabindex="-1"></a><span class="co">#     X, y, test_size=0.2, random_state=0, stratify=y</span></span>
+<span id="cb13-37"><a href="#cb13-37" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb13-38"><a href="#cb13-38" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb13-39"><a href="#cb13-39" tabindex="-1"></a>    X_noisy, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">0</span>, stratify<span class="op">=</span>y</span>
+<span id="cb13-40"><a href="#cb13-40" tabindex="-1"></a>)</span>
+<span id="cb13-41"><a href="#cb13-41" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" tabindex="-1"></a><span class="co"># 5) HYPERPARAMETER TUNING</span></span>
+<span id="cb13-43"><a href="#cb13-43" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
+<span id="cb13-44"><a href="#cb13-44" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-45"><a href="#cb13-45" tabindex="-1"></a></span>
+<span id="cb13-46"><a href="#cb13-46" tabindex="-1"></a>max_depths <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">200</span>))</span>
+<span id="cb13-47"><a href="#cb13-47" tabindex="-1"></a>accuracy <span class="op">=</span> []</span>
+<span id="cb13-48"><a href="#cb13-48" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> max_depths:</span>
+<span id="cb13-49"><a href="#cb13-49" tabindex="-1"></a>    clf <span class="op">=</span> DecisionTreeClassifier(max_depth<span class="op">=</span>d)</span>
+<span id="cb13-50"><a href="#cb13-50" tabindex="-1"></a>    clf.fit(X_train, y_train)</span>
+<span id="cb13-51"><a href="#cb13-51" tabindex="-1"></a>    acc <span class="op">=</span> clf.score(X_test, y_test)</span>
+<span id="cb13-52"><a href="#cb13-52" tabindex="-1"></a>    accuracy.append((d, acc))</span>
+<span id="cb13-53"><a href="#cb13-53" tabindex="-1"></a></span>
+<span id="cb13-54"><a href="#cb13-54" tabindex="-1"></a>acc_df <span class="op">=</span> pd.DataFrame(accuracy, columns<span class="op">=</span>[<span class="st">"depth"</span>, <span class="st">"accuracy"</span>])</span>
+<span id="cb13-55"><a href="#cb13-55" tabindex="-1"></a></span>
+<span id="cb13-56"><a href="#cb13-56" tabindex="-1"></a>sns.lineplot(acc_df, x<span class="op">=</span><span class="st">"depth"</span>, y<span class="op">=</span><span class="st">"accuracy"</span>)</span>
+<span id="cb13-57"><a href="#cb13-57" tabindex="-1"></a>plt.xlabel(<span class="st">"Tree depth"</span>)</span>
+<span id="cb13-58"><a href="#cb13-58" tabindex="-1"></a>plt.ylabel(<span class="st">"Accuracy"</span>)</span>
+<span id="cb13-59"><a href="#cb13-59" tabindex="-1"></a>plt.show()</span></code></pre>
 </div>
-<p>acc_df = pd.DataFrame(accuracy, columns=[‘depth’, ‘accuracy’])</p>
-<p>sns.lineplot(acc_df, x=‘depth’, y=‘accuracy’) plt.xlabel(‘Tree
-depth’) plt.ylabel(‘Accuracy’) plt.show() ```python {:
-.language-python}</p>
-</blockquote>
+</div>
+</div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="classification-using-support-vector-machines">Classification using support vector machines<a class="anchor" aria-label="anchor" href="#classification-using-support-vector-machines"></a></h2>
@@ -962,7 +993,7 @@ and avoid going higher unless you have lots of data.</li>
 <strong><code>C</code></strong>: Balances smoothness of the decision
 boundary and misclassifications; start with <code>C=1</code>, increase
 for tighter boundaries, decrease to prevent overfitting.</li>
-</ul><figure><img src="../fig/e3_svc_space.png" alt="Classification space generated by the SVM model" class="figure mx-auto d-block"><div class="figcaption">Classification space generated by the SVM
+</ul><figure><img src="../fig/results/e3_svc_space.png" alt="Classification space generated by the SVM model" class="figure mx-auto d-block"><div class="figcaption">Classification space generated by the SVM
 model</div>
 </figure><p>While this SVM model performs slightly worse than our decision tree
 (95.6% vs. 98.5%), it’s likely that the non-linear boundaries will
