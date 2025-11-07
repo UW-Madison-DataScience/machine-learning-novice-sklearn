@@ -169,7 +169,7 @@ plt.plot([0,1,2,3],[4,4,4,4],"rx")
 plt.show()
 ```
 
-![SKLearn image with highlighted pixels](fig/mnist_pairplot_pixels.png)
+![SKLearn image with highlighted pixels](fig/results/mnist_pairplot_pixels.png)
 
 ```python
 import seaborn as sns
@@ -190,7 +190,7 @@ sns.pairplot(seaborn_data, vars=feature_subset, hue="labels",
              palette=sns.mpl_palette("Spectral", n_colors=10))
 ```
 
-![SKLearn image with highlighted pixels](fig/mnist_pairplot.png)
+![SKLearn image with highlighted pixels](fig/results/mnist_pairplot.png)
 
 As we can see the dataset relations are far more complex than our previous examples. The histograms show that some numbers appear in those pixel positions more than others, but the `feature_vs_feature` plots are quite messy to try and decipher. There are gaps and patches of colour suggesting that there is some kind of structure there, but it's far harder to inspect than the penguin data. We can't easily see definitive clusters in our 2D representations, and we know our clustering algorithms will take a long time to try and crunch 64 dimensions at once, so let's see if we can represent our 64D data in fewer dimensions.
 
@@ -226,7 +226,7 @@ This returns us an array of 1797x2 where the 2 remaining columns(our new "featur
 plots_labels(x_pca, None)
 ```
 
-![Reduction using PCA](fig/pca_unlabelled.png)
+![Reduction using PCA](fig/results/pca_unlabelled.png)
 
 We now have a 2D representation of our 64D dataset that we can work with instead. Let's try some quick K-means clustering on our 2D representation of the data. Because we already have some knowledge about our data we can set `k=10` for the 10 digits present in the dataset.
 
@@ -238,7 +238,7 @@ clusters = Kmean.predict(x_pca)
 plot_clusters(x_pca, clusters, Kmean)
 ```
 
-![Reduction using PCA](fig/pca_clustered.png)
+![Reduction using PCA](fig/results/pca_clustered.png)
 
 And now we can compare how these clusters look against our actual image labels by colour coding our first scatter plot:
 
@@ -246,7 +246,7 @@ And now we can compare how these clusters look against our actual image labels b
 plot_clusters_labels(x_pca, labels)
 ```
 
-![Reduction using PCA](fig/pca_labelled.png)
+![Reduction using PCA](fig/results/pca_labelled.png)
 
 PCA has done a valiant effort to reduce the dimensionality of our problem from 64D to 2D while still retaining some of our key structural information. We can see that the digits `0`,`1`,`4`, and `6` cluster up reasonably well even using a simple k-means test. However it does look like there is still quite a bit of overlap between the remaining digits, especially for the digits `5` and `8`. The clustering is from perfect in the largest "blob", but not a bad effort from PCA given the substantial dimensionality reduction.
 
@@ -281,7 +281,7 @@ x_tsne = tsne.fit_transform(features)
 plots_labels(x_tsne, None)
 ```
 
-![Reduction using PCA](fig/tsne_unlabelled.png)
+![Reduction using PCA](fig/results/tsne_unlabelled.png)
 
 It looks like t-SNE has done a much better job of splitting our data up into clusters using only a 2D representation of the data. Once again, let's run a simple k-means clustering on this new 2D representation, and compare with the actual color-labelled data:
 
@@ -295,7 +295,7 @@ plot_clusters(x_tsne, clusters, Kmean)
 plot_clusters_labels(x_tsne, labels)
 ```
 
-![Reduction using PCA](fig/tsne_clustered.png)![Reduction using PCA](fig/tsne_labelled.png)
+![Reduction using PCA](fig/results/tsne_clustered.png)![Reduction using PCA](fig/tsne_labelled.png)
 
 
 It looks like t-SNE has successfully separated out our digits into accurate clusters using as little as a 2D representation and a simple k-means clustering algorithm. It has worked so well that you can clearly see several clusters which can be modelled, whereas for our PCA representation we needed to rely heavily on the knowledge that we had 10 types of digits to cluster.
@@ -332,7 +332,7 @@ ax.scatter(x_pca[:, 0], x_pca[:, 1], x_pca[:, 2], c=labels,
 plt.show()
 ```
 
-![Reduction to 3 components using pca](fig/pca_3d.svg)
+![Reduction to 3 components using pca](fig/results/pca_3d.svg)
 
 ```python
 # t-SNE embedding
@@ -346,7 +346,7 @@ ax.scatter(x_tsne[:, 0], x_tsne[:, 1], x_tsne[:, 2], c=labels,
 plt.show()
 ```
 
-![Reduction to 3 components using tsne](fig/tsne_3d.svg)
+![Reduction to 3 components using tsne](fig/results/tsne_3d.svg)
 
 
 

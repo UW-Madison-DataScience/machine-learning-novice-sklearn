@@ -159,7 +159,7 @@ for index in range(0, 5):
 plt.show()
 ```
 
-![random forest trees](fig/rf_5_trees.png)
+![random forest trees](fig/results/rf_5_trees.png)
 
 We can see the first 5 (of 100) trees that were fitted as part of the forest. 
 
@@ -182,7 +182,7 @@ sns.scatterplot(X_train, x=f1, y=f2, hue=y_train, palette="husl")
 plt.show()
 ```
 
-![random forest clf space](fig/EM_rf_clf_space.png)
+![random forest clf space](fig/results/EM_rf_clf_space.png)
 
 There is still some overfitting indicated by the regions that contain only single points but using the same hyper-parameter settings used to fit the decision tree classifier, we can see that overfitting is reduced.
 
@@ -314,7 +314,7 @@ plt.title("Regressor predictions and their average")
 plt.show()
 ```
 
-![Regressor predictions and average from stack](fig/house_price_voting_regressor.svg)
+![Regressor predictions and average from stack](fig/results/house_price_voting_regressor.svg)
 
 Finally, lets see how the average compares against each single estimator in the stack? 
 
