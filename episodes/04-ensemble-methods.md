@@ -170,7 +170,18 @@ plt.show()
 
 We can see the first 5 (of 100) trees that were fitted as part of the forest. 
 
-If we train the random forest estimator using the same two parameters used to plot the classification space for the decision tree classifier what do we think the plot will look like?
+### How votes are averaged in scikit-learn’s Random Forest
+
+In scikit-learn, the *RandomForestClassifier* aggregates votes using averaged class probabilities rather than a strict majority vote.
+
+- Each decision tree produces a probability distribution over classes for a given input (based on the proportion of samples from each class in the leaf node where that input ends up).
+- The forest then takes the mean of those probabilities across all trees.
+- The predicted class is the one with the highest average probability.
+
+While traditional random forests are often described as using a "majority vote", scikit-learn implements what's called *soft voting*—averaging probabilities instead of labels.  
+This provides smoother decision boundaries and can improve calibration.
+
+If we train the random forest estimator using the same two features from our decision tree example — what do we think the plot will look like?
 
 ```python
 # lets train a random forest for only two features (body mass and bill length)
