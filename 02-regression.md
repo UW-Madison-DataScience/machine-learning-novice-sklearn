@@ -414,7 +414,7 @@ dataset = load_dataset('penguins')
 dataset = dataset.dropna(subset=['body_mass_g', 'bill_depth_mm', 'species'])
 
 # Define predictors and target
-X = dataset[['body_mass_g', 'species']]
+X = dataset[['body_mass_g', 'species']] # conventionally, we use capital X when there are multiple predictors
 y = dataset['bill_depth_mm']
 ```
 
@@ -423,20 +423,21 @@ Since the species column is coded as a string, we need to convert it into a nume
 By default, we drop the first category to avoid multicollinearity—this means the omitted category serves as the reference group when interpreting model coefficients.
 ```python
 # One-hot encode species (drop_first avoids multicollinearity)
-X = pd.get_dummies(X, columns=['species'], drop_first=True)
+X_dummies = pd.get_dummies(X, columns=['species'], drop_first=True)
+X_dummies
 ```
 
 We can than train/fit and evaluate our model as usual.
 ```python
 # Train/test split
-x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+X_train, X_test, y_train, y_test = train_test_split(X_dummies, y, test_size=0.2, random_state=0)
 
 # Fit a linear regression model
 model = LinearRegression()
-model.fit(x_train, y_train)
+model.fit(X_train, y_train)
 
 # Predict and evaluate
-y_pred = model.predict(x_test)
+y_pred = model.predict(X_test)
 rmse = mean_squared_error(y_test, y_pred)
 print(f"RMSE with species as a predictor: {rmse:.2f}")
 
