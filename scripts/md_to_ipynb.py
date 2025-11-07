@@ -40,11 +40,24 @@ def rewrite_image_paths(md_content: str) -> str:
     """
     Rewrite local image links that point to fig/... so they use a
     GitHub raw URL, which will render correctly inside notebooks.
+
+    Any images stored under fig/results/ (or ../fig/results/) are
+    REMOVED from the notebook output.
     """
 
     def repl(match: re.Match) -> str:
         alt_text = match.group(1)
-        filename = match.group(3)  # everything after fig/
+        # group(2) is the optional '../'
+        filename = match.group(3)  # everything after 'fig/'
+
+        # Skip any images in the "results" subfolder
+        # e.g. fig/results/penguin_regression_poly.png
+        # filename here would start with 'results/...'
+        if filename.startswith("results/"):
+            # Return empty string: image will not appear in the notebook
+            return ""
+
+        # For all other fig images, rewrite to GitHub raw URL
         # We intentionally drop the Pandoc attribute block (group 4),
         # since Jupyter's markdown renderer doesn't use it.
         return f"![{alt_text}]({IMAGE_BASE_URL}fig/{filename})"

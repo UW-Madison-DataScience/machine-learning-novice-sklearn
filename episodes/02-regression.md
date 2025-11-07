@@ -86,7 +86,7 @@ plt.ylabel("depth mm")
 plt.show()
 ```
 
-![Comparison of the regressions of our dataset](fig/penguin_regression.png)
+![Comparison of the regressions of our dataset](fig/results/penguin_regression.png)
 
 In this regression example we will create a Linear Regression model that will try to predict `y` values based upon `x` values.
 
@@ -166,7 +166,7 @@ plt.legend()
 plt.show()
 ```
 
-![Comparison of the regressions of our dataset](fig/regress_penguin_lin.png)
+![Comparison of the regressions of our dataset](fig/results/regress_penguin_lin.png)
 
 
 
@@ -206,7 +206,7 @@ plt.legend()
 plt.show()
 ```
 
-![Comparison of the regressions of our dataset](fig/penguin_regression_all.png)
+![Comparison of the regressions of our dataset](fig/results/penguin_regression_all.png)
 
 Oh dear. It looks like our linear regression fits okay for our subset of the penguin data, and a few additional samples, but there appears to be a cluster of points that are poorly predicted by our model. Even if we re-trained our model using all samples it looks unlikely that our model would perform much better due to the two-cluster nature of our dataset.
 
@@ -356,7 +356,7 @@ plt.legend()
 ```
 
 
-![Comparison of the regressions of our dataset](fig/penguin_regression_poly.png)
+![Comparison of the regressions of our dataset](fig/results/penguin_regression_poly.png)
 
 ::::::::::::::::::::::::::::::::::::: challenge
 

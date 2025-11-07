@@ -115,7 +115,7 @@ fig01 = sns.scatterplot(X_train, x=feature_names[0], y=feature_names[1], hue=dat
 plt.show()
 ```
 
-![Visualising the penguins dataset](fig/e3_penguins_vis.png)
+![Visualising the penguins dataset](fig/results/e3_penguins_vis.png)
 
 As there are four measurements for each penguin, we need quite a few plots to visualise all four dimensions against each other. Here is a handy Seaborn function to do so:
 
@@ -124,7 +124,7 @@ sns.pairplot(dataset, hue="species")
 plt.show()
 ```
 
-![Visualising the penguins dataset](fig/pairplot.png)
+![Visualising the penguins dataset](fig/results/pairplot.png)
 
 We can see that penguins from each species form fairly distinct spatial clusters in these plots, so that you could draw lines between those clusters to delineate each species. This is effectively what many classification algorithms do. They use the training data to delineate the observation space, in this case the 4 measurement dimensions, into classes. When given a new observation, the model finds which of those class areas the new observation falls in to.
 
@@ -168,7 +168,7 @@ plot_tree(clf, class_names=class_names, feature_names=feature_names, filled=True
 plt.show()
 ```
 
-![Decision tree for classifying penguins](fig/e3_dt_2.png)
+![Decision tree for classifying penguins](fig/results/e3_dt_2.png)
 
 The first first question (`depth=1`) splits the training data into "Adelie" and "Gentoo" categories using the criteria `flipper_length_mm <= 206.5`, and the next two questions (`depth=2`) split the "Adelie" and "Gentoo" categories into "Adelie & Chinstrap" and "Gentoo & Chinstrap" predictions. 
 
@@ -198,7 +198,7 @@ sns.scatterplot(X_train, x=f1, y=f2, hue=y_train, palette="husl")
 plt.show()
 ```
 
-![Classification space for our decision tree](fig/e3_dt_space_2.png)
+![Classification space for our decision tree](fig/results/e3_dt_space_2.png)
 
 ## Tuning the `max_depth` hyperparameter
 
@@ -227,7 +227,7 @@ plt.ylabel('Accuracy')
 plt.show()
 ```
 
-![Performance of decision trees of various depths](fig/e3_dt_overfit.png)
+![Performance of decision trees of various depths](fig/results/e3_dt_overfit.png)
 
 Here we can see that a `max_depth=2` performs slightly better on the test data than those with `max_depth > 2`. This can seem counter intuitive, as surely more questions should be able to better split up our categories and thus give better predictions?
 
@@ -242,7 +242,7 @@ plot_tree(clf, class_names=class_names, feature_names=feature_names, filled=True
 plt.show()
 ```
 
-![Simplified decision tree](fig/e3_dt_6.png)
+![Simplified decision tree](fig/results/e3_dt_6.png)
 
 It looks like our decision tree has split up the training data into the correct penguin categories and more accurately than the `max_depth=2` model did, however it used some very specific questions to split up the penguins into the correct categories. Let's try visualising the classification space for a more intuitive understanding:
 ```python
@@ -258,77 +258,85 @@ sns.scatterplot(X_train, x=f1, y=f2, hue=y_train, palette='husl')
 plt.show()
 ```
 
-![Classification space of the simplified decision tree](fig/e3_dt_space_6.png)
+![Classification space of the simplified decision tree](fig/results/e3_dt_space_6.png)
 
 Earlier we saw that the `max_depth=2` model split the data into 3 simple bounding boxes, whereas for `max_depth=5` we see the model has created some very specific classification boundaries to correctly classify every point in the training data.
 
 This is a classic case of over-fitting - our model has produced extremely specific parameters that work for the training data but are not representitive of our test data. Sometimes simplicity is better!
 
-> ## Exercise: Adding noise to the training data
-> We observed that this data doesn't seem prone to overfitting effects. Why might this be? There are at least two factors contributing to these results:
->
-> 1. We only have 4 predictors. With so few predictors, there are only so many unique tree structures that can be tested/formed. This makes overfitting less likely.
-> 2. Our data is sourced from a python library, and has been cleaned/vetted. Real-world data typically has more noise. Let's try adding a small amount of noise to the data using the below code. How does this impact the ideal setting for depth level?
->    
-> ```python
-> # 1) LOAD DATA (if not loaded already)
-> import seaborn as sns
-> dataset = sns.load_dataset('penguins')
-> dataset.head()
-> 
-> # 2) Extract the data we need and drop NaNs (if not done already)
-> feature_names = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
-> dataset.dropna(subset=feature_names, inplace=True)
-> class_names = dataset['species'].unique()
-> X = dataset[feature_names]
-> y = dataset['species']
-> 
-> # 3) ADD RANDOM NOISE TO X
-> import numpy as np
-> stds = X.std(axis=0).to_numpy()
-> 
-> # Generate noise and scale it
-> # Set seed for reproducibility
-> np.random.seed(42)
-> noise = np.random.normal(0, 1, X.shape) # sample numbers from normal distribution
-> scaled_noise = noise * stds  # up to 1
-> X_noisy = X + scaled_noise
-> 
-> 
-> import matplotlib.pyplot as plt
-> fig01 = sns.scatterplot(X, x=feature_names[0], y=feature_names[1], hue=dataset['species'])
-> plt.show()
-> fig02 = sns.scatterplot(X_noisy, x=feature_names[0], y=feature_names[1], hue=dataset['species'])
-> plt.show()
-> 
-> # 4) TRAIN/TEST SPLIT
-> from sklearn.model_selection import train_test_split
-> # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0, stratify=y)
-> X_train, X_test, y_train, y_test = train_test_split(X_noisy, y, test_size=0.2, random_state=0, stratify=y)
-> 
-> # 5) HYPERPARAM TUNING
-> from sklearn.tree import DecisionTreeClassifier
-> import pandas as pd
-> import matplotlib.pyplot as plt
-> 
-> max_depths = list(range(1,200)) 
-> accuracy = []
-> for d in max_depths:
->     clf = DecisionTreeClassifier(max_depth=d)
->     clf.fit(X_train, y_train)
->     acc = clf.score(X_test, y_test)
-> 
->     accuracy.append((d, acc))
-> 
-> acc_df = pd.DataFrame(accuracy, columns=['depth', 'accuracy'])
-> 
-> sns.lineplot(acc_df, x='depth', y='accuracy')
-> plt.xlabel('Tree depth')
-> plt.ylabel('Accuracy')
-> plt.show()
-> ```python
-> {: .language-python}
-> 
+::::::::::::::::::::::::::::::::::::: challenge
+
+## Exercise: Adding noise to the training data
+
+We observed that this data doesn't seem prone to overfitting effects. Why might this be? There are at least two factors contributing to these results:
+
+1. We only have 4 predictors. With so few predictors, there are only so many unique tree structures that can be tested/formed. This makes overfitting less likely.  
+2. Our data is sourced from a Python library, and has been cleaned/vetted. Real-world data typically has more noise.
+
+Let's try adding a small amount of noise to the data using the code below. How does this impact the ideal setting for the tree depth?
+
+```python
+# 1) LOAD DATA (if not loaded already)
+import seaborn as sns
+dataset = sns.load_dataset("penguins")
+dataset.head()
+
+# 2) Extract the data we need and drop NaNs (if not done already)
+feature_names = ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"]
+dataset.dropna(subset=feature_names, inplace=True)
+class_names = dataset["species"].unique()
+X = dataset[feature_names]
+y = dataset["species"]
+
+# 3) ADD RANDOM NOISE TO X
+import numpy as np
+
+stds = X.std(axis=0).to_numpy()
+
+# Generate noise and scale it
+# Set seed for reproducibility
+np.random.seed(42)
+noise = np.random.normal(0, 1, X.shape)  # sample numbers from normal distribution
+scaled_noise = noise * stds  # noise up to 1 standard deviation
+X_noisy = X + scaled_noise
+
+import matplotlib.pyplot as plt
+
+fig01 = sns.scatterplot(X, x=feature_names[0], y=feature_names[1], hue=dataset["species"])
+plt.show()
+fig02 = sns.scatterplot(X_noisy, x=feature_names[0], y=feature_names[1], hue=dataset["species"])
+plt.show()
+
+# 4) TRAIN/TEST SPLIT
+from sklearn.model_selection import train_test_split
+
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X, y, test_size=0.2, random_state=0, stratify=y
+# )
+X_train, X_test, y_train, y_test = train_test_split(
+    X_noisy, y, test_size=0.2, random_state=0, stratify=y
+)
+
+# 5) HYPERPARAMETER TUNING
+from sklearn.tree import DecisionTreeClassifier
+import pandas as pd
+
+max_depths = list(range(1, 200))
+accuracy = []
+for d in max_depths:
+    clf = DecisionTreeClassifier(max_depth=d)
+    clf.fit(X_train, y_train)
+    acc = clf.score(X_test, y_test)
+    accuracy.append((d, acc))
+
+acc_df = pd.DataFrame(accuracy, columns=["depth", "accuracy"])
+
+sns.lineplot(acc_df, x="depth", y="accuracy")
+plt.xlabel("Tree depth")
+plt.ylabel("Accuracy")
+plt.show()
+```
+:::::::::::::::::::::::::::::::::::::
 
 ## Classification using support vector machines
 Next, we'll look at another commonly used classification algorithm, and see how it compares. Support Vector Machines (SVM) work in a way that is conceptually similar to your own intuition when first looking at the data. They devise a set of hyperplanes that delineate the parameter space, such that each region contains ideally only observations from one class, and the boundaries fall between classes. One of the core strengths of Support Vector Machines (SVMs) is their ability to handle non-linear relationships between features by transforming the data into a higher-dimensional space. This transformation allows SVMs to find a linear boundary/hyperplane in this new space, which corresponds to a non-linear boundary in the original space.
@@ -432,7 +440,7 @@ plt.show()
 - **`C`**: Balances smoothness of the decision boundary and misclassifications; start with `C=1`, increase for tighter boundaries, decrease to prevent overfitting.
 
 
-![Classification space generated by the SVM model](fig/e3_svc_space.png)
+![Classification space generated by the SVM model](fig/results/e3_svc_space.png)
 
 While this SVM model performs slightly worse than our decision tree (95.6% vs. 98.5%), it's likely that the non-linear boundaries will perform better when exposed to more and more real data, as decision trees are prone to overfitting and requires complex linear models to reproduce simple non-linear boundaries. It's important to pick a model that is appropriate for your problem and data trends!
 
