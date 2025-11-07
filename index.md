@@ -7,5 +7,4 @@ This workshop provides a beginner-friendly overview of machine learning (ML) and
 ::::::::::::::::::::::::::::::::::::: callout
 ### Prerequisites 
 A basic understanding of Python. You will need to know how to write a for loop, if statement, use functions, libraries and perform basic arithmetic. 
-Either of the Software Carpentry Python courses cover sufficient background.
 ::::::::::::::::::::::::::::::::::::: 
