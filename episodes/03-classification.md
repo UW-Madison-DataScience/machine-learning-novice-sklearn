@@ -401,6 +401,17 @@ Standardization is an essential preprocessing step for many machine learning mod
 
 By understanding whether a model relies on distance-based calculations (or benefits from standardized features for interpretability), you can decide whether standardization is necessary, ensuring that your preprocessing pipeline is well-suited to the algorithm you’re using.
 
+```python
+# Extract clean set of data
+feature_names = ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
+dataset.dropna(subset=feature_names, inplace=True)
+
+class_names = dataset['species'].unique()
+X = dataset[feature_names]
+y = dataset['species']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+```
 
 ```python
 from sklearn import preprocessing
