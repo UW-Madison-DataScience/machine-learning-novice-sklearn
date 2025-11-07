@@ -125,19 +125,28 @@ print(y_train.shape)
 Next we’ll define a model, and train it on the pre-processed data. We’ll also inspect the trained model parameters m and c:
 
 ```python
+# load the LinearRegression class from sklearn.linear_model
 from sklearn.linear_model import LinearRegression
+help(LinearRegression)
+```
 
+```python
 # Define our estimator/model
 model = LinearRegression(fit_intercept=True)
+```
 
+```python
 # train our estimator/model using our data
 lin_regress = model.fit(x_train,y_train)
+```
 
+```python
 # inspect the trained estimator/model parameters
 m = lin_regress.coef_
 c = lin_regress.intercept_
 print("linear coefs=", m, c)
 ```
+
 
 Now we can make predictions using our trained model, and calculate the Root Mean Squared Error (RMSE) of our predictions:
 
