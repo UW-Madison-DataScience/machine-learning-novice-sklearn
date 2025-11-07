@@ -6,19 +6,22 @@ exercises: 30
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What is supervised learning?
-- What is regression?
-- How can I model data and make predictions using regression methods?
+- What is supervised learning, and how does regression fit into it?
+- How can we build, train, and evaluate a simple regression model in Scikit-Learn?
+- Why do we split data into training and testing sets?
+- How does data exploration and encoding affect model performance?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Apply linear regression with Scikit-Learn to create a model.
-- Measure the error between a regression model and input data.
-- Analyse and assess the accuracy of a linear model using Scikit-Learn's metrics library.
-- Understand how more complex models can be built with non-linear equations.
-- Apply polynomial modelling to non-linear data using Scikit-Learn.
+- Load and inspect real-world data using Pandas and Seaborn.  
+- Prepare data for modeling by handling missing values and converting categorical variables to numeric (dummy coding).  
+- Apply linear regression with Scikit-Learn to create a predictive model.  
+- Split data into training and testing sets to evaluate generalization performance.  
+- Measure and interpret model accuracy using error metrics (e.g., RMSE).  
+- Explore how polynomial regression extends linear models to capture non-linear relationships.  
+- Recognize signs of overfitting and understand why exploratory data analysis (EDA) is critical before modeling.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -451,8 +454,12 @@ print(coefficients)
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Scikit-Learn is a Python library with lots of useful machine learning functions.
-- Scikit-Learn includes a linear regression function.
-- Scikit-Learn can perform polynomial regressions to model non-linear data.
+- A supervised learning pipeline includes data loading, cleaning, feature selection, training, and testing.  
+- Scikit-Learn provides simple, consistent tools for regression, model fitting, and performance evaluation.  
+- Always split data into train and test sets to avoid overfitting and to assess model generalization.  
+- Dummy coding (one-hot encoding) converts categorical variables into a numeric form usable by ML models.  
+- Polynomial regression can capture non-linear trends by expanding features into polynomial terms.  
+- Early exploratory data analysis (EDA) helps reveal relationships, clusters, and potential predictors before modeling.  
+- Overfitting occurs when a model learns noise instead of signal—simpler models and good splits help mitigate this.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
