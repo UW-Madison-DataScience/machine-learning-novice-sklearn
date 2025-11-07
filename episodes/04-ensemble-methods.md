@@ -356,8 +356,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print(f'train size: {X_train.shape}')
 print(f'test size: {X_test.shape}')
-```python
-{: .language.python} 
+```
+
 
 The code above loads the penguins data and splits it into test and training portions. Have a play around with stacking some classifiers using the ```sklearn.ensemble.VotingClassifier``` using the code comments below as a guide. 
 
@@ -373,8 +373,7 @@ The code above loads the penguins data and splits it into test and training port
 # make predictions
 
 # compare scores
-```python
-{: .language.python}
+```
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
