@@ -158,6 +158,11 @@ from sklearn.metrics import mean_squared_error
 # In this case we predict our input data to evaluate accuracy!
 y_train_pred = lin_regress.predict(x_train)
 
+# display first 10 predicted values for bill depth
+y_train_pred[0:10]
+```
+
+```python
 # calculated a RMS error as a quality of fit metric
 error = math.sqrt(mean_squared_error(y_train, y_train_pred))
 print("train RMSE =", error)
