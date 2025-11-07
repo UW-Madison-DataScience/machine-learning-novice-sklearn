@@ -924,8 +924,8 @@ the Root Mean Squared Error (RMSE) of our predictions:</p>
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># calculated a RMS error as a quality of fit metric</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>error <span class="op">=</span> math.sqrt(mean_squared_error(y_train, y_train_pred))</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"train RMSE ="</span>, error)</span></code></pre>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>train_error <span class="op">=</span> math.sqrt(mean_squared_error(y_train, y_train_pred))</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"train RMSE ="</span>, train_error)</span></code></pre>
 </div>
 <p>Finally, we’ll plot our input data, our linear fit, and our
 predictions:</p>
@@ -965,8 +965,8 @@ our model performs on the full dataset:</p>
 <span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>y_test_pred <span class="op">=</span> lin_regress.predict(x_test)</span>
 <span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a></span>
 <span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="co"># calculated a RMSE error for all data</span></span>
-<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>error_all <span class="op">=</span> math.sqrt(mean_squared_error(y_test, y_test_pred))</span>
-<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"test RMSE ="</span>, error)</span></code></pre>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>test_error <span class="op">=</span> math.sqrt(mean_squared_error(y_test, y_test_pred))</span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"test RMSE ="</span>, test_error)</span></code></pre>
 </div>
 <p>Our RMSE for predictions on all penguin samples is far larger than
 before, so let’s visually inspect the situation:</p>
