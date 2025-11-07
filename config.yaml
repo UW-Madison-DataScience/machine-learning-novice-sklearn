@@ -15,32 +15,32 @@
 carpentry: 'incubator'
 
 # Alt-text description of the lesson.
-carpentry_description: 'Lesson Description'
+carpentry_description: 'Beginner-friendly introduction to machine learning in Python using scikit-learn.'
 
 # Overall title for pages.
-title: 'Lesson Title' # FIXME
+title: 'Introduction to Machine Learning with Scikit-Learn'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: ~ # FIXME
+created: '2013-07-13' # FIXME
 
 # Comma-separated list of keywords for the lesson
 keywords: 'software, data, lesson, The Carpentries' # FIXME
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'pre-alpha' # FIXME
+life_cycle: 'beta' # FIXME
 
 # License of the lesson
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/carpentries/workbench-template-md' # FIXME
+source: 'https://github.com/UW-Madison-DataScience/machine-learning-novice-sklearn-v2'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org' # FIXME
+contact: 'endemann@wisc.edu' # FIXME
 
 # Navigation ------------------------------------------------
 #
@@ -67,6 +67,14 @@ contact: 'team@carpentries.org' # FIXME
 # Order of episodes in your lesson
 episodes: 
 - introduction.md
+- 02-regression.md
+- 03-classification.md
+- 04-ensemble-methods.md
+- 05-clustering.md
+- 06-dimensionality-reduction.md
+- 07-neural-networks.md
+- 08-ethics.md
+- 09-learn-more.md
 
 # Information for Learners
 learners: 
