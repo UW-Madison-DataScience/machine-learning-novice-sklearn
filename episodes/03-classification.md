@@ -6,15 +6,25 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How can I classify data into known categories?
-
+- What is classification, and how does it differ from regression?
+- How can we use Scikit-Learn to train and evaluate a classification model?
+- Why and how do we split data into training and testing sets for classification?
+- What are hyperparameters, and how do they affect model performance?
+- When should I standardize my data, and when is it safe to skip this step?
+  
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Use two different supervised methods to classify data.
-- Learn about the concept of hyper-parameters.
-- Learn to validate and ?cross-validate? models
+- Define supervised classification and explain how it differs from (supervised) regression.
+- Load and inspect the penguins dataset, selecting appropriate numeric features and labels.
+- Create train/test splits for classification and explain why stratification and shuffling matter.
+- Train and evaluate a decision tree classifier using Scikit-Learn.
+- Describe what a hyperparameter is and explore how changing `max_depth` affects a decision tree.
+- Visualize decision boundaries for a simple classifier to build intuition about how it separates classes.
+- Standardize features and train an SVM classifier, comparing its performance to the decision tree.
+- Explain which types of models benefit from feature scaling (standardization) and which generally do not.
+- Recognize signs of overfitting in classification models and relate them to model complexity and data quality.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
