@@ -117,6 +117,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 print("train size:", X_train.shape)
 print("test size", X_test.shape)
+X_train.head()
 ```
 
 We'll now take a look how we can use ensemble methods to perform a classification task such as identifying penguin species! We're going to use a Random forest classifier available in scikit-learn which is a widely used example of a bagging approach.
