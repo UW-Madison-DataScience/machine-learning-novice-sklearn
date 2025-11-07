@@ -10,7 +10,7 @@ notebooks_dir = "notebooks"
 # Base URL for images in the notebooks.
 # Adjust this if your repo or branch name changes.
 IMAGE_BASE_URL = (
-    "https://github.com/UW-Madison-DataScience/"
+    "https://raw.githubusercontent.com/UW-Madison-DataScience/"
     "machine-learning-novice-sklearn-v2/raw/gh-pages/episodes/"
 )
 
