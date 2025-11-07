@@ -452,81 +452,224 @@ any links that you are not going to use.
  --></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><p>FIXME: Setup instructions live in this document. Please specify the
-tools and the data sets the Learner needs to have installed.</p>
-<section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
-<hr class="half-width"><!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
---><p>Download the <a href="https://example.com/FIXME" class="external-link">data zip file</a>
-and unzip it to your Desktop</p>
-</section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><div id="details" class="callout discussion">
+      </section><section id="setup"><div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul><li>How do I prepare my system for this workshop?</li>
+<li>How do I create and activate a Python virtual environment with
+<code>uv</code>?</li>
+<li>How do I make my workshop environment available in JupyterLab?</li>
+</ul></div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul><li>Create a dedicated folder for the workshop.</li>
+<li>Install Python 3.11.9.</li>
+<li>Install <code>uv</code> and use it to create and manage a virtual
+environment.</li>
+<li>Configure JupyterLab to use the workshop environment.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h2>
+<hr class="half-width"><p>Please complete the setup at least a day in advance of the workshop.
+If you run into issues, contact the workshop organizers by email so
+you’re ready to begin on time. The setup steps include:</p>
+<ol style="list-style-type: decimal"><li>Set up the workshop folder<br></li>
+<li>Install Python 3.11.9<br></li>
+<li>Install <code>uv</code> and set up the virtual environment</li>
+</ol></section><section><h2 class="section-heading" id="set-up-a-terminal-or-git-bash-if-on-windows">0. Set up a terminal or Git Bash if on Windows<a class="anchor" aria-label="anchor" href="#set-up-a-terminal-or-git-bash-if-on-windows"></a></h2>
+<hr class="half-width"><p>To run the commands referenced in this setup, we recommend using:</p>
+<ul><li>Terminal (Mac, Linux)</li>
+<li>Git Bash (Windows). Download and install from here: <a href="https://git-scm.com/install/windows" class="external-link uri">https://git-scm.com/install/windows</a>. Git Bash provides a
+shell environment that closely resembles the terminal.</li>
+</ul></section><section><h2 class="section-heading" id="set-up-the-workshop-folder">1. Set up the workshop folder<a class="anchor" aria-label="anchor" href="#set-up-the-workshop-folder"></a></h2>
+<hr class="half-width"><p>Create a folder on your desktop called <code>ML_workshop</code> for
+storing the workshop data and environment.</p>
+<p>Open a terminal or Git Bash (Windows) to run the following commands.
+If you prefer, you can also create the folder manually on your
+Desktop.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">mkdir</span> ML_workshop</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="bu">cd</span> ML_workshop</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre>
+</div>
+</section><section><h2 class="section-heading" id="install-python-3-11-9">2. Install Python 3.11.9<a class="anchor" aria-label="anchor" href="#install-python-3-11-9"></a></h2>
+<hr class="half-width"><p>We recommend using Python 3.11.9 to ensure consistency across
+participants.</p>
+<p>Download the appropriate installer from the <a href="https://www.python.org/downloads/release/python-3119/" class="external-link">official
+3.11.9 downloads page</a>. Follow your OS-specific installation steps.
+<strong>When prompted, select “Add python.exe to PATH”.</strong></p>
+</section><section><h2 class="section-heading" id="install-uv-and-set-up-the-environment">3. Install <code>uv</code> and set up the environment<a class="anchor" aria-label="anchor" href="#install-uv-and-set-up-the-environment"></a></h2>
+<hr class="half-width"><p><a href="https://github.com/astral-sh/uv" class="external-link"><code>uv</code></a> is a
+modern, fast Python package and environment manager. It’s significantly
+faster than <code>pip</code> and simplifies reproducible setup.</p>
+<div class="section level3">
+<h3 id="a--install-uv">A. Install <code>uv</code>
+<a class="anchor" aria-label="anchor" href="#a--install-uv"></a></h3>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">pip</span> install uv</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="b--create-a-requirements-txt-file-in-the-ml_workshop-folder">B. Create a <code>requirements.txt</code> file in the
+<code>ML_workshop</code> folder<a class="anchor" aria-label="anchor" href="#b--create-a-requirements-txt-file-in-the-ml_workshop-folder"></a></h3>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">touch</span> requirements.txt</span></code></pre>
+</div>
+<p>Use your preferred text editor to add the following contents into
+<code>ML_workshop/requirements.txt</code>. Make sure to save the file
+after your edits.</p>
+<pre class="text"><code><span><span class="va">numpy</span></span>
+<span><span class="va">pandas</span></span>
+<span><span class="va">matplotlib</span></span>
+<span><span class="va">opencv</span><span class="op">-</span><span class="va">python</span></span>
+<span><span class="va">scikit</span><span class="op">-</span><span class="va">learn</span></span>
+<span><span class="va">jupyterlab</span></span>
+<span><span class="va">seaborn</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="c--set-up-the-virtual-environment">C. Set up the virtual environment<a class="anchor" aria-label="anchor" href="#c--set-up-the-virtual-environment"></a></h3>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">pwd</span>  <span class="co"># check to make sure you're still in the ML_workshop folder.</span></span></code></pre>
+</div>
+<p>Create the virtual environment using Python 3.11.9:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span><span class="op">=</span>3.11.9</span></code></pre>
+</div>
+<div id="what-does-the-.venv-folder-contain" class="callout">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="bell"></i>
 </div>
-<span class="callout-header">Discussion</span>
-<div id="details" class="callout-inner">
-<h3 class="callout-title">Details</h3>
+<span class="callout-header">Callout</span>
+<div id="what-does-the-.venv-folder-contain" class="callout-inner">
+<h3 class="callout-title">What does the <code>.venv</code> folder
+contain?</h3>
 <div class="callout-content">
-<p>Setup for different systems can be presented in dropdown menus via a
-<code>spoiler</code> tag. They will join to this discussion block, so
-you can give a general overview of the software used in this lesson here
-and fill out the individual operating systems (and potentially add more,
-e.g. online setup) in the solutions blocks.</p>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Windows
-  </h3>
-</button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
-<div class="accordion-body">
-<p>Use PuTTY</p>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  MacOS
-  </h3>
-</button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
-<div class="accordion-body">
-<p>Use Terminal.app</p>
+<p>Running <code>uv venv --python=3.11.9</code> creates a folder named
+<code>.venv/</code> in your <code>ML_workshop</code> directory.</p>
+<p>Inside this folder, you’ll find multiple subfolders and files:</p>
+<ul><li>
+<code>bin/</code> (or <code>Scripts/</code> on Windows): contains
+the Python interpreter and executable scripts</li>
+<li>
+<code>lib/</code>: stores all installed Python packages (and their
+dependencies)</li>
+<li>
+<code>pyvenv.cfg</code>: tracks Python version and
+configuration</li>
+<li>
+<code>include/</code>: headers used to build native extensions</li>
+</ul><p>These components form an isolated environment, keeping your installed
+packages separate from your global Python setup.</p>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Linux
-  </h3>
-</button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
-<div class="accordion-body">
-<p>Use Terminal</p>
+<div class="section level3">
+<h3 id="d--activate-the-environment">D. Activate the environment<a class="anchor" aria-label="anchor" href="#d--activate-the-environment"></a></h3>
+<p>Run one of the OS-specific commands below:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Mac/Linux</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># Git Bash on Windows</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co"># Windows CMD (not recommended)</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="ex">.venv\Scripts\activate.bat</span></span></code></pre>
 </div>
 </div>
+<div class="section level3">
+<h3 id="e--install-requirements-txt">E. Install <code>requirements.txt</code>
+<a class="anchor" aria-label="anchor" href="#e--install-requirements-txt"></a></h3>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">uv</span> pip install <span class="at">-r</span> requirements.txt</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="f--add-the-environment-to-jupyterlab">F. Add the environment to JupyterLab<a class="anchor" aria-label="anchor" href="#f--add-the-environment-to-jupyterlab"></a></h3>
+<p>Run one of the OS-specific commands below.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co"># Mac/Linux</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">.venv/bin/python</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span><span class="op">=</span>.venv <span class="at">--display-name</span> <span class="st">"ML_workshop"</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Git Bash on Windows</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="ex">.venv/Scripts/python.exe</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span><span class="op">=</span>.venv <span class="at">--display-name</span> <span class="st">"ML_workshop"</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co"># Windows CMD (not recommended)</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="ex">.venv\Scripts\python.exe</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span><span class="op">=</span>.venv <span class="at">--display-name</span> <span class="st">"ML_workshop"</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="g--launch-jupyterlab">G. Launch JupyterLab<a class="anchor" aria-label="anchor" href="#g--launch-jupyterlab"></a></h3>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre>
+</div>
+<p>When Jupyter opens, select the <code>ML_workshop</code> kernel from
+the dropdown to start a new notebook.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="im">import</span> cv2</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets, model_selection, metrics</span></code></pre>
+</div>
+<p>If this runs without error, your setup is complete!</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul><li>Use a dedicated <code>ML_workshop</code> folder to keep all
+materials and the environment together.</li>
+<li>Install and use Python 3.11.9 so your setup matches the
+instructors’.</li>
+<li>Use <code>uv</code> to create and manage an isolated virtual
+environment in <code>.venv/</code>.</li>
+<li>Register the environment as a Jupyter kernel and select it before
+working through the lesson.</li>
+</ul></div>
 </div>
 </div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="../instructor/01-introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
