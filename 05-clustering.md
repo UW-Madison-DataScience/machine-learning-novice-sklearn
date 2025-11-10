@@ -166,21 +166,6 @@ plot_clusters(data, clusters, Kmean)
 
 ![Plot of the fitted random clusters](fig/results/random_clusters_centre.png)
 
-Here is the code all in a single block.
-
-```python
-import sklearn.cluster as skl_cluster
-import sklearn.datasets as skl_datasets
-import matplotlib.pyplot as plt
-
-data, cluster_id = skl_datasets.make_blobs(n_samples=400, cluster_std=0.75, centers=4, random_state=1)
-
-Kmean = skl_cluster.KMeans(n_clusters=4)
-Kmean.fit(data)
-clusters = Kmean.predict(data)
-
-plot_clusters(data, clusters, Kmean)
-```
 
 ::::::::::::::::::::::::::::::::::::: callout
 
