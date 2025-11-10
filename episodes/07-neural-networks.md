@@ -311,56 +311,55 @@ kfold = skl_msel.KFold(4)
 
 Now we can loop through our data and test on each combination. The `kfold.split` function returns two variables and we will have our for loop work through both of them. The train variable will contain a list of which items (by index number) we are currently using to train and the test one will contain the list of which items we are going to test on.
 
+Inside the loop, we can select the data with `data_train = data.iloc[train]` and `labels_train = labels.iloc[train]`. In some versions of Python/Pandas/Scikit-Learn, you might be able to use `data_train = data[train]` and `labels_train = labels[train]`. This is a useful Python shorthand which will use the list of indices from `train` to select which items from `data` and `labels` we use. We can repeat this process with the test set. 
+
+Finally, we need to train the classifier with the selected training data and then score it against the test data. The scores for each set of test data should be similar.
+
 ```python
 for (train, test) in kfold.split(data):
-```
-
-Now inside the loop, we can select the data with `data_train = data.iloc[train]` and `labels_train = labels.iloc[train]`. In some versions of Python/Pandas/Scikit-Learn, you might be able to use `data_train = data[train]` and `labels_train = labels[train]`. This is a useful Python shorthand which will use the list of indices from `train` to select which items from `data` and `labels` we use. We can repeat this process with the test set.
-
-```python
     data_train = data.iloc[train]
     labels_train = labels.iloc[train]
 
     data_test = data.iloc[test]
     labels_test = labels.iloc[test]
-```
 
-
-Finally, we need to train the classifier with the selected training data and then score it against the test data. The scores for each set of test data should be similar.
-
-```python
     mlp.fit(data_train,labels_train)
+    print("Testing set score", mlp.score(data_test, labels_test))
     print("Testing set score", mlp.score(data_test, labels_test))
 ```
 
 
 Once we have established that the cross validation was ok, we can go ahead and train using the entire dataset by doing `mlp.fit(data,labels)`.
 
-Here is the entire example program:
+```python
+mlp.fit(data,labels)
+```
+
+Here is the entire example program for reference:
 
 ```python
-import matplotlib.pyplot as plt
-import sklearn.datasets as skl_data
-import sklearn.neural_network as skl_nn
-import sklearn.model_selection as skl_msel
+# import matplotlib.pyplot as plt
+# import sklearn.datasets as skl_data
+# import sklearn.neural_network as skl_nn
+# import sklearn.model_selection as skl_msel
 
-data, labels = skl_data.fetch_openml('mnist_784', version=1, return_X_y=True)
-data = data / 255.0
+# data, labels = skl_data.fetch_openml('mnist_784', version=1, return_X_y=True)
+# data = data / 255.0
 
-mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, random_state=1)
+# mlp = skl_nn.MLPClassifier(hidden_layer_sizes=(50,), max_iter=50, random_state=1)
 
-kfold = skl_msel.KFold(4)
+# kfold = skl_msel.KFold(4)
 
-for (train, test) in kfold.split(data):
-    data_train = data.iloc[train]
-    labels_train = labels.iloc[train]
+# for (train, test) in kfold.split(data):
+#     data_train = data.iloc[train]
+#     labels_train = labels.iloc[train]
 
-    data_test = data.iloc[test]
-    labels_test = labels.iloc[test]
-    mlp.fit(data_train,labels_train)
-    print("Training set score", mlp.score(data_train, labels_train))
-    print("Testing set score", mlp.score(data_test, labels_test))
-mlp.fit(data,labels)
+#     data_test = data.iloc[test]
+#     labels_test = labels.iloc[test]
+#     mlp.fit(data_train,labels_train)
+#     print("Training set score", mlp.score(data_train, labels_train))
+#     print("Testing set score", mlp.score(data_test, labels_test))
+# mlp.fit(data,labels)
 ```
 
 ## Deep learning
