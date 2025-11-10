@@ -26,10 +26,15 @@ jobs:
       - name: Convert Markdown files to Jupyter Notebooks
         run: python scripts/md_to_ipynb.py
 
+      - name: Create ZIP of all notebooks
+        run: |
+          mkdir -p notebooks
+          zip -r notebooks.zip notebooks/*.ipynb || echo "No notebooks found to zip"
+
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add notebooks/*.ipynb
-          git commit -m "Auto-generate Jupyter notebooks from Markdown" || echo "No changes to commit"
+          git add notebooks/*.ipynb notebooks.zip
+          git commit -m "Auto-generate Jupyter notebooks and archive notebooks.zip" || echo "No changes to commit"
           git push
