@@ -190,27 +190,7 @@ Typically, the majority of the data will be used as training data (70-90%), to h
 data.shape
 ```
 
-This tells us we have 70,000 rows in the dataset.
-
-```python
-<bound method NDFrame.describe of        pixel1  pixel2  pixel3  pixel4  pixel5  pixel6  pixel7  pixel8  pixel9  pixel10  ...  pixel775  pixel776  pixel777  pixel778  pixel779  pixel780  pixel781  pixel782  pixel783  pixel784
-0         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-1         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-2         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-3         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-4         0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-...       ...     ...     ...     ...     ...     ...     ...     ...     ...      ...  ...       ...       ...       ...       ...       ...       ...       ...       ...       ...       ...
-69995     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69996     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69997     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69998     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-69999     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0      0.0  ...       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0       0.0
-
-[70000 rows x 784 columns]>
-```python
-{: .output}
-
-Let us take 90% of the data for training and 10% for testing, so we will use the first 63,000 samples in the dataset as the training data and the last 7,000 as the test data. 
+This tells us we have 70,000 rows in the dataset. Let us take 90% of the data for training and 10% for testing, so we will use the first 63,000 samples in the dataset as the training data and the last 7,000 as the test data. 
 
 ```python
 from sklearn.model_selection import train_test_split
