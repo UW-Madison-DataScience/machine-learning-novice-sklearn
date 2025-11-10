@@ -295,7 +295,7 @@ plot_clusters(x_tsne, clusters, Kmean)
 plot_clusters_labels(x_tsne, labels)
 ```
 
-![Reduction using PCA](fig/results/tsne_clustered.png)![Reduction using PCA](fig/tsne_labelled.png)
+![Reduction using PCA](fig/results/tsne_clustered.png)
 
 
 It looks like t-SNE has successfully separated out our digits into accurate clusters using as little as a 2D representation and a simple k-means clustering algorithm. It has worked so well that you can clearly see several clusters which can be modelled, whereas for our PCA representation we needed to rely heavily on the knowledge that we had 10 types of digits to cluster.
