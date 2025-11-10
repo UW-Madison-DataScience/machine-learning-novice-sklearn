@@ -6,17 +6,24 @@ exercises: 30
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What is unsupervised learning?
-- How can we use clustering to find data points with similar attributes?
+- What is unsupervised learning, and how does it differ from supervised learning?  
+- How can clustering be used to find groups of similar data points?  
+- How do we perform k-means clustering in Scikit-Learn and evaluate cluster quality?  
+- What are the main limitations of k-means, and when does it fail?  
+- How can spectral clustering handle complex cluster structures that k-means cannot?  
+- How do runtime and scalability differ between k-means and spectral clustering?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand the difference between supervised and unsupervised learning
-- Identify clusters in data using k-means clustering.
-- Understand the limitations of k-means when clusters overlap.
-- Use spectral clustering to overcome the limitations of k-means.
+- Explain the concept of unsupervised learning and when it is used.  
+- Apply k-means clustering to generated datasets and interpret the results.  
+- Explore how hyperparameters like k (number of clusters) affect the outcome.  
+- Use silhouette scores and silhouette plots to assess the quality of cluster assignments.  
+- Identify the limitations of k-means, including its tendency to fail on non-linear or overlapping clusters.  
+- Apply spectral clustering to datasets where k-means fails and compare the results visually and computationally.  
+- Compare runtime performance and scalability between k-means and spectral clustering.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -460,12 +467,12 @@ Kmeans might take a few minutes while spectral will take hours.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Clustering is a form of unsupervised learning.
-- Unsupervised learning algorithms don't need training.
-- Kmeans is a popular clustering algorithm.
-- Kmeans is less useful when one cluster exists within another, such as concentric circles.
-- Spectral clustering can overcome some of the limitations of Kmeans.
-- Spectral clustering is much slower than Kmeans.
-- Scikit-Learn has functions to create example data.
+- Clustering is an unsupervised learning method that groups similar data points without labeled outputs.  
+- K-means is simple, fast, and well-suited for large datasets, but it assumes spherical clusters and linear boundaries.  
+- The number of clusters (k) must be specified in advance, and silhouette scores can help evaluate and compare clustering quality.  
+- K-means can perform poorly when clusters overlap or have complex shapes, such as concentric circles.  
+- Spectral clustering overcomes many of k-means' geometric limitations using graph-based and kernel methods, but is slower and less scalable.  
+- Scikit-Learn provides tools for generating datasets (make_blobs, make_circles) and implementing both k-means and spectral clustering.  
+- Choosing the right clustering method often depends on the dataset’s structure, size, and available computational resources.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
