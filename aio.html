@@ -4435,53 +4435,6 @@ increasing it to around 0.1.</p>
 </div>
 </div>
 </div>
-<div id="using-your-own-handwriting" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="using-your-own-handwriting" class="callout-inner">
-<h3 class="callout-title">Using your own handwriting</h3>
-<div class="callout-content">
-<p>Create an image using Microsoft Paint, the GNU Image Manipulation
-Project (GIMP) or <a href="https://jspaint.app/" class="external-link">jspaint</a>. The image
-needs to be grayscale and 28 x 28 pixels.</p>
-<p>Try to draw a digit (0-9) in the image and save it into your code
-directory.</p>
-<p>The code below loads the image (called digit.png, change to whatever
-your file is called) using the OpenCV library. Some Anaconda
-installations need this installed either through the package manager or
-by running the command: <code>conda install -c conda-forge opencv</code>
-from the anaconda terminal.</p>
-<p>OpenCV assumes that images are 3 channel red, green, blue and we have
-to convert to one channel grayscale with <code>cvtColor</code>.</p>
-<p>We also need to normalise the image by dividing each pixel by
-255.</p>
-<p>To verify the image, we can plot it by using OpenCV’s
-<code>imshow</code> function (we could also use Matplotlib’s
-<code>matshow</code> function).</p>
-<p>To check what digit it is, we can pass it into
-<code>mlp.predict</code>, but we have to convert it from a 28x28 array
-to a one dimensional 784-byte long array with the <code>reshape</code>
-function.</p>
-<p>Did it correctly classify your hand(mouse) writing? Try a few images.
-If you have time try drawing images on a touch screen or taking a photo
-of something you have really written by hand. Remember that you will
-have to resize it to be 28x28 pixels.</p>
-<div class="codewrapper sourceCode" id="cb14">
-<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">import</span> cv2</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>digit <span class="op">=</span> cv2.imread(<span class="st">"digit.png"</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>digit_gray <span class="op">=</span> cv2.cvtColor(digit, cv2.COLOR_BGR2GRAY)</span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>digit_norm <span class="op">=</span> digit_gray<span class="op">/</span><span class="fl">255.0</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>cv2.imshow(<span class="st">"Normalised Digit"</span>,digit_norm)</span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Your digit is"</span>,mlp.predict(digit_norm.reshape(<span class="dv">1</span>,<span class="dv">784</span>)))</span></code></pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="section level3">
 <h3 id="confusion-matrix">Confusion matrix<a class="anchor" aria-label="anchor" href="#confusion-matrix"></a>
@@ -4504,24 +4457,24 @@ and the classifications. We already have the real data in the
 labels_test array, but we need to build it for the classifications by
 classifying each image (in the same order as the real data) and storing
 the result in another array.</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># extract all test set predictions</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>y_test_pred <span class="op">=</span> mlp.predict(X_test)</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>y_test_pred</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># extract all test set predictions</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>y_test_pred <span class="op">=</span> mlp.predict(X_test)</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>y_test_pred</span></code></pre>
 </div>
 <p>The <code>ConfusionMatrixDisplay</code> class in the
 <code>sklearn.metrics</code> package can create a graphical
 representation of a confusion matrix with colour coding to highlight how
 many items are in each cell. This colour coding can be useful when
 working with very large numbers of classes.</p>
-<div class="codewrapper sourceCode" id="cb16">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test,y_test_pred)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test,y_test_pred)</span></code></pre>
 </div>
 </div>
 </div>
@@ -4551,17 +4504,17 @@ entire dataset.</p>
 doing k-fold cross validation in Scikit-Learn. It can automatically
 partition our data for cross validation.</p>
 <p>Import this and call it <code>skl_msel</code></p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection <span class="im">as</span> skl_msel</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection <span class="im">as</span> skl_msel</span></code></pre>
 </div>
 <p>Now we can choose how many ways we would like to split our data
 (three or four are common choices).</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>kfold <span class="op">=</span> skl_msel.KFold(<span class="dv">4</span>)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>kfold <span class="op">=</span> skl_msel.KFold(<span class="dv">4</span>)</span></code></pre>
 </div>
 <p>Now we can loop through our data and test on each combination. The
 <code>kfold.split</code> function returns two variables and we will have
@@ -4569,10 +4522,10 @@ our for loop work through both of them. The train variable will contain
 a list of which items (by index number) we are currently using to train
 and the test one will contain the list of which items we are going to
 test on.</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="cf">for</span> (train, test) <span class="kw">in</span> kfold.split(data):</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="cf">for</span> (train, test) <span class="kw">in</span> kfold.split(data):</span></code></pre>
 </div>
 <p>Now inside the loop, we can select the data with
 <code>data_train = data.iloc[train]</code> and
@@ -4583,53 +4536,53 @@ Python/Pandas/Scikit-Learn, you might be able to use
 shorthand which will use the list of indices from <code>train</code> to
 select which items from <code>data</code> and <code>labels</code> we
 use. We can repeat this process with the test set.</p>
-<div class="codewrapper sourceCode" id="cb20">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>    data_train <span class="op">=</span> data.iloc[train]</span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    labels_train <span class="op">=</span> labels.iloc[train]</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>    data_test <span class="op">=</span> data.iloc[test]</span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>    labels_test <span class="op">=</span> labels.iloc[test]</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>    data_train <span class="op">=</span> data.iloc[train]</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>    labels_train <span class="op">=</span> labels.iloc[train]</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>    data_test <span class="op">=</span> data.iloc[test]</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>    labels_test <span class="op">=</span> labels.iloc[test]</span></code></pre>
 </div>
 <p>Finally, we need to train the classifier with the selected training
 data and then score it against the test data. The scores for each set of
 test data should be similar.</p>
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>    mlp.fit(data_train,labels_train)</span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(data_test, labels_test))</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>    mlp.fit(data_train,labels_train)</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(data_test, labels_test))</span></code></pre>
 </div>
 <p>Once we have established that the cross validation was ok, we can go
 ahead and train using the entire dataset by doing
 <code>mlp.fit(data,labels)</code>.</p>
 <p>Here is the entire example program:</p>
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_data</span>
-<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a><span class="im">import</span> sklearn.neural_network <span class="im">as</span> skl_nn</span>
-<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection <span class="im">as</span> skl_msel</span>
-<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>data, labels <span class="op">=</span> skl_data.fetch_openml(<span class="st">'mnist_784'</span>, version<span class="op">=</span><span class="dv">1</span>, return_X_y<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>data <span class="op">=</span> data <span class="op">/</span> <span class="fl">255.0</span></span>
-<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>mlp <span class="op">=</span> skl_nn.MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">50</span>,), max_iter<span class="op">=</span><span class="dv">50</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a>kfold <span class="op">=</span> skl_msel.KFold(<span class="dv">4</span>)</span>
-<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a><span class="cf">for</span> (train, test) <span class="kw">in</span> kfold.split(data):</span>
-<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a>    data_train <span class="op">=</span> data.iloc[train]</span>
-<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a>    labels_train <span class="op">=</span> labels.iloc[train]</span>
-<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a></span>
-<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a>    data_test <span class="op">=</span> data.iloc[test]</span>
-<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a>    labels_test <span class="op">=</span> labels.iloc[test]</span>
-<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a>    mlp.fit(data_train,labels_train)</span>
-<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Training set score"</span>, mlp.score(data_train, labels_train))</span>
-<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(data_test, labels_test))</span>
-<span id="cb22-22"><a href="#cb22-22" tabindex="-1"></a>mlp.fit(data,labels)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="im">import</span> sklearn.datasets <span class="im">as</span> skl_data</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="im">import</span> sklearn.neural_network <span class="im">as</span> skl_nn</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="im">import</span> sklearn.model_selection <span class="im">as</span> skl_msel</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>data, labels <span class="op">=</span> skl_data.fetch_openml(<span class="st">'mnist_784'</span>, version<span class="op">=</span><span class="dv">1</span>, return_X_y<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>data <span class="op">=</span> data <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>mlp <span class="op">=</span> skl_nn.MLPClassifier(hidden_layer_sizes<span class="op">=</span>(<span class="dv">50</span>,), max_iter<span class="op">=</span><span class="dv">50</span>, random_state<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>kfold <span class="op">=</span> skl_msel.KFold(<span class="dv">4</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a><span class="cf">for</span> (train, test) <span class="kw">in</span> kfold.split(data):</span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>    data_train <span class="op">=</span> data.iloc[train]</span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>    labels_train <span class="op">=</span> labels.iloc[train]</span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a>    data_test <span class="op">=</span> data.iloc[test]</span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a>    labels_test <span class="op">=</span> labels.iloc[test]</span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a>    mlp.fit(data_train,labels_train)</span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Training set score"</span>, mlp.score(data_train, labels_train))</span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Testing set score"</span>, mlp.score(data_test, labels_test))</span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a>mlp.fit(data,labels)</span></code></pre>
 </div>
 </div>
 </div>
