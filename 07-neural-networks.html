@@ -346,7 +346,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Neural Networks</h1>
-        <p>Last updated on 2025-11-07 |
+        <p>Last updated on 2025-11-10 |
 
         <a href="https://github.com/UW-Madison-DataScience/machine-learning-novice-sklearn-v2/edit/main/episodes/07-neural-networks.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -668,40 +668,23 @@ to decide how many samples we want to train with.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>data.shape</span></code></pre>
 </div>
-<p>This tells us we have 70,000 rows in the dataset.</p>
+<p>This tells us we have 70,000 rows in the dataset. Let us take 90% of
+the data for training and 10% for testing, so we will use the first
+63,000 samples in the dataset as the training data and the last 7,000 as
+the test data.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="op">&lt;</span>bound method NDFrame.describe of        pixel1  pixel2  pixel3  pixel4  pixel5  pixel6  pixel7  pixel8  pixel9  pixel10  ...  pixel775  pixel776  pixel777  pixel778  pixel779  pixel780  pixel781  pixel782  pixel783  pixel784</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="dv">0</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="dv">1</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="dv">2</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="dv">3</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="dv">4</span>         <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>...       ...     ...     ...     ...     ...     ...     ...     ...     ...      ...  ...       ...       ...       ...       ...       ...       ...       ...       ...       ...       ...</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="dv">69995</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="dv">69996</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="dv">69997</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="dv">69998</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="dv">69999</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>     <span class="fl">0.0</span>      <span class="fl">0.0</span>  ...       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span>       <span class="fl">0.0</span></span>
-<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a></span>
-<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>[<span class="dv">70000</span> rows x <span class="dv">784</span> columns]<span class="op">&gt;</span></span>
-<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>```python</span>
-<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>{: .output}</span>
-<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>Let us take <span class="dv">90</span><span class="op">%</span> of the data <span class="cf">for</span> training <span class="kw">and</span> <span class="dv">10</span><span class="op">%</span> <span class="cf">for</span> testing, so we will use the first <span class="dv">63</span>,<span class="dv">000</span> samples <span class="kw">in</span> the dataset <span class="im">as</span> the training data <span class="kw">and</span> the last <span class="dv">7</span>,<span class="dv">000</span> <span class="im">as</span> the test data. </span>
-<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>```python</span>
-<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a><span class="co"># Assuming `data` is your feature matrix and `labels` is your target vector</span></span>
-<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>    data.values,        <span class="co"># Features</span></span>
-<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a>    labels.values,      <span class="co"># Labels</span></span>
-<span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.1</span>,      <span class="co"># Reserve 10% of data for testing</span></span>
-<span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>     <span class="co"># For reproducibility</span></span>
-<span id="cb9-29"><a href="#cb9-29" tabindex="-1"></a>)</span>
-<span id="cb9-30"><a href="#cb9-30" tabindex="-1"></a>X_train.shape</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># Assuming `data` is your feature matrix and `labels` is your target vector</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    data.values,        <span class="co"># Features</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>    labels.values,      <span class="co"># Labels</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.1</span>,      <span class="co"># Reserve 10% of data for testing</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>     <span class="co"># For reproducibility</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>)</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>X_train.shape</span></code></pre>
 </div>
 <p>Now lets train the network. This line will take about one minute to
 run. We do this by calling the <code>fit</code> function inside the
@@ -1112,7 +1095,7 @@ any links that you are not going to use.
   "url": "https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/07-neural-networks.html",
   "identifier": "https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/07-neural-networks.html",
   "dateCreated": "2013-07-13",
-  "dateModified": "2025-11-07",
+  "dateModified": "2025-11-10",
   "datePublished": "2025-11-10"
 }
 
