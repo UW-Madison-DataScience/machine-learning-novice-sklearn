@@ -478,15 +478,29 @@ the dataset.</li>
 </ul></section><section id="05-clustering"><h2 class="section-heading"><a href="05-clustering.html">Unsupervised methods - ClusteringUnsupervised learning<a class="anchor" aria-label="anchor" href="#unsupervised-learning"></a>Clustering<a class="anchor" aria-label="anchor" href="#clustering"></a></a></h2>
 <hr class="half-width">
 <ul>
-<li>Clustering is a form of unsupervised learning.</li>
-<li>Unsupervised learning algorithms don’t need training.</li>
-<li>Kmeans is a popular clustering algorithm.</li>
-<li>Kmeans is less useful when one cluster exists within another, such
-as concentric circles.</li>
-<li>Spectral clustering can overcome some of the limitations of
-Kmeans.</li>
-<li>Spectral clustering is much slower than Kmeans.</li>
-<li>Scikit-Learn has functions to create example data.</li>
+<li>Clustering is an unsupervised learning method that groups similar
+data points without labeled outputs.<br>
+</li>
+<li>K-means is simple, fast, and well-suited for large datasets, but it
+assumes spherical clusters and linear boundaries.<br>
+</li>
+<li>The number of clusters (k) must be specified in advance, and
+silhouette scores can help evaluate and compare clustering
+quality.<br>
+</li>
+<li>K-means can perform poorly when clusters overlap or have complex
+shapes, such as concentric circles.<br>
+</li>
+<li>Spectral clustering overcomes many of k-means’ geometric limitations
+using graph-based and kernel methods, but is slower and less
+scalable.<br>
+</li>
+<li>Scikit-Learn provides tools for generating datasets (make_blobs,
+make_circles) and implementing both k-means and spectral
+clustering.<br>
+</li>
+<li>Choosing the right clustering method often depends on the dataset’s
+structure, size, and available computational resources.</li>
 </ul></section><section id="06-dimensionality-reduction"><h2 class="section-heading"><a href="06-dimensionality-reduction.html">Unsupervised methods - Dimensionality reductionDimensionality reduction<a class="anchor" aria-label="anchor" href="#dimensionality-reduction"></a>Dimensionality reduction with Scikit-Learn<a class="anchor" aria-label="anchor" href="#dimensionality-reduction-with-scikit-learn"></a></a></h2>
 <hr class="half-width">
 <ul>
@@ -585,8 +599,8 @@ techniques are constantly appearing.</li>
   "url": "https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/key-points.html",
   "identifier": "https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/instructor/key-points.html",
   "dateCreated": "2013-07-13",
-  "dateModified": "2025-11-07",
-  "datePublished": "2025-11-07"
+  "dateModified": "2025-11-10",
+  "datePublished": "2025-11-10"
 }
 
   </script><script>

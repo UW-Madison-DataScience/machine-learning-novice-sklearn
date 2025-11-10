@@ -2728,7 +2728,7 @@ any links that you are not going to use.
 </div>
 </div></section><section id="aio-05-clustering"><p>Content from <a href="05-clustering.html">Unsupervised methods - Clustering</a></p>
 <hr>
-<p>Last updated on 2025-11-07 |
+<p>Last updated on 2025-11-10 |
 
         <a href="https://github.com/UW-Madison-DataScience/machine-learning-novice-sklearn-v2/edit/main/episodes/05-clustering.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2742,9 +2742,23 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>What is unsupervised learning?</li>
-<li>How can we use clustering to find data points with similar
-attributes?</li>
+<li>What is unsupervised learning, and how does it differ from
+supervised learning?<br>
+</li>
+<li>How can clustering be used to find groups of similar data
+points?<br>
+</li>
+<li>How do we perform k-means clustering in Scikit-Learn and evaluate
+cluster quality?<br>
+</li>
+<li>What are the main limitations of k-means, and when does it
+fail?<br>
+</li>
+<li>How can spectral clustering handle complex cluster structures that
+k-means cannot?<br>
+</li>
+<li>How do runtime and scalability differ between k-means and spectral
+clustering?</li>
 </ul>
 </div>
 </div>
@@ -2754,11 +2768,26 @@ attributes?</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Understand the difference between supervised and unsupervised
-learning</li>
-<li>Identify clusters in data using k-means clustering.</li>
-<li>Understand the limitations of k-means when clusters overlap.</li>
-<li>Use spectral clustering to overcome the limitations of k-means.</li>
+<li>Explain the concept of unsupervised learning and when it is
+used.<br>
+</li>
+<li>Apply k-means clustering to generated datasets and interpret the
+results.<br>
+</li>
+<li>Explore how hyperparameters like k (number of clusters) affect the
+outcome.<br>
+</li>
+<li>Use silhouette scores and silhouette plots to assess the quality of
+cluster assignments.<br>
+</li>
+<li>Identify the limitations of k-means, including its tendency to fail
+on non-linear or overlapping clusters.<br>
+</li>
+<li>Apply spectral clustering to datasets where k-means fails and
+compare the results visually and computationally.<br>
+</li>
+<li>Compare runtime performance and scalability between k-means and
+spectral clustering.</li>
 </ul>
 </div>
 </div>
@@ -3357,15 +3386,29 @@ take hours.</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>Clustering is a form of unsupervised learning.</li>
-<li>Unsupervised learning algorithms don’t need training.</li>
-<li>Kmeans is a popular clustering algorithm.</li>
-<li>Kmeans is less useful when one cluster exists within another, such
-as concentric circles.</li>
-<li>Spectral clustering can overcome some of the limitations of
-Kmeans.</li>
-<li>Spectral clustering is much slower than Kmeans.</li>
-<li>Scikit-Learn has functions to create example data.</li>
+<li>Clustering is an unsupervised learning method that groups similar
+data points without labeled outputs.<br>
+</li>
+<li>K-means is simple, fast, and well-suited for large datasets, but it
+assumes spherical clusters and linear boundaries.<br>
+</li>
+<li>The number of clusters (k) must be specified in advance, and
+silhouette scores can help evaluate and compare clustering
+quality.<br>
+</li>
+<li>K-means can perform poorly when clusters overlap or have complex
+shapes, such as concentric circles.<br>
+</li>
+<li>Spectral clustering overcomes many of k-means’ geometric limitations
+using graph-based and kernel methods, but is slower and less
+scalable.<br>
+</li>
+<li>Scikit-Learn provides tools for generating datasets (make_blobs,
+make_circles) and implementing both k-means and spectral
+clustering.<br>
+</li>
+<li>Choosing the right clustering method often depends on the dataset’s
+structure, size, and available computational resources.</li>
 </ul>
 </div>
 </div>
@@ -5015,8 +5058,8 @@ any links that you are not going to use.
   "url": "https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/aio.html",
   "identifier": "https://UW-Madison-DataScience.github.io/machine-learning-novice-sklearn-v2/aio.html",
   "dateCreated": "2013-07-13",
-  "dateModified": "2025-11-07",
-  "datePublished": "2025-11-07"
+  "dateModified": "2025-11-10",
+  "datePublished": "2025-11-10"
 }
 
   </script><script>
